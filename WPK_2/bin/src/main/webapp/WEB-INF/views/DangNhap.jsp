@@ -57,11 +57,8 @@
                 </div>
       
                 <div class="text-center text-lg-start mt-3 pt-2">
-                <a href="/index/form">
-                <button type="button" class="btn btn-primary btn-lg"
+                  <button type="button" class="btn btn-primary btn-lg"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Đăng nhập</button>
-                </a>
-                  
                   <p class="small fw-bold mt-2 pt-1 mb-0">Bạn không có tài khoản? <a href="/index/DangKi"
                       class="link-danger">Đăng kí ngay</a></p>
                 </div>

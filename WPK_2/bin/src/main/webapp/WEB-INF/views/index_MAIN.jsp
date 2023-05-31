@@ -115,11 +115,11 @@
                 <li>
                     <div class="product-item">
                         <div class="product-top">
-                            <a href="/index/Chitietsanpham" class="product-thumb">
+                            <a href="" class="product-thumb">
                                 <img src="/sanpham/DL01a4min.jpg" alt="">
                             </a>
                             <!--Mua ngay-->
-                            <a href="/index/Chitietsanpham" class="buy-now">Mua ngay</a>
+                            <a href="" class="buy-now">Mua ngay</a>
                         </div>
                         <div class="product-info">
                             <a href="" class="product-cat">Quạt tản nhiệt</a>
@@ -131,11 +131,11 @@
                 <li>
                     <div class="product-item">
                         <div class="product-top">
-                            <a href="/index/Chitietsanpham" class="product-thumb">
+                            <a href="" class="product-thumb">
                                 <img src="/sanpham/DL01a4min.jpg" alt="">
                             </a>
                             <!--Mua ngay-->
-                            <a href="/index/Chitietsanpham" class="buy-now">Mua ngay</a>
+                            <a href="" class="buy-now">Mua ngay</a>
                         </div>
                         <div class="product-info">
                             <a href="" class="product-cat">Quạt tản nhiệt</a>
@@ -147,11 +147,11 @@
                 <li>
                     <div class="product-item">
                         <div class="product-top">
-                            <a href="/index/Chitietsanpham" class="product-thumb">
+                            <a href="" class="product-thumb">
                                 <img src="/sanpham/DL01a4min.jpg" alt="">
                             </a>
                             <!--Mua ngay-->
-                            <a href="/index/Chitietsanpham" class="buy-now">Mua ngay</a>
+                            <a href="" class="buy-now">Mua ngay</a>
                         </div>
                         <div class="product-info">
                             <a href="" class="product-cat">Quạt tản nhiệt</a>
@@ -163,11 +163,11 @@
                 <li>
                     <div class="product-item">
                         <div class="product-top">
-                            <a href="/index/Chitietsanpham" class="product-thumb">
+                            <a href="" class="product-thumb">
                                 <img src="/sanpham/DL01a4min.jpg" alt="">
                             </a>
                             <!--Mua ngay-->
-                            <a href="/index/Chitietsanpham" class="buy-now">Mua ngay</a>
+                            <a href="" class="buy-now">Mua ngay</a>
                         </div>
                         <div class="product-info">
                             <a href="" class="product-cat">Quạt tản nhiệt</a>
@@ -177,6 +177,7 @@
                     </div>
                 </li>
                 
+
                 <div class="container">
                     <div id="sanphambanchay">
                         Tai nghe bluetooth
