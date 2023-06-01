@@ -114,7 +114,7 @@
 					<div class="form-button">
 						<div class="row">
 							<div class="col-md-6">
-								<label>Mầu sắc</label>
+								<label>Màu sắc</label>
 								<p>
 									<select id="optMauSac" class="form-control">
 										<option value="10">Màu: Đen</option>
@@ -594,7 +594,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="container bg-while">
+				
+			</div>
+			<div class="container bg-while">
 					<div class="wapcontainer">
 						<div class="row">
 							<div class="col-md-12">
@@ -787,7 +789,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
 		</div>
 	</div>
 	 <script
