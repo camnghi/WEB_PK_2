@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping ("index")
-// mới thêm cái cmt zô nè
 public class MainController {
 
 	@GetMapping("form")
