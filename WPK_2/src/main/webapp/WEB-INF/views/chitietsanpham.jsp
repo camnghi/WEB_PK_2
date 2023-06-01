@@ -21,52 +21,50 @@
 </head>
 
 <body>
-    <div id="wrapper" style="padding-bottom: 30px;">
-        <div id="header">
-            <nav class="container">
-                <a href="" id="logo">
-                    <img src="/img/logo_fpt.png" alt="">
-                </a>
-                <ul id="main-menu">
-                    <li><a href=""><i class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
-                    <li><a href=""><i class="fa-solid fa-list-ul"></i>Sản phẩm</a>
-                        <ul class="sub-menu">
-                            <li><a href="">Máy chơi game cầm tay</a></li>
-                            <li><a href="">Bao tay</a></li>
-                            <!-- style="margin-top: -15px;" -->
-                            <li><a href="">Tay cầm chơi game</a></li>
-                            <li><a href="">Tai nghe</a>
-                                <ul class="sub-menu">
-                                    <li><a href="">Tai nghe không dây</a></li>
-                                    <li><a href="">Tai nghe có dây</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="">Nút bấm chơi game</a></li>
-                            <li><a href="">Chuột</a>
-                                <ul class="sub-menu">
-                                    <li><a href="">Chuột không dây</a></li>
-                                    <li><a href="">Chuột có dây</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="">Bàn phím</a></li>
-                        </ul>
-                    </li>
-                    <li><a href=""><i class="fa-solid fa-pen"></i>Báo cáo</a></li>
-                    <li><a href=""><i class="fa-solid fa-newspaper"></i>Tin tức</a></li>
-                    <li><a href=""><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
-                    <li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
-                        <ul class="sub-menu">
-                            <li><a href="">Đăng nhập </a></li>
-                            <li><a href="">Đăng ký </a></li>
-                            <li><a href="/capnhatTK/form">Cập nhật tài khoản</a></li>
-                            <li><a href="">Đăng xuất </a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-<div class="container  bg-while rm-slide-detail">
+	<div id="wrapper" style="padding-bottom: 30px;">
+		<div id="header">
+			<nav class="container">
+				<a href="" id="logo"> <img src="/img/logo_fpt.png" alt="">
+				</a>
+				<ul id="main-menu">
+					<li><a href="/index/form"><i
+							class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
+					<li><a href=""><i class="fa-solid fa-list-ul"></i>Sản phẩm</a>
+						<ul class="sub-menu">
+							<li><a href="">Máy chơi game cầm tay</a></li>
+							<li><a href="">Bao tay</a></li>
+							<!-- style="margin-top: -15px;" -->
+							<li><a href="">Tay cầm chơi game</a></li>
+							<li><a href="">Tai nghe</a>
+								<ul class="sub-menu">
+									<li><a href="">Tai nghe không dây</a></li>
+									<li><a href="">Tai nghe có dây</a></li>
+								</ul></li>
+							<li><a href="">Nút bấm chơi game</a></li>
+							<li><a href="">Chuột</a>
+								<ul class="sub-menu">
+									<li><a href="">Chuột không dây</a></li>
+									<li><a href="">Chuột có dây</a></li>
+								</ul></li>
+							<li><a href="">Bàn phím</a></li>
+						</ul></li>
+					<li><a href=""><i class="fa-solid fa-pen"></i>Báo cáo</a></li>
+					<li><a href=""><i class="fa-solid fa-newspaper"></i>Tin
+							tức</a></li>
+					<li><a href="/giohang/form"><i
+							class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
+					<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
+						<ul class="sub-menu">
+							<li><a href="/index/DangNhap">Đăng nhập </a></li>
+							<li><a href="/index/DangKi">Đăng ký </a></li>
+							<li><a href="/capnhatTK/form">Cập nhật tài khoản</a></li>
+							<li><a href="">Đăng xuất </a></li>
+						</ul></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="container  bg-while rm-slide-detail">
 
 		<div class="row">
 			<div class="col-md-8">
@@ -151,23 +149,23 @@
 						<div class="row">
 							<div class="col-md-7">
 								<div id="rm-booking" class="input-group">
-								<a href="/giohang/form">
-								<div type="button"
-										class="big-button button-red left btnMuaNgayDetail">
-										<strong>THÊM VÀO GIỎ HÀNG</strong>
-									</div>
-								</a>
-									
+									<a href="/giohang/form">
+										<div type="button"
+											class="big-button button-red left btnMuaNgayDetail">
+											<strong>THÊM VÀO GIỎ HÀNG</strong>
+										</div>
+									</a>
+
 								</div>
 								<br>
 							</div>
 							<div class="col-md-4">
 								<div id="rm-booking" class="input-group">
-								<a href="/giohang/form">
-									<div type="button"
-										class="big-button button-red left btnMuaNgayDetail">
-										<strong>MUA NGAY</strong>
-									</div>
+									<a href="/giohang/form">
+										<div type="button"
+											class="big-button button-red left btnMuaNgayDetail">
+											<strong>MUA NGAY</strong>
+										</div>
 									</a>
 								</div>
 
@@ -490,6 +488,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="container bg-while">
 				<div class="wapcontainer">
 					<div class="row">
@@ -594,193 +593,192 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 			<div class="container bg-while">
-					<div class="wapcontainer">
-						<div class="row">
-							<div class="col-md-12">
-								<h2 class="text-label">
-									<a href="" title="Sản phẩm bán chạy">Sản phẩm khác </a>
-								</h2>
-							</div>
-							<div class="col-md-12">
-								<div id="phone-accessories-carousel" class="carousel slide">
-									<div class="carousel-inner" role="listbox">
-										<div class="item active">
-											<div class="row row-item">
-												<div class="list-group col-sm-3 col-md-3"
-													style="text-align: center; padding-top: 10px;">
+				<div class="wapcontainer">
+					<div class="row">
+						<div class="col-md-12">
+							<h2 class="text-label">
+								<a href="" title="Sản phẩm bán chạy">Sản phẩm khác </a>
+							</h2>
+						</div>
+						<div class="col-md-12">
+							<div id="phone-accessories-carousel" class="carousel slide">
+								<div class="carousel-inner" role="listbox">
+									<div class="item active">
+										<div class="row row-item">
+											<div class="list-group col-sm-3 col-md-3"
+												style="text-align: center; padding-top: 10px;">
 
-													<li class="list-group-item "><img class="w-100"
-														src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-														alt=" "> <span class="text-new">Mới</span>
-														<div class="rmitem-caption">
-															<h4>
-																<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																	nhiệt DL01</a>
-															</h4>
-															<p>
-																<span class="text-price">200.000đ</span>
-															<div>
-																<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																	ngay</a>
-															</div>
-															</p>
-														</div></li>
+												<li class="list-group-item "><img class="w-100"
+													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
+													alt=" "> <span class="text-new">Mới</span>
+													<div class="rmitem-caption">
+														<h4>
+															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
+																nhiệt DL01</a>
+														</h4>
+														<p>
+															<span class="text-price">200.000đ</span>
+														<div>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
+																ngay</a>
+														</div>
+														</p>
+													</div></li>
 
-												</div>
-												<div class="list-group col-sm-3 col-md-3"
-													style="text-align: center; padding-top: 10px;">
+											</div>
+											<div class="list-group col-sm-3 col-md-3"
+												style="text-align: center; padding-top: 10px;">
 
-													<li class="list-group-item "><img class="w-100"
-														src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-														alt=" "> <span class="text-new">Mới</span>
-														<div class="rmitem-caption">
-															<h4>
-																<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																	nhiệt DL01</a>
-															</h4>
-															<p>
-																<span class="text-price">200.000đ</span>
-															<div>
-																<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																	ngay</a>
-															</div>
-															</p>
-														</div></li>
+												<li class="list-group-item "><img class="w-100"
+													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
+													alt=" "> <span class="text-new">Mới</span>
+													<div class="rmitem-caption">
+														<h4>
+															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
+																nhiệt DL01</a>
+														</h4>
+														<p>
+															<span class="text-price">200.000đ</span>
+														<div>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
+																ngay</a>
+														</div>
+														</p>
+													</div></li>
 
-												</div>
-												<div class="list-group col-sm-3 col-md-3"
-													style="text-align: center; padding-top: 10px;">
+											</div>
+											<div class="list-group col-sm-3 col-md-3"
+												style="text-align: center; padding-top: 10px;">
 
-													<li class="list-group-item "><img class="w-100"
-														src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-														alt=" "> <span class="text-new">Mới</span>
-														<div class="rmitem-caption">
-															<h4>
-																<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																	nhiệt DL01</a>
-															</h4>
-															<p>
-																<span class="text-price">200.000đ</span>
-															<div>
-																<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																	ngay</a>
-															</div>
-															</p>
-														</div></li>
+												<li class="list-group-item "><img class="w-100"
+													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
+													alt=" "> <span class="text-new">Mới</span>
+													<div class="rmitem-caption">
+														<h4>
+															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
+																nhiệt DL01</a>
+														</h4>
+														<p>
+															<span class="text-price">200.000đ</span>
+														<div>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
+																ngay</a>
+														</div>
+														</p>
+													</div></li>
 
-												</div>
-												<div class="list-group col-sm-3 col-md-3"
-													style="text-align: center; padding-top: 10px;">
+											</div>
+											<div class="list-group col-sm-3 col-md-3"
+												style="text-align: center; padding-top: 10px;">
 
-													<li class="list-group-item "><img class="w-100"
-														src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-														alt=" "> <span class="text-new">Mới</span>
-														<div class="rmitem-caption">
-															<h4>
-																<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																	nhiệt DL01</a>
-															</h4>
-															<p>
-																<span class="text-price">200.000đ</span>
-															<div>
-																<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																	ngay</a>
-															</div>
-															</p>
-														</div></li>
+												<li class="list-group-item "><img class="w-100"
+													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
+													alt=" "> <span class="text-new">Mới</span>
+													<div class="rmitem-caption">
+														<h4>
+															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
+																nhiệt DL01</a>
+														</h4>
+														<p>
+															<span class="text-price">200.000đ</span>
+														<div>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
+																ngay</a>
+														</div>
+														</p>
+													</div></li>
 
-												</div>
 											</div>
 										</div>
-										<div class="item ">
-											<div class="row row-item">
-												<div class="list-group col-sm-3 col-md-3"
-													style="text-align: center; padding-top: 10px;">
+									</div>
+									<div class="item ">
+										<div class="row row-item">
+											<div class="list-group col-sm-3 col-md-3"
+												style="text-align: center; padding-top: 10px;">
 
-													<li class="list-group-item "><img class="w-100"
-														src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-														alt=" "> <span class="text-new">Mới</span>
-														<div class="rmitem-caption">
-															<h4>
-																<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																	nhiệt DL01</a>
-															</h4>
-															<p>
-																<span class="text-price">200.000đ</span>
-															<div>
-																<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																	ngay</a>
-															</div>
-															</p>
-														</div></li>
+												<li class="list-group-item "><img class="w-100"
+													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
+													alt=" "> <span class="text-new">Mới</span>
+													<div class="rmitem-caption">
+														<h4>
+															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
+																nhiệt DL01</a>
+														</h4>
+														<p>
+															<span class="text-price">200.000đ</span>
+														<div>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
+																ngay</a>
+														</div>
+														</p>
+													</div></li>
 
-												</div>
-												<div class="list-group col-sm-3 col-md-3"
-													style="text-align: center; padding-top: 10px;">
+											</div>
+											<div class="list-group col-sm-3 col-md-3"
+												style="text-align: center; padding-top: 10px;">
 
-													<li class="list-group-item "><img class="w-100"
-														src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-														alt=" "> <span class="text-new">Mới</span>
-														<div class="rmitem-caption">
-															<h4>
-																<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																	nhiệt DL01</a>
-															</h4>
-															<p>
-																<span class="text-price">200.000đ</span>
-															<div>
-																<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																	ngay</a>
-															</div>
-															</p>
-														</div></li>
+												<li class="list-group-item "><img class="w-100"
+													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
+													alt=" "> <span class="text-new">Mới</span>
+													<div class="rmitem-caption">
+														<h4>
+															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
+																nhiệt DL01</a>
+														</h4>
+														<p>
+															<span class="text-price">200.000đ</span>
+														<div>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
+																ngay</a>
+														</div>
+														</p>
+													</div></li>
 
-												</div>
-												<div class="list-group col-sm-3 col-md-3"
-													style="text-align: center; padding-top: 10px;">
+											</div>
+											<div class="list-group col-sm-3 col-md-3"
+												style="text-align: center; padding-top: 10px;">
 
-													<li class="list-group-item "><img class="w-100"
-														src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-														alt=" "> <span class="text-new">Mới</span>
-														<div class="rmitem-caption">
-															<h4>
-																<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																	nhiệt DL01</a>
-															</h4>
-															<p>
-																<span class="text-price">200.000đ</span>
-															<div>
-																<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																	ngay</a>
-															</div>
-															</p>
-														</div></li>
+												<li class="list-group-item "><img class="w-100"
+													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
+													alt=" "> <span class="text-new">Mới</span>
+													<div class="rmitem-caption">
+														<h4>
+															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
+																nhiệt DL01</a>
+														</h4>
+														<p>
+															<span class="text-price">200.000đ</span>
+														<div>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
+																ngay</a>
+														</div>
+														</p>
+													</div></li>
 
-												</div>
-												<div class="list-group col-sm-3 col-md-3"
-													style="text-align: center; padding-top: 10px;">
+											</div>
+											<div class="list-group col-sm-3 col-md-3"
+												style="text-align: center; padding-top: 10px;">
 
-													<li class="list-group-item "><img class="w-100"
-														src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-														alt=" "> <span class="text-new">Mới</span>
-														<div class="rmitem-caption">
-															<h4>
-																<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																	nhiệt DL01</a>
-															</h4>
-															<p>
-																<span class="text-price">200.000đ</span>
-															<div>
-																<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																	ngay</a>
-															</div>
-															</p>
-														</div></li>
+												<li class="list-group-item "><img class="w-100"
+													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
+													alt=" "> <span class="text-new">Mới</span>
+													<div class="rmitem-caption">
+														<h4>
+															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
+																nhiệt DL01</a>
+														</h4>
+														<p>
+															<span class="text-price">200.000đ</span>
+														<div>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
+																ngay</a>
+														</div>
+														</p>
+													</div></li>
 
-												</div>
 											</div>
 										</div>
 									</div>
@@ -789,12 +787,14 @@
 						</div>
 					</div>
 				</div>
+			</div>
 		</div>
 	</div>
-	 <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-            crossorigin="anonymous">
-  </script>
-	</body>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+		crossorigin="anonymous">
+		
+	</script>
+</body>
 </html>
