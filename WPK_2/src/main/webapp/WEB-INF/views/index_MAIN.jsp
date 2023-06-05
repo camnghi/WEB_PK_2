@@ -26,7 +26,7 @@
                     <img src="/img/logo_fpt.png" alt="">
                 </a>
                 <ul id="main-menu">
-                    <li><a href=""><i class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
+                    <li><a href="/index/form"><i class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
                     <li><a href=""><i class="fa-solid fa-list-ul"></i>Sản phẩm</a>
                         <ul class="sub-menu">
                             <li><a href="">Máy chơi game cầm tay</a></li>
@@ -51,11 +51,11 @@
                     </li>
                     <li><a href=""><i class="fa-solid fa-pen"></i>Báo cáo</a></li>
                     <li><a href=""><i class="fa-solid fa-newspaper"></i>Tin tức</a></li>
-                    <li><a href=""><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
+                    <li><a href="/giohang/form"><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
                     <li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
                         <ul class="sub-menu">
-                            <li><a href="">Đăng nhập </a></li>
-                            <li><a href="">Đăng ký </a></li>
+                            <li><a href="/index/DangNhap">Đăng nhập </a></li>
+                            <li><a href="/index/DangKi">Đăng ký </a></li>
                             <li><a href="/capnhatTK/form">Cập nhật tài khoản</a></li>
                             <li><a href="">Đăng xuất </a></li>
                         </ul>
@@ -183,7 +183,7 @@
                         Tai nghe bluetooth
                       </div>
                       <div id="hinhbanner">
-                        <img src="/img/bannerPhone1.png" alt="">
+                        <img src="/img/banner1.jpg" alt="">
                     </div>
                 </div>
 
@@ -351,14 +351,14 @@
                 </a></li>
         </ul>
         <ul class="menu">
-            <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">About</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Trang chủ</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Báo cáo</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Tin tức</a></li>
+            <li class="menu__item"><a class="menu__link" href="/giohang/form">Giỏ hàng</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Tài khoản</a></li>
 
         </ul>
-        <p>&copy;2021 Nadine Coelho | All Rights Reserved</p>
+        <p>&copy;2023 Form 404 Team</p>
     </footer>
 
 
