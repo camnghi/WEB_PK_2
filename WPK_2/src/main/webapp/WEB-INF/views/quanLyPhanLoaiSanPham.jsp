@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-<title>Quản lý chi tiết sản phẩm</title>
+<title>Quản lý phân loại sản phẩm</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -20,17 +20,16 @@
 </head>
 
 <body>
-	
+
 	<div class="row">
 		<div class="col-sm-3 col-md-3 col-lg-3">
-			  <%@include file="layout/admin/navAD.jsp"%>
+			<%@include file="layout/admin/navAD.jsp"%>
 		</div>
 
 		<div class="col-sm-9 col-md-9 col-lg-9">
-			  <jsp:include page="${form_QLCTSanPham}"></jsp:include>
+			  <jsp:include page="${form_PLSanPham}"></jsp:include>
 		</div>
 	</div>
-	<!-- Bootstrap JavaScript Libraries -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
