@@ -18,7 +18,10 @@ public class MainController {
 	
 	@GetMapping("form")
 	public String index() {
-		
+		request.setAttribute("title", "Trang chủ");
+		request.setAttribute("view", "items");
+//		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		return "index_Main";
 	}
 }
