@@ -12,10 +12,11 @@ import jakarta.servlet.http.HttpServletRequest;
 public class quanLyThongKe {
 
 	@Autowired
-	HttpServletRequest rq;
+	HttpServletRequest request;
+
 	@GetMapping("form")
 	public String form() {
-rq.setAttribute("style", "indexAD");
+		request.setAttribute("form_QLThongKe", "layout/admin/form_QLThongKe.jsp");
 		return "quanLyThongKe";
 	}
 }
