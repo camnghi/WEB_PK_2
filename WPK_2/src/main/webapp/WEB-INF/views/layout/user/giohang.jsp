@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
+	
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -61,6 +61,8 @@
                             <!-- ${pageContext.request.contextPath} -->
                     </div>
                 </div>
+                <br>
+                <a class="btn btn-outline-light bg-warning" style=" float: right;" href="/lichsu/form">Lịch sử mua hàng</a>
             </div>
         </div>
     </div>

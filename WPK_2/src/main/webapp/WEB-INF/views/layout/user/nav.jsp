@@ -4,8 +4,7 @@
 <div id="wrapper" style="padding-bottom: 30px;">
 	<div id="header">
 		<nav class="container">
-			<a href="" id="logo"> <img src="/img/logo_fpt.png" alt="">
-			</a>
+			<a href="/index/form" id="logo"> <img src="/img/logo.png" alt=""></a>
 			<ul id="main-menu">
 				<li><a href="/index/form"><i
 						class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
+
 <div class="container">
 	<div id="carouselExampleCaptions" class="carousel slide"
 		data-bs-ride="carousel">
