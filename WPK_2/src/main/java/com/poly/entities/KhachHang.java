@@ -13,16 +13,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "KhachHang")
+@Table(name = "Khach_Hang")
 public class KhachHang {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String Username;
+	private String username;
 	private String password;
 	private String fullname;
-	private String Email;
-	private boolean TrangThai;
-	private boolean Admin;
+	private String email;
+	private boolean trangThai;
+	private boolean admin;
 
 }

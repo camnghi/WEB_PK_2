@@ -102,16 +102,16 @@
                                 <li><a href="/quanLySanPham/form"
                                         class="link-dark rounded">
                                     Thông tin sản phẩm</a></li>
-                                <li><a href="#" class="link-dark rounded">
+                                <li><a href="/quanLyChiTietSanPham/form" class="link-dark rounded">
                                     Chi tiết sản phẩm</a></li>
-                                <li><a href="#" class="link-dark rounded">
+                                <li><a href="/phanLoaiSP/form" class="link-dark rounded">
                                     Phân loại sản phẩm</a></li>
                             </ul>
                         </div>
                     </li>
 
                     <li class="mb-1">
-                        <a href="#" class="nav-link link-dark">
+                        <a href="/quanLyKhachHang/form" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use
                                     xlink:href="#speedometer2" /></svg>
                             Quản lý khách hàng
