@@ -63,15 +63,6 @@
                              required>                   
                     </div>          
                  </div>
-
-                  <div class="input-group mb-2 d-flex justify-content-between align-items-center">
-                    <input type="text" id="input_maXacNhan" class="form-control"
-                      placeholder="Mã Xác Nhận" />
-                      <div class="d-grid gap-2">
-                        <button type="button" name="" id="nut" class="btn btn-primary" style="background-color: #0B5ED7; color: white;">Nhận Mã</button>
-                      </div>
-                  </div>
-      
                 <div class="text-center text-lg-start mt-2 pt-2">
                   <button type="button" class="btn btn-primary btn-lg"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Đăng Kí</button>

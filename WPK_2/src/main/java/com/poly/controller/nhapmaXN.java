@@ -7,19 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 @Controller
 @RequestMapping ("index")
-public class QuenMatKhau {
+public class nhapmaXN {
 	@Autowired
 	HttpServletRequest request;
 	@Autowired
 	HttpServletResponse response;
-	
-	@GetMapping("QuenMatKhau")
-	public String form() {	
-		request.setAttribute("title", "Quên mật khẩu");
-		request.setAttribute("view", "QuenMatKhau");
+	@GetMapping("nhapmaXN")
+	public String form() {
+		request.setAttribute("title", "Nhập mã xác nhận");
+		request.setAttribute("view", "nhapmaXN");
 //		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		return "index_Main";
