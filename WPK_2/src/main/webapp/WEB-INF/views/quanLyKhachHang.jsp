@@ -163,11 +163,11 @@
                                 <ul
                                     class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li><a
-                                            href="${pageContext.request.contextPath}/quanLyThongKe/form"
+                                            href="/quanLyThongKe/form"
                                             class="link-dark rounded">
                                             Top sản phẩm bán chạy</a></li>
                                     <li><a
-                                            href="${pageContext.request.contextPath}/quanLyThongKe/form"
+                                            href="/quanLyThongKe/form"
                                             class="link-dark rounded">
                                             Doanh thu theo thời gian</a></li>
                                 </ul>
