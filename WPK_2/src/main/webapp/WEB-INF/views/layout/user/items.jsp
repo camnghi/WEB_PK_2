@@ -59,7 +59,8 @@
 			<h4>Sản phẩm bán chạy</h4>
 		</div>
 		<ul class="products">
-			<li>
+		<c:forEach var="item" items="${items}">
+		<li>
 				<div class="product-item">
 					<div class="product-top">
 						<a href="/index/chitietsanpham" class="product-thumb"> <img
@@ -69,11 +70,14 @@
 						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
 					</div>
 					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
+						<a href="" class="product-cat">${item.tensp}</a> <a href=""
 							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
 					</div>
 				</div>
 			</li>
+		</c:forEach>
+			
+			
 			<li>
 				<div class="product-item">
 					<div class="product-top">
@@ -84,7 +88,7 @@
 						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
 					</div>
 					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
+						<a href="" class="product-cat"></a> <a href=""
 							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
 					</div>
 				</div>
