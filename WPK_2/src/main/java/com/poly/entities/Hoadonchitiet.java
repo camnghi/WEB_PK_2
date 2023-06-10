@@ -15,18 +15,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "HoaDon_CT")
+@Table(name = "Hoa_Don_CT")
 public class Hoadonchitiet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_hdct;
+	private Integer id_dhct;
 	@ManyToOne
-	@JoinColumn(name = "id_hd")
+	@JoinColumn(name = "id_hd", insertable = false, updatable = false)
 	HoaDon hoadon;
 	@ManyToOne
 	@JoinColumn(name = "id_sp")
 	SanPham sanpham;
 	private float gia;
-	private int soluong;
+	private Double soluong;
 
 }

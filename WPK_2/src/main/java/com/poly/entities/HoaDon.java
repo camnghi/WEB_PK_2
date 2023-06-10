@@ -25,18 +25,23 @@ import lombok.NoArgsConstructor;
 public class HoaDon implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_hd;
+	private Integer id_hd;
+	
 	@ManyToOne
-	@JoinColumn(name = "khach_hang")
+	@JoinColumn(name = "username")
 	KhachHang khachhang;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "ngaytao")
 	Date NgayTao = new Date();
 	String diachi;
-	private int tongtien;
+	private Double tongtien;
 	private String sdt;
 	Boolean trangthai;
 	private String ghichu;
+	@ManyToOne
+	@JoinColumn(name = "id_hd", insertable = false, updatable = false)
+	private Hoadonchitiet hoadonchitiet;
+	
 //	@ManyToOne
 //    @JoinColumn(name = "username")
 //    private KhachHang khach_hang;
