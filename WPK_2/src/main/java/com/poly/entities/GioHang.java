@@ -28,7 +28,7 @@ public class GioHang implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "username")
 	KhachHang khachhang;
-	@OneToMany(mappedBy = "giohang")
-	List<Chitietgiohang> chitietgiohang;
+//	@OneToMany(mappedBy = "giohang")
+//	List<Chitietgiohang> chitietgiohang;
 
 }

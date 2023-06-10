@@ -37,10 +37,10 @@ public class HoaDon implements Serializable {
 	private String sdt;
 	Boolean trangthai;
 	private String ghichu;
-	@ManyToOne
-    @JoinColumn(name = "username")
-    private KhachHang khach_hang;
-	@Column(name = "username", insertable = false, updatable = false)
-	private String username;
+//	@ManyToOne
+//    @JoinColumn(name = "username")
+//    private KhachHang khach_hang;
+//	@Column(name = "username", insertable = false, updatable = false)
+//	private String username;
 
 }

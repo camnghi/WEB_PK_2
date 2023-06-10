@@ -39,8 +39,9 @@ public class chitietsanphamController {
 			model.addAttribute("item", item);
 			List<SanPham> items = sanphamdao.findAll();
 			model.addAttribute("items", items);
+//			request.setAttribute("view", "layout/user/chitietsanpham");
 
-		return "index_Main";
+		return "chitietsanpham";
 	}
 
 }

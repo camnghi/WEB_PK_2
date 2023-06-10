@@ -22,7 +22,6 @@ public class KhachHang {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	 @Column(name = "username", insertable = false, updatable = false)
 
 	private String username;
 	private String password;
@@ -30,13 +29,6 @@ public class KhachHang {
 	private String email;
 	private boolean trangthai;
 	private boolean admin;
-	@OneToMany(mappedBy = "khachhang")
-	List<GioHang> giohang;
-	
-	@OneToMany(mappedBy = "khach_hang")
-    private List<HoaDon> hoadon;
-	
-	 @OneToMany(mappedBy = "khachhang")
-	    private List<SanPham> sanphams;
+
 
 }

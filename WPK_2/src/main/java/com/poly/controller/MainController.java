@@ -37,25 +37,15 @@ public class MainController {
 		model.addAttribute("items", items);
 		return "index_Main";
 	}
-//	@RequestMapping("index")
-//	public String index(Model model) {
-//		request.setAttribute("title", "Trang chủ");
-//		request.setAttribute("view", "items");
-////		request.setCharacterEncoding("UTF-8");
-//		response.setCharacterEncoding("UTF-8");
-//		SanPham item = new SanPham();
-//		model.addAttribute("item", item);
-//		List<SanPham> items = sanphamdao.findAll();
-//		model.addAttribute("items", items);
-//		return "index_Main";
-//	}
+
 	@RequestMapping("edit/{id}")
-	public String edit(Model model, @PathVariable("id") Long id_sp) {
+	public String edit(Model model, @PathVariable("id") Integer id_sp) {
 //		Optional<SanPham> optionalItem = sanphamdao.findById(id_sp);
 		SanPham item = sanphamdao.findById(id_sp).get();
 		model.addAttribute("item", item);
 		List<SanPham> items = sanphamdao.findAll();
 		model.addAttribute("items", items);
-		return "index/chitietsanpham";
+//		request.setAttribute("view", "layout/user/chitietsanpham.jsp");
+		return "chitietsanpham";
 	}
 }
