@@ -21,21 +21,26 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "HoaDon")
+@Table(name = "Hoa_Don")
 public class HoaDon implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ID_HD;
+	private int id_hd;
 	@ManyToOne
-	@JoinColumn(name = "Username")
+	@JoinColumn(name = "khach_hang")
 	KhachHang khachhang;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "NgayTao")
+	@Column(name = "ngaytao")
 	Date NgayTao = new Date();
-	private String DiaChi;
-	private int Tongtien;
-	private String SDT;
-	Boolean Trangthai;
-	private String GhiChu;
+	String diachi;
+	private int tongtien;
+	private String sdt;
+	Boolean trangthai;
+	private String ghichu;
+	@ManyToOne
+    @JoinColumn(name = "username")
+    private KhachHang khach_hang;
+	@Column(name = "username", insertable = false, updatable = false)
+	private String username;
 
 }

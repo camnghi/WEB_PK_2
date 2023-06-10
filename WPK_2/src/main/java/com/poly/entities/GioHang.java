@@ -19,14 +19,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "GioHang")
+@Table(name = "Gio_Hang")
 public class GioHang implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ID_GH;
-	private int soLuong;
+	private int id_gh;
+	private int soluong;
 	@ManyToOne
-	@JoinColumn(name = "Username")
+	@JoinColumn(name = "username")
 	KhachHang khachhang;
 	@OneToMany(mappedBy = "giohang")
 	List<Chitietgiohang> chitietgiohang;

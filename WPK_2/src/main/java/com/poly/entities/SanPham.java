@@ -29,15 +29,18 @@ public class SanPham implements Serializable {
 	Integer soluong;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "ngaytao")
-	Date ngay_tao = new Date();
+	Date ngaytao = new Date();
 	String mota;
 	Boolean baohanh;
 	@ManyToOne
-	@JoinColumn(name = "ID_Loai")
+	@JoinColumn(name = "id_loai")
 	Loaisanpham loaisanpham;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_TH")
+	@JoinColumn(name = "id_th")
 	Thuonghieu thuonghieu;
+	@ManyToOne
+    @JoinColumn(name = "username")
+    private KhachHang khachhang;
 
 }

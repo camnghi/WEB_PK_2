@@ -71,58 +71,13 @@
 					</div>
 					<div class="product-info">
 						<a href="" class="product-cat">${item.tensp}</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
+							class="product-name">${item.thuonghieu.tenth }</a> <a href="" class="product-price">${item.giasp }</a>
 					</div>
 				</div>
 			</li>
 		</c:forEach>
 			
-			
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="/index/chitietsanpham" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat"></a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="/index/chitietsanpham" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="/index/chitietsanpham" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
+
 
 			<div class="container">
 				<div id="sanphambanchay">Tai nghe bluetooth</div>

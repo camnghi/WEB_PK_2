@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 
 <link href="/css/chitietsanpham.css" rel="stylesheet" type="text/css">
 
 <div class="container  bg-while rm-slide-detail">
 
 	<div class="row">
+
 		<div class="col-md-8">
 			<div class="col-md-8">
 				<div>
@@ -16,7 +20,8 @@
 
 		</div>
 		<div class="col-md-4">
-			<div class="content-right">
+		<form:form action="">
+		<div class="content-right">
 				<h1 class="text-h1">Quạt tản nhiết DL01</h1>
 				<div class="rm-price">
 					<span class="rm-sale">Giá: 200.000đ</span> <span
@@ -87,6 +92,8 @@
 				</div>
 
 			</div>
+		</form:form>
+			
 		</div>
 	</div>
 
@@ -211,6 +218,7 @@
 						<div class="carousel-inner" role="listbox">
 							<div class="item active">
 								<div class="row row-item">
+									<c:forEach var="item" items="${items }">
 									<div class="list-group col-sm-3 col-md-3"
 										style="text-align: center; padding-top: 10px;">
 
@@ -219,11 +227,10 @@
 											alt=" "> <span class="text-new">Mới</span>
 											<div class="rmitem-caption">
 												<h4>
-													<a href="#" title="Quạt tản nhiệt DL01">Quạt tản nhiệt
-														DL01</a>
+													<a href="#" title="Quạt tản nhiệt DL01">${item.tensp }</a>
 												</h4>
 												<p>
-													<span class="text-price">200.000đ</span>
+													<span class="text-price">${item.giasp }đ</span>
 												<div>
 													<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
 														ngay</a>
@@ -232,6 +239,8 @@
 											</div></li>
 
 									</div>
+									</c:forEach>
+
 									<div class="list-group col-sm-3 col-md-3"
 										style="text-align: center; padding-top: 10px;">
 

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "LoaiSP")
+@Table(name = "Loai_SP")
 public class Loaisanpham implements Serializable {
 	@Id
 	private int id_loai;
