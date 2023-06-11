@@ -4,12 +4,11 @@
 <html lang="en">
 
 <head>
+<title>Quản lý phân loại sản phẩm</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Quản lý thống kê</title>
-
 <link rel="stylesheet" href="/css/indexAD.css">
 <!-- Bootstrap CSS v5.2.1 -->
 <link
@@ -28,10 +27,9 @@
 		</div>
 
 		<div class="col-sm-9 col-md-9 col-lg-9">
-			  <jsp:include page="${form_QLThongKe}"></jsp:include>
+			  <jsp:include page="${form_PLSanPham}"></jsp:include>
 		</div>
 	</div>
-
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <div id="wrapper" style="padding-bottom: 30px;">
 	<div id="header">
 		<nav class="container">
@@ -27,16 +26,14 @@
 							</ul></li>
 						<li><a href="">Bàn phím</a></li>
 					</ul></li>
-				<li><a href=""><i class="fa-solid fa-pen"></i>Báo cáo</a></li>
-				<li><a href=""><i class="fa-solid fa-newspaper"></i>Tin tức</a></li>
 				<li><a href="/giohang/form"><i
 						class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
 				<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
-					<ul class="sub-menu">
-						<li><a href="/index/DangNhap">Đăng nhập </a></li>
+					<ul class="sub-menu">						
+						<li><a href="/index/DangNhap">Đăng nhập: ${user.username} </a></li>
 						<li><a href="/index/DangKi">Đăng ký </a></li>
 						<li><a href="/capnhatTK/form">Cập nhật tài khoản</a></li>
-						<li><a href="">Đăng xuất </a></li>
+						<li><a href="/index/DangXuat">Đăng xuất </a></li>
 					</ul></li>
 			</ul>
 		</nav>

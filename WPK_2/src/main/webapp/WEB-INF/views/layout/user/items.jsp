@@ -51,6 +51,8 @@
 	</div>
 </div>
 
+
+
 <article>
 	<div id="sp">
 		<div class="headline">
@@ -60,11 +62,11 @@
 			<li>
 				<div class="product-item">
 					<div class="product-top">
-						<a href="/index/Chitietsanpham" class="product-thumb"> <img
+						<a href="/index/chitietsanpham" class="product-thumb"> <img
 							src="/sanpham/DL01a4min.jpg" alt="">
 						</a>
 						<!--Mua ngay-->
-						<a href="/index/Chitietsanpham" class="buy-now">Mua ngay</a>
+						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
 					</div>
 					<div class="product-info">
 						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
@@ -75,11 +77,11 @@
 			<li>
 				<div class="product-item">
 					<div class="product-top">
-						<a href="/index/Chitietsanpham" class="product-thumb"> <img
+						<a href="/index/chitietsanpham" class="product-thumb"> <img
 							src="/sanpham/DL01a4min.jpg" alt="">
 						</a>
 						<!--Mua ngay-->
-						<a href="/index/Chitietsanpham" class="buy-now">Mua ngay</a>
+						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
 					</div>
 					<div class="product-info">
 						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
@@ -90,11 +92,11 @@
 			<li>
 				<div class="product-item">
 					<div class="product-top">
-						<a href="/index/Chitietsanpham" class="product-thumb"> <img
+						<a href="/index/chitietsanpham" class="product-thumb"> <img
 							src="/sanpham/DL01a4min.jpg" alt="">
 						</a>
 						<!--Mua ngay-->
-						<a href="/index/Chitietsanpham" class="buy-now">Mua ngay</a>
+						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
 					</div>
 					<div class="product-info">
 						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
@@ -105,11 +107,11 @@
 			<li>
 				<div class="product-item">
 					<div class="product-top">
-						<a href="/index/Chitietsanpham" class="product-thumb"> <img
+						<a href="/index/chitietsanpham" class="product-thumb"> <img
 							src="/sanpham/DL01a4min.jpg" alt="">
 						</a>
 						<!--Mua ngay-->
-						<a href="/index/Chitietsanpham" class="buy-now">Mua ngay</a>
+						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
 					</div>
 					<div class="product-info">
 						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
@@ -256,4 +258,13 @@
 
 		</ul>
 	</div>
+		<div id="nutdieuhuong">
+            <ul class="pagination pagination-sm">
+                <li class="page-item active" aria-current="page">
+                  <span class="page-link">1</span>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+              </ul>
+        </div>
 </article>
