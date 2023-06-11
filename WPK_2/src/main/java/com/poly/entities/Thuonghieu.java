@@ -15,11 +15,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "ThuongHieu")
+@Table(name = "Thuong_Hieu")
 public class Thuonghieu implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer ID_TH;
-	String TenTH;
+	Integer id_th;
+	String tenth;
 }

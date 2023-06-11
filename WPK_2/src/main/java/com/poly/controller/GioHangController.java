@@ -61,7 +61,7 @@ public class GioHangController {
 	@RequestMapping("update")
 	public String update(GioHang item) {
 		dao.save(item);
-		return "redirect:/layout/use/giohang/" + item.getID_GH();
+		return "redirect:/layout/use/giohang/" + item.getId_gh();
 	}
 
 	@RequestMapping("delete/{ID_GH}")

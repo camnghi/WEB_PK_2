@@ -22,7 +22,7 @@ public class KhachHang {
 	private String password;
 	private String fullname;
 	private String email;
-	private boolean trangThai;
+	private boolean trangthai;
 	private boolean admin;
 
 }

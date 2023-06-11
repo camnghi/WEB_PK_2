@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	    <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-	
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+
 <!doctype html>
 <html lang="en">
 
@@ -183,16 +183,13 @@
 		<div class="col-sm-8 col-md-8 col-lg-8">
 			<span class="title">BẢNG THÔNG TIN KHÁCH HÀNG</span>
 			<hr>
-			<form action>
+			<form action=/quanLyKhachHang/search-and-page?keyword=${keywords}>
 				<div class="card-body">
 					<!-- tìm kiếm -->
 
 					<div class="timkiem">
-						<input type="text" class="form-control-sm"
-							aria-label=".form-control-sm example"
-							placeholder="Nhập tên tìm kiếm"> <a name="" id=""
-							class="btn btn-secondary btn-sm" href="#" role="button">Tìm
-							kiếm</a>
+						<input name="keywords" value="${keywords}">
+						<button>Tìm</button>
 					</div>
 
 					<div class="table-responsive">
@@ -208,25 +205,27 @@
 									<th></th>
 								</tr>
 							</thead>
-							<c:forEach var="item" items="${items}">
+							<c:forEach var="item" items="${page.content}">
 								<tr>
 									<td>${item.username}</td>
 									<td>${item.password}</td>
 									<td>${item.fullname}</td>
 									<td>${item.email}</td>
-									<td>${item.trangThai}</td>
-									<td>${item.admin}</td> 
+									<td>${item.trangthai}</td>
+									<td>${item.admin}</td>
 									<td></td>
 								</tr>
 							</c:forEach>
 						</table>
+						<c:forEach var="i" begin="0" end="${page.totalPages -1}">
+							<a href="/quanLyKhachHang/form?p=${pageNumber}">${pageNumber + 1}
+							</a>
+						</c:forEach>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-
-	<!-- Bootstrap JavaScript Libraries -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

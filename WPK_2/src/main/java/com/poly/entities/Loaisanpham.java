@@ -15,11 +15,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "LoaiSP")
+@Table(name = "Loai_SP")
 public class Loaisanpham implements Serializable {
 	@Id
-	private int ID_Loai;
-	private String TenLoai;
+	private int id_loai;
+	private String tenloai;
 	@OneToMany(mappedBy = "loaisanpham")
 	List<SanPham> sanphams;
 
