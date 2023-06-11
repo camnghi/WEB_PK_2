@@ -12,7 +12,7 @@
             </div>
             <!--Form Dang ki -->
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-              <form>        
+              <form method="post" action="${pageContext.request.contextPath}/index/DangKi">        
                 <div class="divider d-flex align-items-center my-4">
                   <p class="text-center fw-bold mx-3 mb-0">Đăng kí</p>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-user fa-2xl"></i></span>
-                        <input type="text" class="form-control" name="id"  placeholder="Tài Khoản" style="height: 45px;"
+                        <input type="text" class="form-control" name="username"  placeholder="Tài Khoản" style="height: 45px;"
                              required>                   
                     </div>          
                  </div>
@@ -28,7 +28,7 @@
                  <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-lock fa-2xl"></i></span>
-                        <input type="password" class="form-control" name="id"  placeholder="Mật Khẩu" style="height: 45px;"
+                        <input type="password" class="form-control" name="password"  placeholder="Mật Khẩu" style="height: 45px;"
                              required>                   
                     </div>          
                  </div>
@@ -36,35 +36,28 @@
                  <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-lock fa-2xl"></i></span>
-                        <input type="password" class="form-control" name="id"  placeholder=" Nhập Lại Mật Khẩu" style="height: 45px;"
-                             required>                   
+                        <input type="password" class="form-control" name=""  placeholder=" Nhập Lại Mật Khẩu" style="height: 45px;"
+                             >                   
                     </div>          
                  </div>
                  
                   <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-square-phone fa-2xl"></i></span>
-                        <input type="text" class="form-control" name="id"  placeholder=" Số Điện Thoại" style="height: 45px;"
-                             required>                   
+                        <input type="text" class="form-control" name="fullname"  placeholder=" Full name" style="height: 45px;"
+                             >                   
                     </div>          
                  </div>
-                 
-                  <div class="col-sm-12">
-                    <div class="input-group mb-2">
-                        <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-map-location-dot fa-xl"></i></span>
-                       <textarea class="form-control" aria-label="With textarea" placeholder="Dia chi"></textarea>           
-                    </div>          
-                 </div>
-                  
+                               
                  <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-envelope fa-2xl"></i></span>
-                        <input type="email" class="form-control" name="id"  placeholder="Email" style="height: 45px;"
+                        <input type="email" class="form-control" name="email"  placeholder="Email" style="height: 45px;"
                              required>                   
                     </div>          
                  </div>
                 <div class="text-center text-lg-start mt-2 pt-2">
-                  <button type="button" class="btn btn-primary btn-lg"
+                  <button type="submit" class="btn btn-primary btn-lg"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Đăng Kí</button>
                   <p class="small fw-bold mt-2 pt-1 mb-0">Bạn đã có tài khoản? <a href="/index/DangNhap"
                       class="link-danger">Đăng nhập ngay</a></p>
