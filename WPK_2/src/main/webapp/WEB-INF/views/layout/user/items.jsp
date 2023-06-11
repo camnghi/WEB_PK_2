@@ -63,8 +63,8 @@
 		<li>
 				<div class="product-item">
 					<div class="product-top">
-						<a href="/index/edit/${item.id_sp }" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
+						<a href="/index/edit/${item.id_sp }" class="product-thumb"> 
+						<img src="/sanphams/${item.anhsp}" alt="">
 						</a>
 						<!--Mua ngay-->
 						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>

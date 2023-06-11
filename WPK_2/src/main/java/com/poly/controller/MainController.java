@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poly.entities.SanPham;
 import com.poly.repository.SanphamDAO;
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -24,6 +25,8 @@ public class MainController {
 	HttpServletResponse response;
 	@Autowired
 	SanphamDAO sanphamdao;
+	@Autowired
+	ServletContext app;
 	
 	@GetMapping("form")
 	public String index(Model model) {
@@ -40,7 +43,6 @@ public class MainController {
 
 	@RequestMapping("edit/{id}")
 	public String edit(Model model, @PathVariable("id") Integer id_sp) {
-//		Optional<SanPham> optionalItem = sanphamdao.findById(id_sp);
 		SanPham item = sanphamdao.findById(id_sp).get();
 		model.addAttribute("item", item);
 		List<SanPham> items = sanphamdao.findAll();

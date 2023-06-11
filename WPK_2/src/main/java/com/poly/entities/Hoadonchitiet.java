@@ -21,8 +21,8 @@ public class Hoadonchitiet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_dhct;
 	@ManyToOne
-	@JoinColumn(name = "id_hd", insertable = false, updatable = false)
-	HoaDon hoadon;
+	@JoinColumn(name = "id_hd")
+	private HoaDon hoadon;
 	@ManyToOne
 	@JoinColumn(name = "id_sp")
 	SanPham sanpham;

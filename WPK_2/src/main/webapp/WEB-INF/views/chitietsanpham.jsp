@@ -10,7 +10,7 @@
 </head>
 <link rel="stylesheet" href="/css/nav.css">
 <link rel="stylesheet" href="/css/footer.css">
-<link rel="stylesheet" href="/css/sanpham.css">
+<link rel="stylesheet" href="/css/chitietsanpham.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -31,7 +31,7 @@
 			<div class="col-md-8">
 				<div class="col-md-8">
 					<div>
-						<img src="/sanpham/DL01a1max.jpg" alt="" class="w-100"
+						<img src="/sanphams/${item.anhsp}" alt="" class="w-100"
 							style="padding-right: 50px">
 					</div>
 				</div>

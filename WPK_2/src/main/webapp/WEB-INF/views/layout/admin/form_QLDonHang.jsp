@@ -4,14 +4,14 @@
 
 <span class="title">QUẢN LÝ ĐƠN HÀNG</span>
 <hr>
-<form action>
+<form action="">
 	<div class="card-body">
 		<!-- tìm kiếm -->
 
 		<div class="timkiem">
 			<input type="text" class="form-control-sm"
 				aria-label=".form-control-sm example"
-				placeholder="Nhập tên tìm kiếm"> <a name="" id=""
+				placeholder="Nhập tên tìm kiếm"> <a name="keywords" id=""
 				class="btn btn-secondary btn-sm" href="#" role="button">Tìm kiếm</a>
 		</div>
 
@@ -33,8 +33,8 @@
 					<c:forEach var="item" items="${items}">
 						<tr class>
 							<td>${item.id_hd }</td>
-							<td>${item.sanpham.tensp}</td>
-							<td>${item. }</td>
+							<td>${item.khachhang.username}</td>
+							<td>${item.hoadonchitiet.sanpham.tensp }</td>
 							<td>${item.hoadonchitiet.soluong }</td>
 							<td>${item.tongtien }</td>
 							<td>${item.trangthai }</td>
