@@ -183,7 +183,7 @@
 		<div class="col-sm-8 col-md-8 col-lg-8">
 			<span class="title">BẢNG THÔNG TIN KHÁCH HÀNG</span>
 			<hr>
-			<form action=/quanLyKhachHang/search-and-page?keyword=${keywords}>
+			<form action=/quanLyKhachHang/form?keyword=${keywords}>
 				<div class="card-body">
 					<!-- tìm kiếm -->
 
@@ -217,9 +217,8 @@
 								</tr>
 							</c:forEach>
 						</table>
-						<c:forEach var="i" begin="0" end="${page.totalPages -1}">
-							<a href="/quanLyKhachHang/form?p=${pageNumber}">${pageNumber + 1}
-							</a>
+						<c:forEach var="i" begin="0" end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}">
+							<a href="/quanLyKhachHang/form?keyword=${keywords}&p=${i}">${i + 1}</a>
 						</c:forEach>
 					</div>
 				</div>
