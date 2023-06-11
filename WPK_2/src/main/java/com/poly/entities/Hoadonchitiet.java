@@ -28,5 +28,4 @@ public class Hoadonchitiet {
 	SanPham sanpham;
 	private float gia;
 	private Double soluong;
-
 }

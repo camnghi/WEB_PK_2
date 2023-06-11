@@ -34,12 +34,13 @@
 						<tr class>
 							<td>${item.id_hd }</td>
 							<td>${item.khachhang.username}</td>
-							<td>${item.hoadonchitiet.sanpham.tensp }</td>
-							<td>${item.hoadonchitiet.soluong }</td>
+							<td></td>
+							<td></td>
 							<td>${item.tongtien }</td>
 							<td>${item.trangthai }</td>
-							<td><a name id class="btn btn-success btn-sm" href="#"
-								role="button" style="width: 100px;">Duyệt</a> <a name id
+							<td><a name="" id class="btn btn-success btn-sm" href="#"
+								role="button" style="width: 100px;">Duyệt</a> 
+								<a name id
 								class="btn btn-warning btn-sm" href="#" role="button"
 								style="width: 100px;">Hủy</a></td>
 						</tr>
