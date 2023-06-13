@@ -2,6 +2,7 @@ package com.poly.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -21,21 +23,25 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Hoa_Don")
+@Table(name = "Hoadons")
 public class HoaDon implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_hd;
+	private Integer idHd;
 	@ManyToOne
-	@JoinColumn(name = "username")
+	@JoinColumn(name = "taiKhoan")
 	KhachHang khachhang;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "ngaytao")
+	@Column(name = "ngayTao")
 	Date NgayTao = new Date();
-	private String diachi;
-	private int tongtien;
+	String diaChi;
+	private Double tongTien;
 	private String sdt;
-	Boolean trangthai;
-	private String ghichu;
+	Boolean trangThai;
+	private String ghiChu;
+	@OneToMany(mappedBy = "hoadon")
+	List<Hoadonchitiet> hoadonchitiet;
+
+	
 
 }

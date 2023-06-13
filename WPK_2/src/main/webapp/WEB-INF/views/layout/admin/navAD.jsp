@@ -123,7 +123,7 @@
                             </a>
                         </li>
                         <li class="mb-1">
-                            <a href="#" class="nav-link link-dark">
+                            <a href="/quanLyDonHang/form" class="nav-link link-dark">
                                 <svg class="bi me-2" width="16" height="16"><use
                                         xlink:href="#table" /></svg>
                                 Quản lý đơn hàng

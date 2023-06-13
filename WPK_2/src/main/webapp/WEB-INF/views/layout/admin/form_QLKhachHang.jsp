@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+
 <span class="title">BẢNG THÔNG TIN KHÁCH HÀNG</span>
 <hr>
 <form action>
@@ -18,7 +20,7 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">ID khách hàng</th>
+						<th scope="col">Tên tài khoản</th>
 						<th scope="col">Tên khách hàng</th>
 						<th scope="col">Địa chỉ</th>
 						<th scope="col">Số điện thoại</th>
@@ -28,24 +30,19 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr class>
-						<td>0</td>
-						<td>Nguyễn Văn A</td>
-						<td>Vàm xáng, phú mỹ, phú tân, cà mau</td>
-						<td>0919888271</td>
-						<td>nguyenvanaa@gmail.com</td>
-						<td>vanaaa1997</td>
-					</tr>
-					<tr class>
-						<td>1</td>
-						<td>Trần Thị B</td>
-						<td>Cái răng, cần thơ</td>
-						<td>0898827272</td>
-						<td>tranthibbb@gmail.com</td>
-						<td>binhhh1998</td>
-						<td></td>
-					</tr>
-					
+					<c:forEach var="item" items="${items }">
+						<tr class>
+							<td>${item.username}</td>
+							<td>${item.fullname }</td>
+							<td>${item.hoadon.diachi }</td>
+							<td>${item.hoadon.sdt }</td>
+							<td>${item.email }</td>
+							<td>${item.admin }</td>
+						</tr>
+					</c:forEach>
+
+
+
 				</tbody>
 			</table>
 		</div>

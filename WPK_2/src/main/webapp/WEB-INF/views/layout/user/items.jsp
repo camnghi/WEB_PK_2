@@ -59,66 +59,26 @@
 			<h4>Sản phẩm bán chạy</h4>
 		</div>
 		<ul class="products">
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="/index/chitietsanpham" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
+			<c:forEach var="item" items="${items}">
+				<li>
+					<div class="product-item">
+						<div class="product-top">
+							<a href="/index/edit/${item.idSp }" class="product-thumb"> <img
+								src="/sanphams/${item.anhSp}" alt="">
+							</a>
+							<!--Mua ngay-->
+							<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
+						</div>
+						<div class="product-info">
+							<a href="" class="product-cat">${item.tenSp}</a> <a href=""
+								class="product-name">${item.thuonghieu.tenTh }</a> <a href=""
+								class="product-price">${item.giaSp }</a>
+						</div>
 					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="/index/chitietsanpham" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="/index/chitietsanpham" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="/index/chitietsanpham" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="/index/chitietsanpham" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
+				</li>
+			</c:forEach>
+
+
 
 			<div class="container">
 				<div id="sanphambanchay">Tai nghe bluetooth</div>
@@ -144,127 +104,20 @@
 				</div>
 			</li>
 
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
 
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
-
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
-
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
-
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
-
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
-
-			<li>
-				<div class="product-item">
-					<div class="product-top">
-						<a href="" class="product-thumb"> <img
-							src="/sanpham/DL01a4min.jpg" alt="">
-						</a>
-						<!--Mua ngay-->
-						<a href="" class="buy-now">Mua ngay</a>
-					</div>
-					<div class="product-info">
-						<a href="" class="product-cat">Quạt tản nhiệt</a> <a href=""
-							class="product-name">Sonic</a> <a href="" class="product-price">1000$</a>
-					</div>
-				</div>
-			</li>
 
 		</ul>
+	<%-- 	<c:forEach var="i" begin="0" end="${page.totalPages-1 }">
+			<a href="/product/page?p=${i}">${i+1}</a>
+		</c:forEach> --%>
 	</div>
-		<div id="nutdieuhuong">
-            <ul class="pagination pagination-sm">
-                <li class="page-item active" aria-current="page">
-                  <span class="page-link">1</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-              </ul>
-        </div>
+<%-- 	<div id="nutdieuhuong">
+		<ul class="pagination pagination-sm">
+			<li class="page-item active text-light" aria-current="page"><span
+				class="page-link"><c:forEach var="i" begin="0" end="${page.totalPages-1 }">
+			<a href="/product/page?p=${i}">${i+1}</a>
+		</c:forEach></span></li>
+			
+		</ul>
+	</div> --%>
 </article>

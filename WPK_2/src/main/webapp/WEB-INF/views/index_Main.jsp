@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +24,11 @@
 	<%--Đây là NAV --%>
 
 	<%--Đây là article--%>
-	<jsp:include page="layout/user/${view}.jsp"></jsp:include>
-	<%--Đây là article--%>
+ 	<jsp:include page="layout/user/${view}.jsp"></jsp:include> 
+<%--Đây là article--%>
+
+		
+		
 
 	<%--Đây là footer--%>
 	<%@include file="layout/user/footer.jsp"%>

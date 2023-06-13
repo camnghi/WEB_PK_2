@@ -10,34 +10,25 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.poly.entities.Loaisanpham;
+import com.poly.entities.Hoadonchitiet;
 import com.poly.entities.SanPham;
-import com.poly.repository.LoaisanphamDAO;
-import com.poly.repository.SanphamDAO;
+import com.poly.repository.HoadonchitietDAO;
 
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping ("index")
-public class MainController {
+@RequestMapping ("quanLyCTDonhang")
+public class quanLyCTDonHangController {
 	@Autowired
 	HttpServletRequest request;
 	@Autowired
 	HttpServletResponse response;
 	@Autowired
-	SanphamDAO sanphamdao;
-	@Autowired
-	LoaisanphamDAO dao;
-
-	@Autowired
-	ServletContext app;
-	
+	HoadonchitietDAO hoadonchitietdao;
 	@GetMapping("form")
 	public String index(Model model, @RequestParam("p") Optional<Integer> p) {
 		
@@ -45,26 +36,12 @@ public class MainController {
 		request.setAttribute("view", "items");
 //		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		List<Loaisanpham> items = dao.findAll();
-	    model.addAttribute("items", items);
-		SanPham item = new SanPham();
+		Hoadonchitiet item = new Hoadonchitiet();
 		model.addAttribute("item", item);
-		List<SanPham> sanpham = sanphamdao.findAll();
-		model.addAttribute("items", sanpham);
-		
-		Pageable pageable = PageRequest.of(p.orElse(0), 2);
-		Page<SanPham> page = sanphamdao.findAll(pageable);
-		model.addAttribute("page", page);
-		return "index_Main";
-	}
-
-	@RequestMapping("edit/{id}")
-	public String edit(Model model, @PathVariable("id") Integer id_sp) {
-		SanPham item = sanphamdao.findById(id_sp).get();
-		model.addAttribute("item", item);
-		List<SanPham> items = sanphamdao.findAll();
+		List<Hoadonchitiet> items = hoadonchitietdao.findAll();
 		model.addAttribute("items", items);
-//		request.setAttribute("view", "layout/user/chitietsanpham.jsp");
-		return "chitietsanpham";
+	
+		request.setAttribute("form_QLCTDonHang", "layout/admin/form_QLCTDonHang.jsp");
+		return "quanLyCTDonhang";
 	}
 }
