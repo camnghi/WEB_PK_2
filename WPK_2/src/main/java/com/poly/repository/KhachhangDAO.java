@@ -9,4 +9,6 @@ import com.poly.entities.KhachHang;
 public interface KhachhangDAO extends JpaRepository<KhachHang, String> {
 
 	Page<KhachHang> findAllByhoTenLike(String keywords, Pageable pageable);
+
+	Page<KhachHang> findAllBytaiKhoanLike(String keywords, Pageable pageable);
 }
