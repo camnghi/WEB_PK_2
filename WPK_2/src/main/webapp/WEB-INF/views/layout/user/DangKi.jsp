@@ -20,7 +20,7 @@
                 <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-user fa-2xl"></i></span>
-                        <input type="text" class="form-control" name="username"  placeholder="Tài Khoản" style="height: 45px;"
+                        <input type="text" class="form-control" name="taiKhoan"  placeholder="Tài Khoản" style="height: 45px;"
                              required>                   
                     </div>          
                  </div>
@@ -28,7 +28,7 @@
                  <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-lock fa-2xl"></i></span>
-                        <input type="password" class="form-control" name="password"  placeholder="Mật Khẩu" style="height: 45px;"
+                        <input type="password" class="form-control" name="matKhau"  placeholder="Mật Khẩu" style="height: 45px;"
                              required>                   
                     </div>          
                  </div>
@@ -44,7 +44,7 @@
                   <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-square-phone fa-2xl"></i></span>
-                        <input type="text" class="form-control" name="fullname"  placeholder=" Full name" style="height: 45px;"
+                        <input type="text" class="form-control" name="hoTen"  placeholder=" Full name" style="height: 45px;"
                              >                   
                     </div>          
                  </div>
