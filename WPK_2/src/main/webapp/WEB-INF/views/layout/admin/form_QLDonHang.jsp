@@ -31,7 +31,6 @@
 				</thead>
 				<tbody>
 					<c:forEach var="item" items="${items}">
-
 						<tr class></tr>
 							<td>${item.idHd }</td>
 							<td>${item.khachhang.taiKhoan}</td>

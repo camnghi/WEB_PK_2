@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.poly.entities.Loaisanpham;
 import com.poly.entities.SanPham;
+import com.poly.repository.LoaisanphamDAO;
 import com.poly.repository.SanphamDAO;
 
 import jakarta.servlet.ServletContext;
@@ -32,6 +33,9 @@ public class MainController {
 	@Autowired
 	SanphamDAO sanphamdao;
 	@Autowired
+	LoaisanphamDAO dao;
+
+	@Autowired
 	ServletContext app;
 	
 	@GetMapping("form")
@@ -41,10 +45,12 @@ public class MainController {
 		request.setAttribute("view", "items");
 //		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		List<Loaisanpham> items = dao.findAll();
+	    model.addAttribute("items", items);
 		SanPham item = new SanPham();
 		model.addAttribute("item", item);
-		List<SanPham> items = sanphamdao.findAll();
-		model.addAttribute("items", items);
+		List<SanPham> sanpham = sanphamdao.findAll();
+		model.addAttribute("items", sanpham);
 		
 		Pageable pageable = PageRequest.of(p.orElse(0), 2);
 		Page<SanPham> page = sanphamdao.findAll(pageable);
