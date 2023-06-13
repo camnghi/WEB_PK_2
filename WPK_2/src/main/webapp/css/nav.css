@@ -65,11 +65,6 @@ nav{
     padding: 8px 15px;
 }
 
-
-/* #main-menu ul.sub-menu li:hover>a{
-    border-bottom: 1px #6e6e6e;
-} */
-
 #main-menu ul.sub-menu li:last-child a{
     border: none;
 }
