@@ -19,16 +19,21 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Gio_Hang")
+@Table(name = "Giohangs")
 public class GioHang implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_gh;
-	private int soluong;
+	private Integer idGioHang;
 	@ManyToOne
-	@JoinColumn(name = "username")
+	@JoinColumn(name = "tai_khoan")
 	KhachHang khachhang;
+	private Integer soLuong;
 	@OneToMany(mappedBy = "giohang")
 	List<Chitietgiohang> chitietgiohang;
+
+	@Override
+	public String toString() {
+		return "GioHang [idGioHang=" + idGioHang + ", soLuong=" + soLuong + ", chitietgiohang=" + chitietgiohang + "]";
+	}
 
 }

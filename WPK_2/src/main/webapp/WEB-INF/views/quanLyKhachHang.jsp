@@ -221,20 +221,29 @@
 							</thead>
 							<c:forEach var="item" items="${page.content}">
 								<tr>
-									<td>${item.username}</td>
-									<td>${item.password}</td>
-									<td>${item.fullname}</td>
+									<td>${item.taiKhoan}</td>
+									<td>${item.matKhau}</td>
+									<td>${item.hoTen}</td>
 									<td>${item.email}</td>
-									<td>${item.trangthai}</td>
+									<td>${item.trangThai}</td>
 									<td>${item.admin}</td>
 									<td></td>
 								</tr>
 							</c:forEach>
 						</table>
-						<c:forEach var="i" begin="0" end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}">
+						<c:forEach var="i" begin="0"
+							end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}">
 							<a href="/quanLyKhachHang/form?keyword=${keywords}&p=${i}">${i + 1}</a>
 						</c:forEach>
 					</div>
+					<br>
+					<ul>
+						<li>Số thực thể hiện tại: ${page.numberOfElements}</li>
+						<li>Trang số: ${page.number + 1}</li>
+						<%-- <li>Kích thước trang: ${page.size}</li> --%>
+						<li>Tổng số thực thể: ${page.totalElements}</li>
+						<li>Tổng số trang: ${page.totalPages}</li>
+					</ul>
 				</div>
 			</form>
 		</div>
@@ -253,12 +262,12 @@
 		
 	</script>
 </body>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-		crossorigin="anonymous">
-		
-	</script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+	integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+	crossorigin="anonymous">
+	
+</script>
 </body>
 
 </html>

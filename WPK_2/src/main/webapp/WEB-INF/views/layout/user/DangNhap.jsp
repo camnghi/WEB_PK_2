@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <link rel="stylesheet" href="/css/DangNhap.css">
     <section class="vh-100">
         <div class="container-fluid h-custom">
@@ -21,7 +22,7 @@
                 <div class="col-sm-12">
                   <div class="input-group mb-3">
                       <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-user fa-2xl"></i></span>
-                      <input type="text" class="form-control" name="username"  placeholder="Tài Khoản"  style="height: 45px;"
+                      <input type="text" class="form-control" name="taiKhoan"  placeholder="Tài Khoản"  style="height: 45px;"
                            required>                   
                   </div>          
                </div>
@@ -30,7 +31,7 @@
                 <div class="col-sm-12">
                   <div class="input-group mb-2">
                       <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-lock fa-2xl"></i></span>
-                      <input type="password" class="form-control" name="password"  placeholder="Mật Khẩu" style="height: 45px;"
+                      <input type="password" class="form-control" name="matKhau"  placeholder="Mật Khẩu" style="height: 45px;"
                            required>                   
                   </div>          
                </div>

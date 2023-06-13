@@ -1,9 +1,12 @@
 package com.poly.entities;
 
+import java.io.Serializable;
+import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,16 +16,31 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Khach_Hang")
-public class KhachHang {
-
+@Table(name = "Khachhangs")
+public class KhachHang implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String username;
-	private String password;
-	private String fullname;
+	@Column(nullable = false, unique = true, name = "taiKhoan")
+	private String taiKhoan;
+	@Column(nullable = false)
+	private String matKhau;
+	@Column(nullable = false)
+	private String hoTen;
+	@Column(nullable = false, unique = true)
 	private String email;
-	private boolean trangthai;
+	@Column(nullable = false)
+	private boolean trangThai;
+	@Column(nullable = false)
 	private boolean admin;
+	@Column(name = "ma_xac_nhan")
+	private String maXacNhan;
+	@OneToMany(mappedBy = "khachhang")
+	List<GioHang> gioHang;
+
+	@Override
+	public String toString() {
+		return "KhachHang [taiKhoan=" + taiKhoan + ", matKhau=" + matKhau + ", hoTen=" + hoTen + ", email=" + email
+				+ ", trangThai=" + trangThai + ", admin=" + admin + ", maXacNhan=" + maXacNhan + ", gioHang=" + gioHang
+				+ "]";
+	}
 
 }

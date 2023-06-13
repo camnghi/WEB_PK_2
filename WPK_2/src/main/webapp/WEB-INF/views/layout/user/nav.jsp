@@ -30,7 +30,7 @@
 						class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
 				<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
 					<ul class="sub-menu">						
-						<li><a href="/index/DangNhap">Đăng nhập: ${user.username} </a></li>
+						<li><a href="/index/DangNhap">Đăng nhập: ${khachhang.taiKhoan} </a></li>
 						<li><a href="/index/DangKi">Đăng ký </a></li>
 						<li><a href="/capnhatTK/form">Cập nhật tài khoản</a></li>
 						<li><a href="/index/DangXuat">Đăng xuất </a></li>

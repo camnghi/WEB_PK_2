@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.poly.entities.KhachHang;
 
 public interface KhachhangDAO extends JpaRepository<KhachHang, String> {
-	Page<KhachHang> findAllByfullnameLike(String keywords, Pageable pageable);
 
+	Page<KhachHang> findAllByhoTenLike(String keywords, Pageable pageable);
 }

@@ -17,15 +17,23 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "GioHang_CT")
+@Table(name = "Chitietgiohangs")
 public class Chitietgiohang implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ID_CTGH;
+	private Integer idGHCT;
 	@ManyToOne
-	@JoinColumn(name = "id_gh")
-	GioHang giohang;
-	@ManyToOne
-	@JoinColumn(name = "id_sp")
+	@JoinColumn(name = "idSP")
 	SanPham sanpham;
+	private Integer soluong;
+	@ManyToOne
+	@JoinColumn(name = "idGH")
+	GioHang giohang;
+
+	@Override
+	public String toString() {
+		return "Chitietgiohang [idGHCT=" + idGHCT + ", sanpham=" + sanpham + ", soluong=" + soluong + ", giohang="
+				+ giohang + "]";
+	}
+
 }

@@ -32,12 +32,11 @@ public class quanLyKhachHang {
 		Page<KhachHang> page;
 		if (kwords != null && !kwords.equals("")) {
 			Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
-			page = dao.findAllByfullnameLike("%" + kwords + "%", pageable);
+			page = dao.findAllByhoTenLike("%" + kwords + "%", pageable);
 		} else {
 			Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
 			page = dao.findAll(pageable);
 		}
-
 		model.addAttribute("page", page);
 		return "quanLyKhachHang";
 	}

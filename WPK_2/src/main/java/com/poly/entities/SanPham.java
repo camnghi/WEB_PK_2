@@ -5,6 +5,8 @@ import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -19,19 +21,20 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "San_Pham")
+@Table(name = "Sanphams")
 public class SanPham implements Serializable {
 	@Id
-	Integer id_sp;
-	String tensp;
-	Double giasp;
-	String anhsp;
-	Integer soluong;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer idSp;
+	String tenSp;
+	Double giaSp;
+	String anhSp;
+	Integer soLuong;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "ngaytao")
-	Date ngaytao = new Date();
-	String mota;
-	Boolean baohanh;
+	@Column(name = "ngay_tao")
+	Date ngayTao = new Date();
+	String moTa;
+	Boolean baoHanh;
 	@ManyToOne
 	@JoinColumn(name = "id_loai")
 	Loaisanpham loaisanpham;
@@ -39,5 +42,12 @@ public class SanPham implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_th")
 	Thuonghieu thuonghieu;
+
+	@Override
+	public String toString() {
+		return "SanPham [idSp=" + idSp + ", tenSp=" + tenSp + ", giaSp=" + giaSp + ", anhSp=" + anhSp + ", soLuong="
+				+ soLuong + ", ngayTao=" + ngayTao + ", moTa=" + moTa + ", baoHanh=" + baoHanh + ", loaisanpham="
+				+ loaisanpham + ", thuonghieu=" + thuonghieu + "]";
+	}
 
 }

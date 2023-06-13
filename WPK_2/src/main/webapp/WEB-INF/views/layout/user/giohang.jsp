@@ -14,19 +14,20 @@
 							<th>GIÁ</th>
 							<th>SỐ LƯỢNG</th>
 							<th>TỔNG TIỀN</th>
-							<th></th>
+							<th>${listGH}</th>
 						</tr>
-						<c:forEach var="item" items="${items}">
-							<form action="/cart/update/${item.id_sp}" method="post">
-								<input type="hidden" name="id_sp" value="${item.id_sp}">
+						<c:forEach var="giohangct" items="${giohang.chitietgiohang}">
+							<form action="/giohang/form" method="post">
 								<tr>
-									<td><img alt="" src="/img/${item.anh}" width="100px">
-									<td>${item.ten_sp}
-									<td>${item.gia}</td>
-									<td><input name="soLuong" value="${item.soLuong}"
+									<td><img alt="" src="/img/${giohangct.sanpham.anhSp}"
+										width="100px">
+									<td>${giohangct.sanpham.tenSp}
+									<td>${giohangct.sanpham.giaSp}</td>
+									<td><input name="soLuong"
+										value="${item.chitietgiohang.soluong}"
 										onblur="this.form.submit()" style="width: 50px;"></td>
-									<td>${item.gia * item.soLuong}</td>
-									<td><a href="/cart/remove/${item.id}">Xóa</a></td>
+									<td>${giohangct.sanpham.giaSp * chitietgiohang.soluong}</td>
+									<td><a href="${giohangct.sanpham.idGHCT}">Xóa</a></td>
 								</tr>
 							</form>
 						</c:forEach>
