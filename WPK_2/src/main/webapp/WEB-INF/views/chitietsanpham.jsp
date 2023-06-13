@@ -31,7 +31,7 @@
 			<div class="col-md-8">
 				<div class="col-md-8">
 					<div>
-						<img src="/sanphams/${item.anhsp}" alt="" class="w-100"
+						<img src="/sanphams/${item.anhSp}" alt="" class="w-100"
 							style="padding-right: 50px">
 					</div>
 				</div>
@@ -40,9 +40,9 @@
 			<div class="col-md-4">
 				<form action="index/form" modelAttribute="item">
 					<div class="content-right">
-						<h1 class="text-h1">${item.tensp}</h1>
+						<h1 class="text-h1">${item.tenSp}</h1>
 						<div class="rm-price">
-							<span class="rm-sale">Giá: ${item.giasp }0đ</span> <span
+							<span class="rm-sale">Giá: ${item.giaSp }0đ</span> <span
 								class="rm-icondesktop-price">Còn hàng</span>
 						</div>
 						<div class="form-button">
@@ -139,48 +139,39 @@
                     </li> -->
 				</ul>
 				<div class="tab-content" id="myTabContent">
+					<form action="index/form" modelAttribute="item">
 					<div class="tab-pane fade show active" id="gioithieu-tab-pane"
 						role="tabpanel" aria-labelledby="gioithieu-tab" tabindex="0">
-						<p>Quạt tản nhiệt gaming cho điện thoại, tản nhiệt sò lạnh
-							siêu mát DL01 Gemini Shop</p>
-						<p>Đặc điểm nổi bật:</p>
-						<p>Quạt tản nhiệt gaming DL01 cho điện thoại, tản nhiệt sò
-							lạnh siêu mát</p>
-						<p>Hiện nay gamemobile như PUBG, Liên quân mobile, Call of
-							Duty ,vv.. đã trở lên quen thuộc với hầu hết người yêu game
-							mobile.</p>
-						<p>Shop xin giới thiệu với các bạn sản phẩm quạt tản nhiệt
-							gaming DL01 giúp các game thủ chiến các game đồ họa khủng mà
-							không sợ nóng máy.</p>
-						<p>Sản phẩm bảo hành 1 tháng lỗi 1 đổi 1</p>
+						
+						<p>${item.moTa }</p>
 
 					</div>
+					</form>	
 					<div class="tab-pane fade" id="thongkekythuat-tab-pane"
 						role="tabpanel" aria-labelledby="thongkekythuat-tab" tabindex="0">
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">Sản phẩm</th>
-									<th scope="col">Thông tin</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">Tên Sản Phẩm</th>
-									<td>Quạt tản nhiêt DL01</td>
-								</tr>
-								<tr>
-									<th scope="row">Thương hiện</th>
-									<td>SOS</td>
-								</tr>
-								<tr>
+						<form action="index/form" modelAttribute="item">
+							<table class="table">
+
+								<thead>
+									<tr>
+										<th scope="col">Sản phẩm</th>
+										<th scope="col">Thông tin</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">Tên Sản Phẩm</th>
+										<td>${item.tenSp }</td>
+									</tr>
+									<tr>
+										<th scope="row">Thương hiện</th>
+										<td>${item.thuonghieu.tenTh }</td>
+									</tr>
+									<!-- 								<tr>
 									<th scope="row">Nguốc gốc</th>
 									<td>Viêt Nam</td>
 								</tr>
-								<tr>
-									<th scope="row">Dung lượng</th>
-									<td></td>
-								</tr>
+
 								<tr>
 									<th scope="row">Kích thước</th>
 									<td>8 in</td>
@@ -188,10 +179,11 @@
 								<tr>
 									<th scope="row">Trọng lượng</th>
 									<td>340g</td>
-								</tr>
+								</tr> -->
 
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</form>
 
 						<!-- like share -->
 						<div class="col-md-12">
@@ -246,10 +238,10 @@
 													alt=" "> <span class="text-new">Mới</span>
 													<div class="rmitem-caption">
 														<h4>
-															<a href="#" title="Quạt tản nhiệt DL01">${item.tensp }</a>
+															<a href="#" title="Quạt tản nhiệt DL01">${item.tenSp }</a>
 														</h4>
 														<p>
-															<span class="text-price">${item.giasp }đ</span>
+															<span class="text-price">${item.giaSp }đ</span>
 														<div>
 															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
 																ngay</a>
@@ -260,155 +252,6 @@
 											</div>
 										</c:forEach>
 
-										<div class="list-group col-sm-3 col-md-3"
-											style="text-align: center; padding-top: 10px;">
-
-											<li class="list-group-item "><img class="w-100"
-												src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-												alt=" "> <span class="text-new">Mới</span>
-												<div class="rmitem-caption">
-													<h4>
-														<a href="#" title="Quạt tản nhiệt DL01">Quạt tản nhiệt
-															DL01</a>
-													</h4>
-													<p>
-														<span class="text-price">200.000đ</span>
-													<div>
-														<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-															ngay</a>
-													</div>
-													</p>
-												</div></li>
-
-										</div>
-										<div class="list-group col-sm-3 col-md-3"
-											style="text-align: center; padding-top: 10px;">
-
-											<li class="list-group-item "><img class="w-100"
-												src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-												alt=" "> <span class="text-new">Mới</span>
-												<div class="rmitem-caption">
-													<h4>
-														<a href="#" title="Quạt tản nhiệt DL01">Quạt tản nhiệt
-															DL01</a>
-													</h4>
-													<p>
-														<span class="text-price">200.000đ</span>
-													<div>
-														<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-															ngay</a>
-													</div>
-													</p>
-												</div></li>
-
-										</div>
-										<div class="list-group col-sm-3 col-md-3"
-											style="text-align: center; padding-top: 10px;">
-
-											<li class="list-group-item "><img class="w-100"
-												src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-												alt=" "> <span class="text-new">Mới</span>
-												<div class="rmitem-caption">
-													<h4>
-														<a href="#" title="Quạt tản nhiệt DL01">Quạt tản nhiệt
-															DL01</a>
-													</h4>
-													<p>
-														<span class="text-price">200.000đ</span>
-													<div>
-														<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-															ngay</a>
-													</div>
-													</p>
-												</div></li>
-
-										</div>
-									</div>
-									<div class="item ">
-										<div class="row row-item">
-											<div class="list-group col-sm-3 col-md-3"
-												style="text-align: center; padding-top: 10px;">
-
-												<li class="list-group-item "><img class="w-100"
-													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-													alt=" "> <span class="text-new">Mới</span>
-													<div class="rmitem-caption">
-														<h4>
-															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																nhiệt DL01</a>
-														</h4>
-														<p>
-															<span class="text-price">200.000đ</span>
-														<div>
-															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																ngay</a>
-														</div>
-														</p>
-													</div></li>
-
-											</div>
-											<div class="list-group col-sm-3 col-md-3"
-												style="text-align: center; padding-top: 10px;">
-
-												<li class="list-group-item "><img class="w-100"
-													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-													alt=" "> <span class="text-new">Mới</span>
-													<div class="rmitem-caption">
-														<h4>
-															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																nhiệt DL01</a>
-														</h4>
-														<p>
-															<span class="text-price">200.000đ</span>
-														<div>
-															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																ngay</a>
-														</div>
-														</p>
-													</div></li>
-
-											</div>
-											<div class="list-group col-sm-3 col-md-3"
-												style="text-align: center; padding-top: 10px;">
-
-												<li class="list-group-item "><img class="w-100"
-													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-													alt=" "> <span class="text-new">Mới</span>
-													<div class="rmitem-caption">
-														<h4>
-															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																nhiệt DL01</a>
-														</h4>
-														<p>
-															<span class="text-price">200.000đ</span>
-														<div>
-															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																ngay</a>
-														</div>
-														</p>
-													</div></li>
-
-											</div>
-											<div class="list-group col-sm-3 col-md-3"
-												style="text-align: center; padding-top: 10px;">
-
-												<li class="list-group-item "><img class="w-100"
-													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
-													alt=" "> <span class="text-new">Mới</span>
-													<div class="rmitem-caption">
-														<h4>
-															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
-																nhiệt DL01</a>
-														</h4>
-														<p>
-															<span class="text-price">200.000đ</span>
-														<div>
-															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																ngay</a>
-														</div>
-														</p>
-													</div></li>
-											</div>
 										</div>
 									</div>
 								</div>

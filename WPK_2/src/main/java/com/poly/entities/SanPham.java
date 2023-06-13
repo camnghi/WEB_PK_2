@@ -21,25 +21,25 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "San_Pham")
+@Table(name = "Sanphams")
 public class SanPham implements Serializable {
 	@Id
-	Integer id_sp;
-	String tensp;
-	Double giasp;
-	String anhsp;
-	Integer soluong;
+	Integer idSp;
+	String tenSp;
+	Double giaSp;
+	String anhSp;
+	Integer soLuong;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "ngaytao")
-	Date ngaytao = new Date();
-	String mota;
-	Boolean baohanh;
+	@Column(name = "ngayTao")
+	Date ngayTao = new Date();
+	String moTa;
+	Boolean baoHanh;
 	@ManyToOne
-	@JoinColumn(name = "id_loai")
+	@JoinColumn(name = "idLoai")
 	Loaisanpham loaisanpham;
 
 	@ManyToOne
-	@JoinColumn(name = "id_th")
+	@JoinColumn(name = "idTh")
 	Thuonghieu thuonghieu;
 	@OneToMany(mappedBy = "sanpham")
 	List<Hoadonchitiet> hoadonchitiet;
