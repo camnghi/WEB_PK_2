@@ -108,4 +108,26 @@ public class UserController {
 		response.setCharacterEncoding("UTF-8");
 		return "index_Main";
 	}
+	
+	//Quên mật khẩu
+	@GetMapping("/QuenMatKhau") // Gọi đến trang đăng nhập
+	public String QuenMatKhau() throws UnsupportedEncodingException {
+		request.setAttribute("title", "Quên Mật Khẩu");
+		request.setAttribute("view", "QuenMatKhau");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		return "index_Main";
+	}
+	
+	 @PostMapping("/QuenMatKhau")
+	    public String resetPassword(@RequestParam("email") String email, Model model) {
+	        try {
+	        	userService.resetPassword(email);
+	            model.addAttribute("message", "Mật khẩu mới đã được gửi đến địa chỉ email của bạn.");
+	        } catch (Exception e) {
+	            model.addAttribute("error", e.getMessage());
+	        }
+	        return "index/QuenMatKhau";
+	    }
+	
 }
