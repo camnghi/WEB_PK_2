@@ -1,6 +1,7 @@
 package com.poly.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.entities.KhachHang;
+import com.poly.entities.Loaisanpham;
+import com.poly.repository.LoaisanphamDAO;
 import com.poly.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,10 +33,13 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-
+	@Autowired
+	LoaisanphamDAO dao;
 // Đăng nhập 
 	@GetMapping("/DangNhap") // Gọi đến trang đăng nhập
-	public String form() throws UnsupportedEncodingException {
+	public String form(Model model) throws UnsupportedEncodingException {
+		List<Loaisanpham> loaisanphams = dao.findAll();
+		model.addAttribute("loaisanphams", loaisanphams);
 		request.setAttribute("title", "Đăng nhập");
 		request.setAttribute("view", "DangNhap");
 		request.setCharacterEncoding("UTF-8");
@@ -63,6 +69,8 @@ public class UserController {
 //Đăng kí    
 	@GetMapping("DangKi") // Gọi form đăng kí
 	public String register(Model model) {
+		List<Loaisanpham> loaisanphams = dao.findAll();
+		model.addAttribute("loaisanphams", loaisanphams);
 		request.setAttribute("title", "Đăng ký");
 		request.setAttribute("view", "DangKi");
 //		request.setCharacterEncoding("UTF-8");

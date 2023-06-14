@@ -25,6 +25,8 @@ public class GioHangController {
 	LoaisanphamDAO dao;
 	@GetMapping("form")
 	public String form(Model model) {
+		List<Loaisanpham> loaisanphams = dao.findAll();
+		model.addAttribute("loaisanphams", loaisanphams);
 		List<Loaisanpham> items = dao.findAll();
 	    model.addAttribute("items", items);
 		request.setAttribute("title", "Giỏ hàng");

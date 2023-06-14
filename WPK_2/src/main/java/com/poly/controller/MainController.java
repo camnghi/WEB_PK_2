@@ -1,5 +1,6 @@
 package com.poly.controller;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +57,8 @@ public class MainController {
 		Pageable pageable = PageRequest.of(p.orElse(0), 2);
 		Page<SanPham> page = sanphamdao.findAll(pageable);
 		model.addAttribute("page", page);
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		return "index_Main";
 	}
 
