@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +23,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping ("index")
+@RequestMapping("index")
 public class MainController {
 	@Autowired
 	HttpServletRequest request;
@@ -32,26 +31,28 @@ public class MainController {
 	HttpServletResponse response;
 	@Autowired
 	SanphamDAO sanphamdao;
-	@Autowired
-	LoaisanphamDAO dao;
 
 	@Autowired
+	LoaisanphamDAO dao;
+	@Autowired
 	ServletContext app;
-	
-	@GetMapping("form")
+
+	@RequestMapping("form")
 	public String index(Model model, @RequestParam("p") Optional<Integer> p) {
-		
+
 		request.setAttribute("title", "Trang chủ");
 		request.setAttribute("view", "items");
 //		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		List<Loaisanpham> items = dao.findAll();
-	    model.addAttribute("items", items);
+
+		List<Loaisanpham> loaisanphams = dao.findAll();
+		model.addAttribute("loaisanphams", loaisanphams);
+
 		SanPham item = new SanPham();
 		model.addAttribute("item", item);
 		List<SanPham> sanpham = sanphamdao.findAll();
 		model.addAttribute("items", sanpham);
-		
+
 		Pageable pageable = PageRequest.of(p.orElse(0), 2);
 		Page<SanPham> page = sanphamdao.findAll(pageable);
 		model.addAttribute("page", page);

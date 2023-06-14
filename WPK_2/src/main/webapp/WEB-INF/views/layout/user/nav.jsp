@@ -8,15 +8,15 @@
 		<nav class="container">
 			<a href="/index/form" id="logo"> <img src="/img/logo.png" alt=""></a>
 			<ul id="main-menu">
-				<li><a href="/index/form"><i
-						class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
+				<li><a href="/index/form"><i class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
 				<li><a href="/listSPs/SearchPage"><i class="fa-solid fa-list-ul"></i>Sản phẩm</a>
 					<ul class="sub-menu">
-						<c:forEach var="item" items="${items}">
+						<c:forEach var="item" items="${loaisanphams}">
 							<li><a href="/listSPs/SearchPage">${item.tenLoai}</a></li>
 						</c:forEach>
 					</ul>
 				</li>
+
 
 				<li><a href="/giohang/form"><i
 						class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
