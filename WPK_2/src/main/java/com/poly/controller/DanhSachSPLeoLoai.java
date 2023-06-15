@@ -43,8 +43,10 @@ public class DanhSachSPLeoLoai {
 		@RequestMapping("SearchPage")
 		public String paginate(Model model, @RequestParam("keywords") Optional<String> kw,
 				@RequestParam("p") Optional<Integer> p) {
-			List<Loaisanpham> items = dao.findAll();
-		    model.addAttribute("items", items);
+			
+//			List<Loaisanpham> items = dao.findAll();
+//		    model.addAttribute("items", items);
+		    
 			request.setAttribute("title", "Sản Phẩm");
 			request.setAttribute("view", "DanhSachSPTheoLoai");
 			int pageSize = 8;

@@ -38,6 +38,7 @@ public class quanLyThuongHieu {
 		if (kwords != null && !kwords.equals("")) {
 			Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
 			page = thuonghieudao.findAllByTenThLike("%" + kwords + "%", pageable);
+			System.out.println(page);
 		} else {
 			Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
 			page = thuonghieudao.findAll(pageable);

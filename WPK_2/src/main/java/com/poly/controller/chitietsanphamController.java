@@ -24,24 +24,21 @@ public class chitietsanphamController {
 	HttpServletResponse response;
 	@Autowired
 	SanphamDAO sanphamdao;
-////	@Autowired
-////	ServletContext app;
-//	@Autowired
-//	SessionService session; 
+
 	@GetMapping("chitietsanpham")
 	public String form(Model model) {
-
 			request.setAttribute("title", "Chi tiết sản phẩm");
-			request.setAttribute("view", "chitietsanpham");
+//			request.setAttribute("view", "chitietsanpham");
 			response.setCharacterEncoding("UTF-8");
-			
 			SanPham item = new SanPham();
 			model.addAttribute("item", item);
 			List<SanPham> items = sanphamdao.findAll();
 			model.addAttribute("items", items);
-			request.setAttribute("form_QLDonHang", "layout/admin/form_QLDonHang.jsp");
-
-		return "chitietsanpham";
+		return "chitietgiohang";
 	}
+	
+	
+	
+	
 
 }
