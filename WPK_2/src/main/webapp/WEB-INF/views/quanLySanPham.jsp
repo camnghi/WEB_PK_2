@@ -100,8 +100,8 @@
                                 <li><a href="/quanLySanPham/form"
                                         class="link-dark rounded">
                                     Thông tin sản phẩm</a></li>
-                                <li><a href="/quanLyChiTietSanPham/form" class="link-dark rounded">
-                                    Chi tiết sản phẩm</a></li>
+                                <li><a href="/quanLyThuongHieu/form"
+									class="link-dark rounded"> Thương hiệu</a></li>
                                 <li><a href="/phanLoaiSP/form" class="link-dark rounded">
                                     Phân loại sản phẩm</a></li>
                             </ul>

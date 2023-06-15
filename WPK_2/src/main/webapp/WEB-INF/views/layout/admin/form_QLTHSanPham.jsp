@@ -39,8 +39,11 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">ID Thương hiệu</th>
-							<th scope="col">Tên thương hiệu</th>
+							<th scope="col"><a href="/quanLyThuongHieu/form?field=idTh">Id
+									Loại</a></th>
+							<th scope="col"><a href="/quanLyThuongHieu/form?field=tenTh">Tên
+									loại</a></th>
+							<th></th>
 							<th></th>
 						</tr>
 					</thead>

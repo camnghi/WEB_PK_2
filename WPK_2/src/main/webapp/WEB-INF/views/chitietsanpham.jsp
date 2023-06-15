@@ -38,7 +38,7 @@
 
 			</div>
 			<div class="col-md-4">
-				<form action="index/form" modelAttribute="item">
+				<form action="index/form" modelAttribute="item" method="post">
 					<div class="content-right">
 						<h1 class="text-h1">${item.tenSp}</h1>
 						<div class="rm-price">
@@ -78,23 +78,11 @@
 										<a href="/giohang/form">
 											<div type="button"
 												class="big-button button-red left btnMuaNgayDetail">
-												<strong>THÊM VÀO GIỎ HÀNG</strong>
+												<a href="/giohang/form">Thêm vào giỏ hàng</a>
 											</div>
 										</a>
-
 									</div>
 									<br>
-								</div>
-								<div class="col-md-4">
-									<div id="rm-booking" class="input-group">
-										<a href="/giohang/form">
-											<div type="button"
-												class="big-button button-red left btnMuaNgayDetail">
-												<strong>MUA NGAY</strong>
-											</div>
-										</a>
-									</div>
-
 								</div>
 								<div class="col-md-12">
 									<div class="social">
@@ -108,14 +96,10 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</form>
-
 			</div>
 		</div>
-
-
 		<div class="container">
 			<div class="row">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -140,13 +124,13 @@
 				</ul>
 				<div class="tab-content" id="myTabContent">
 					<form action="index/form" modelAttribute="item">
-					<div class="tab-pane fade show active" id="gioithieu-tab-pane"
-						role="tabpanel" aria-labelledby="gioithieu-tab" tabindex="0">
-						
-						<p>${item.moTa }</p>
+						<div class="tab-pane fade show active" id="gioithieu-tab-pane"
+							role="tabpanel" aria-labelledby="gioithieu-tab" tabindex="0">
 
-					</div>
-					</form>	
+							<p>${item.moTa }</p>
+
+						</div>
+					</form>
 					<div class="tab-pane fade" id="thongkekythuat-tab-pane"
 						role="tabpanel" aria-labelledby="thongkekythuat-tab" tabindex="0">
 						<form action="index/form" modelAttribute="item">
@@ -167,20 +151,6 @@
 										<th scope="row">Thương hiện</th>
 										<td>${item.thuonghieu.tenTh }</td>
 									</tr>
-									<!-- 								<tr>
-									<th scope="row">Nguốc gốc</th>
-									<td>Viêt Nam</td>
-								</tr>
-
-								<tr>
-									<th scope="row">Kích thước</th>
-									<td>8 in</td>
-								</tr>
-								<tr>
-									<th scope="row">Trọng lượng</th>
-									<td>340g</td>
-								</tr> -->
-
 								</tbody>
 							</table>
 						</form>
@@ -252,7 +222,6 @@
 											</div>
 										</c:forEach>
 
-										</div>
 									</div>
 								</div>
 							</div>
@@ -262,9 +231,7 @@
 			</div>
 		</div>
 	</div>
-
-
-
+	</div>
 	<%--Đây là footer--%>
 	<%@include file="layout/user/footer.jsp"%>
 	<%--Đây là footer--%>

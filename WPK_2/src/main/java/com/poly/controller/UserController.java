@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.poly.entities.GioHang;
 import com.poly.entities.KhachHang;
 import com.poly.entities.Loaisanpham;
+import com.poly.repository.GiohangDAO;
 import com.poly.repository.LoaisanphamDAO;
 import com.poly.service.UserService;
 
@@ -35,6 +37,11 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	LoaisanphamDAO dao;
+
+//	
+	@Autowired
+	GiohangDAO giohangdao;
+
 // Đăng nhập 
 	@GetMapping("/DangNhap") // Gọi đến trang đăng nhập
 	public String form(Model model) throws UnsupportedEncodingException {
@@ -44,6 +51,14 @@ public class UserController {
 		request.setAttribute("view", "DangNhap");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+
+//		
+		GioHang gh = new GioHang();
+		model.addAttribute("gh", gh);
+
+		List<GioHang> ghs = giohangdao.findAll();
+		model.addAttribute("ghs", ghs);
+
 		return "index_Main";
 	}
 
@@ -116,8 +131,8 @@ public class UserController {
 		response.setCharacterEncoding("UTF-8");
 		return "index_Main";
 	}
-	
-	//Quên mật khẩu
+
+	// Quên mật khẩu
 	@GetMapping("/QuenMatKhau") // Gọi đến trang đăng nhập
 	public String QuenMatKhau() throws UnsupportedEncodingException {
 		request.setAttribute("title", "Quên Mật Khẩu");
@@ -126,16 +141,16 @@ public class UserController {
 		response.setCharacterEncoding("UTF-8");
 		return "index_Main";
 	}
-	
-	 @PostMapping("/QuenMatKhau")
-	    public String resetPassword(@RequestParam("email") String email, Model model) {
-	        try {
-	        	userService.resetPassword(email);
-	            model.addAttribute("message", "Mật khẩu mới đã được gửi đến địa chỉ email của bạn.");
-	        } catch (Exception e) {
-	            model.addAttribute("error", e.getMessage());
-	        }
-	        return "index/QuenMatKhau";
-	    }
-	
+
+	@PostMapping("/QuenMatKhau")
+	public String resetPassword(@RequestParam("email") String email, Model model) {
+		try {
+			userService.resetPassword(email);
+			model.addAttribute("message", "Mật khẩu mới đã được gửi đến địa chỉ email của bạn.");
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "index/QuenMatKhau";
+	}
+
 }

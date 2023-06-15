@@ -139,8 +139,8 @@
 							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 								<li><a href="/quanLySanPham/form" class="link-dark rounded">
 										Thông tin sản phẩm</a></li>
-								<li><a href="/quanLyChiTietSanPham/form"
-									class="link-dark rounded"> Chi tiết sản phẩm</a></li>
+								<li><a href="/quanLyThuongHieu/form"
+									class="link-dark rounded"> Thương hiệu</a></li>
 								<li><a href="/phanLoaiSP/form" class="link-dark rounded">
 										Phân loại sản phẩm</a></li>
 							</ul>
@@ -210,11 +210,13 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th scope="col">Username</th>
-									<th scope="col">password</th>
-									<th scope="col">Tên khách hàng</th>
-									<th scope="col">Email</th>
-									<th scope="col">Trạng thái</th>
+									<th scope="col"><a
+										href="/quanLyKhachHang/form?field=taiKhoan">Tài khoản</a></th>
+									<!-- <th scope="col">password</th> -->
+									<th scope="col"><a
+										href="/quanLyKhachHang/form?field=hoTen">Tên khách hàng</a></th>
+									<th scope="col"><a href="/quanLyKhachHang/form?field=email">Email</a></th>
+									<th scope="col"><a href="/quanLyKhachHang/form?field=trangThai">Trạng thái</a></th>
 									<th scope="col">Admin</th>
 									<th></th>
 								</tr>
@@ -222,7 +224,7 @@
 							<c:forEach var="item" items="${page.content}">
 								<tr>
 									<td>${item.taiKhoan}</td>
-									<td>${item.matKhau}</td>
+									<%-- <td>${item.matKhau}</td> --%>
 									<td>${item.hoTen}</td>
 									<td>${item.email}</td>
 									<td>${item.trangThai}</td>

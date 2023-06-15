@@ -42,6 +42,4 @@ public class HoaDon implements Serializable {
 	@OneToMany(mappedBy = "hoadon")
 	List<Hoadonchitiet> hoadonchitiet;
 
-	
-
 }

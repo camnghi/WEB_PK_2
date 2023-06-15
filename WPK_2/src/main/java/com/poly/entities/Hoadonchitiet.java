@@ -26,6 +26,7 @@ public class Hoadonchitiet {
 	@ManyToOne
 	@JoinColumn(name = "idSp")
 	SanPham sanpham;
+
 	private Double gia;
-	private Double soLuong;
+	private Integer soLuong;
 }

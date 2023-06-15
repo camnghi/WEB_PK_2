@@ -4,12 +4,8 @@ import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,15 +38,13 @@ public class KhachHang implements Serializable {
 	@Column(name = "ma_xac_nhan")
 	private String maXacNhan;
 
-//	@OneToMany(mappedBy = "khachhang")
-//	List<GioHang> gioHang;
+//	@OneToMany(mappedBy = "taiKhoan")
+//	List<GioHang> giohang;
 
-//	@Override
-//	public String toString() {
-//		return "KhachHang [taiKhoan=" + taiKhoan + ", matKhau=" + matKhau + ", hoTen=" + hoTen + ", email=" + email
-//				+ ", trangThai=" + trangThai + ", admin=" + admin + ", maXacNhan=" + maXacNhan + ", gioHang=" + gioHang
-//				+ "]";
-//	}
-//
+	@Override
+	public String toString() {
+		return "KhachHang [taiKhoan=" + taiKhoan + ", matKhau=" + matKhau + ", hoTen=" + hoTen + ", email=" + email
+				+ ", trangThai=" + trangThai + ", admin=" + admin + ", maXacNhan=" + maXacNhan + "]";
+	}
+
 }
-

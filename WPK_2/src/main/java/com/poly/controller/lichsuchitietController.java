@@ -15,6 +15,7 @@ public class lichsuchitietController {
 	HttpServletRequest request;
 	@Autowired
 	HttpServletResponse response;
+
 	@GetMapping("form")
 	public String form() {
 		request.setAttribute("title", "Chi tiết lịch sử mua hàng");

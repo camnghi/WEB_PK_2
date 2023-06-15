@@ -8,4 +8,7 @@ import com.poly.entities.SanPham;
 
 public interface SanphamDAO extends JpaRepository<SanPham, Integer> {
 	Page<SanPham> findAllBytenSpLike(String keywords, Pageable pageable);
+
+	;
+
 }

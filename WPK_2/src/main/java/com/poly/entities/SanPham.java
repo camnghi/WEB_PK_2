@@ -37,7 +37,6 @@ public class SanPham implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idLoai")
 	Loaisanpham loaisanpham;
-
 	@ManyToOne
 	@JoinColumn(name = "idTh")
 	Thuonghieu thuonghieu;

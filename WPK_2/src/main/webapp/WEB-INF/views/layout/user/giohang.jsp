@@ -14,23 +14,24 @@
 							<th>GIÁ</th>
 							<th>SỐ LƯỢNG</th>
 							<th>TỔNG TIỀN</th>
-							<th>${listGH}</th>
+							<th></th>
 						</tr>
-						<c:forEach var="giohangct" items="${giohang.chitietgiohang}">
-							<form action="/giohang/form" method="post">
+						<form action="/giohang/form" method="post">
+							<c:forEach var="gh" items="${ghs}">
 								<tr>
-									<td><img alt="" src="/img/${giohangct.sanpham.anhSp}"
-										width="100px">
-									<td>${giohangct.sanpham.tenSp}
-									<td>${giohangct.sanpham.giaSp}</td>
-									<td><input name="soLuong"
-										value="${item.chitietgiohang.soluong}"
-										onblur="this.form.submit()" style="width: 50px;"></td>
-									<td>${giohangct.sanpham.giaSp * chitietgiohang.soluong}</td>
-									<td><a href="${giohangct.sanpham.idGHCT}">Xóa</a></td>
+<%-- 									<td><img alt="" src="/img/${ctgh.sanpham.anhSp}" --%>
+<!-- 										width="100px"> -->
+<%-- 									<td>${gh.sanpham.tenSp} --%>
+<%-- 									<td>${gh.sanpham.giaSp}</td> --%>
+<%-- 									<td><input name="soLuong" value="${ctgh.sanpham.soluong}" --%>
+<!-- 										onblur="this.form.submit()" style="width: 50px;"></td> -->
+<%-- 									<td>${ctgh.sanpham.giaSp * sanpham.soluong}</td> --%>
+<%-- 									<td><a href="${idGH.sanpham}">Xóa</a></td> --%>
+<td>${gh.taiKhoan }</td>
 								</tr>
-							</form>
-						</c:forEach>
+							</c:forEach>
+
+						</form>
 					</table>
 					<button class="btn btn-outline-light bg-secondary"
 						style="float: right;">Cập nhật giỏ hàng</button>
@@ -58,7 +59,6 @@
 			</div>
 			<br> <a class="btn btn-outline-light bg-warning"
 				style="float: right;" href="/lichsu/form">Lịch sử mua hàng</a>
-
 		</div>
 	</div>
 </div>
