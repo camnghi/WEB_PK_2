@@ -11,7 +11,7 @@
 				<li><a href="/listSPs/SearchPage"><i class="fa-solid fa-list-ul"></i>Sản phẩm</a>
 					<ul class="sub-menu">
 						<c:forEach var="item" items="${loaisanphams}">
-							<li><a href="/listSPs/SearchPage">${item.tenLoai}</a></li>
+							<li><a href="/listSPs/SearchPage?loaiSpId=${item.idLoai}">${item.tenLoai}</a></li>
 						</c:forEach>
 					</ul>
 				</li>
