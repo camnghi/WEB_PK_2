@@ -11,7 +11,7 @@
 
                 <!--Form đổi mật khẩu -->
                 <div class="col-md-12 col-lg-12 col-xl-4 offset-xl-1">
-                    <form action="/index/doimatkhau" method="post">
+                    <form action="/index/changepass" method="post">
                     
                         <div class="divider d-flex align-items-center my-4">
                             <p class="text-center fw-bold mx-3 mb-0">Đổi mật khẩu</p>
@@ -19,7 +19,7 @@
                         <div style="margin: 0 auto;">${message}</div>
                         <div class="input-group mb-2">
 							  <span class="input-group-text bg-white" id="basic-addon1"><i class="fa-sharp fa-solid fa-user fa-2xl"></i></span>
-							  <input name="taiKhoan" class="form-control" style="height: 45px;" value="${khachhang.taiKhoan}" readonly/>
+							  <input name="taiKhoan" class="form-control" style="height: 45px;" value="${taiKhoan}" readonly/>
 						</div>                                                                  
 
                         <div class="col-sm-12">

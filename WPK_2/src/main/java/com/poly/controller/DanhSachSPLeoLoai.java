@@ -45,7 +45,7 @@ public class DanhSachSPLeoLoai {
 				@RequestParam("p") Optional<Integer> p) {
 			
 //			List<Loaisanpham> items = dao.findAll();
-//		    model.addAttribute("items", items);
+//		    model.addAttribute("items", items); 
 		    
 			request.setAttribute("title", "Sản Phẩm");
 			request.setAttribute("view", "DanhSachSPTheoLoai");

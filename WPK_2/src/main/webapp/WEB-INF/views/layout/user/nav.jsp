@@ -22,7 +22,7 @@
 						<li><a href="/index/DangNhap">Đăng nhập: ${khachhang.taiKhoan}</a></li>
 						<li><a href="/index/DangKi">Đăng ký </a></li>
 						<li><a href="/index/doimatkhau">Đổi mật khẩu </a></li>
-						<li><a href="/capnhatTK/form">Cập nhật tài khoản</a></li>
+						<li><a href="/index/CapNhat">Cập nhật tài khoản</a></li>
 						<li><a href="/index/DangXuat">Đăng xuất </a></li>
 					</ul></li>
 			</ul>

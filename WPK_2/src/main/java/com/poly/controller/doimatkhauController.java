@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.entities.KhachHang;
 import com.poly.entities.Loaisanpham;
@@ -42,41 +43,37 @@ public class doimatkhauController {
 		List<Loaisanpham> loaisanphams = dao.findAll();
 		model.addAttribute("loaisanphams", loaisanphams);
 		request.setAttribute("title", "Đổi mật khẩu");
+		KhachHang khachHangHienTai = (KhachHang) session.getAttribute("khachhang");		
+		model.addAttribute("taiKhoan", khachHangHienTai.getTaiKhoan());
+		
 		request.setAttribute("view", "DoiMatKhau");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
 		return "index_Main";
 	}
 	
-	@PostMapping("/doimatkhau")
+	@PostMapping("/changepass")
 	
 	public String DoiMK(Model model, HttpSession session,
+			RedirectAttributes redirectAttributes,
 			@RequestParam("matKhau") String matKhau,
 		    @RequestParam("matKhauMoi") String matKhauMoi,
 		    @RequestParam("XNmatKhauMoi") String XNmatKhauMoi) {
-		request.setAttribute("view", "DoiMatKhau");
 		// lấy tài khoản của khách hàng đang đăng nhập từ session
-		KhachHang khachHangHienTai = (KhachHang) session.getAttribute("khachhang");
-		String taiKhoan = khachHangHienTai.getTaiKhoan();
-		
+		KhachHang khachHangHienTai = (KhachHang) session.getAttribute("khachhang");		
 		// kiểm tra mật khẩu cũ và xác nhận mật khẩu mới có trùng nhau hay không
 	    if (!khachHangHienTai.getMatKhau().equals(matKhau)) {
-	        model.addAttribute("message", "Mật khẩu cũ không đúng");
-	        System.out.println("Mat khau cu khong dung");
-
+	        redirectAttributes.addFlashAttribute("message", "Mật khẩu cũ không đúng");
 	        return "redirect:/index/doimatkhau";
 	    }
 	    if (!matKhauMoi.equals(XNmatKhauMoi)) {
-	        model.addAttribute("message", "Xác nhận mật khẩu không khớp");
-	        System.out.println("Mat khau xác nhận khong dung");
-
+	        redirectAttributes.addFlashAttribute("message", "Xác nhận mật khẩu không khớp");
 	        return "redirect:/index/doimatkhau";
 	    }
 	  //cập nhật mật khẩu mới cho khách hàng
 	    khachHangHienTai.setMatKhau(matKhauMoi);
-	    System.out.println("dang nhap thanh cong");
 	    KHdao.save(khachHangHienTai);
-		return "index_Main";
+	    redirectAttributes.addFlashAttribute("message", "Đổi mật khẩu thành công");
+		return "redirect:/index/doimatkhau";
 	}
 }
