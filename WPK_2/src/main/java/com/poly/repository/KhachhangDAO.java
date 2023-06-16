@@ -11,4 +11,7 @@ public interface KhachhangDAO extends JpaRepository<KhachHang, String> {
 	Page<KhachHang> findAllByhoTenLike(String keywords, Pageable pageable);
 
 	Page<KhachHang> findAllBytaiKhoanLike(String keywords, Pageable pageable);
+	
+    KhachHang findByTaiKhoanAndMatKhau(String taiKhoan, String matKhau);
+
 }

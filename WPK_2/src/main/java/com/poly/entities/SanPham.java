@@ -34,6 +34,7 @@ public class SanPham implements Serializable {
 	Date ngayTao = new Date();
 	String moTa;
 	Boolean baoHanh;
+	
 	@ManyToOne
 	@JoinColumn(name = "idLoai")
 	Loaisanpham loaisanpham;

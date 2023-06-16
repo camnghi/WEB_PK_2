@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poly.entities.GioHang;
+import com.poly.entities.KhachHang;
 import com.poly.entities.Loaisanpham;
-import com.poly.repository.ChitietgiohangDAO;
 import com.poly.repository.GiohangDAO;
-import com.poly.repository.KhachhangDAO;
 import com.poly.repository.LoaisanphamDAO;
 import com.poly.service.SessionService;
 
@@ -20,6 +20,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+// lấy id giỏ hàng từ tk đang đăng nhập
+// lấy id sản phẩm mà người dùng click thêm vào giỏ hàng
+// lưu chi tiết giỏ hàng
 @Controller
 @RequestMapping("giohang")
 public class GioHangController {
@@ -30,14 +33,9 @@ public class GioHangController {
 	@Autowired
 	LoaisanphamDAO dao;
 	@Autowired
-	GiohangDAO ghdao;
+	HttpSession session;
 	@Autowired
-	KhachhangDAO khachhangdao;
-	@Autowired
-	ChitietgiohangDAO ghctdao;
-	@Autowired
-	SessionService session;
-
+	GiohangDAO giohangDao;
 	@GetMapping("form")
 	public String form(Model model, HttpSession session, GioHang ghang) {
 		List<Loaisanpham> loaisanphams = dao.findAll();
@@ -67,14 +65,18 @@ public class GioHangController {
 //		model.addAttribute("ctghs", ctghs);
 		return "index_Main";
 	}
+	
+	@GetMapping("getgiohang")
+	public String getGioHang(Model model) {
+	    HttpSession session = request.getSession();
+	    KhachHang khachHang = (KhachHang) session.getAttribute("khachHang");
+	    //
+	    if (khachHang != null) {
+	        List<GioHang> gioHangs = giohangDao.findByKhachhang(khachHang);
+	        model.addAttribute("gioHangs", gioHangs);
+	    }
+	    return "giohang/form";
+	}
 
-//	@RequestMapping("/edit/{idGh}")
-//	public String khachhang(Model model, @PathVariable("idGh") Integer idGh) {
-//		GioHang gh = ghdao.findById(idGh).get();
-//		model.addAttribute("gh", gh);
-//		List<GioHang> ghs = ghdao.findAll();
-//		model.addAttribute("ghs", ghs);
-//		request.setAttribute("giohang", "layout/user/giohang.jsp");
-//		return "redirect:/giohang/form/edit/" + gh.getIdGh();
-//	}
+
 }

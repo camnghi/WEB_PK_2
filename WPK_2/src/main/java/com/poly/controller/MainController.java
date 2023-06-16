@@ -32,7 +32,6 @@ public class MainController {
 	HttpServletResponse response;
 	@Autowired
 	SanphamDAO sanphamdao;
-
 	@Autowired
 	LoaisanphamDAO dao;
 	@Autowired
@@ -68,7 +67,6 @@ public class MainController {
 		model.addAttribute("item", item);
 		List<SanPham> items = sanphamdao.findAll();
 		model.addAttribute("items", items);
-//		request.setAttribute("view", "layout/user/chitietsanpham.jsp");
 		return "chitietsanpham";
 	}
 }

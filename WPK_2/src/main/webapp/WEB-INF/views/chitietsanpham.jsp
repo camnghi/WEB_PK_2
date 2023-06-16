@@ -27,7 +27,6 @@
 	<div class="container bg-while rm-slide-detail">
 
 		<div class="row">
-
 			<div class="col-md-8">
 				<div class="col-md-8">
 					<div>
@@ -54,15 +53,21 @@
 								</div>
 							</div>
 							<div class="row">
-								<li class="inpr"><span><a href=""
-										title="Chính sách bảo hành" target="_blank">Chính sách bảo
-											hành</a></span></li>
+								<li class="inpr">
+									<span>
+										<a href=""target="_blank" style="text-decoration: none;">Chính sách bảo hành</a>
+									</span>
+								</li>
 							</div>
 							<div class="row">
 								<div class="col-md-7">
 									<div id="rm-booking" class="input-group">
-											<button formaction="giohang/form?idSp=${idSp}" class="big-button button-red type="submit">Thêm</button>
-										
+										<a href="/giohang/form">
+											<div type="button" class="big-button button-red left">
+												<strong>THÊM VÀO GIỎ HÀNG</strong>
+											</div>
+										</a>
+
 									</div>
 									<br>
 								</div>
@@ -80,7 +85,6 @@
 						</div>
 					</div>
 				</form>
-				
 			</div>
 		</div>
 		<div class="container">
@@ -98,12 +102,6 @@
 							type="button" role="tab" aria-controls="thongkekythuat-tab-pane"
 							aria-selected="false">Thông kê kỹ thuật</button>
 					</li>
-					<!-- <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
-                    </li> -->
 				</ul>
 				<div class="tab-content" id="myTabContent">
 					<form action="index/form" modelAttribute="item">
@@ -118,7 +116,6 @@
 						role="tabpanel" aria-labelledby="thongkekythuat-tab" tabindex="0">
 						<form action="index/form" modelAttribute="item">
 							<table class="table">
-
 								<thead>
 									<tr>
 										<th scope="col">Sản phẩm</th>
@@ -196,8 +193,7 @@
 														<p>
 															<span class="text-price">${item.giaSp }đ</span>
 														<div>
-															<a href="" class="rm-btn-buynow" title="Mua ngay">Thêm vào giỏ hàng
-																</a>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Thêm vào giỏ hàng</a>
 														</div>
 														</p>
 													</div></li>
