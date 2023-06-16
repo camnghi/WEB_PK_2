@@ -31,11 +31,15 @@ public class HoaDon implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "taiKhoan")
 	KhachHang khachhang;
-	@Temporal(TemporalType.DATE)
+//	@Temporal(TemporalType.DATE)
 	@Column(name = "ngayTao")
-	Date NgayTao = new Date();
+	private Date NgayTao;
+	
 	String diaChi;
-	private Double tongTien;
+	
+	@Column(name = "tong_tien")
+	private double tongTien;
+	
 	private String sdt;
 	Boolean trangThai;
 	private String ghiChu;

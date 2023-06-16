@@ -28,7 +28,8 @@
 		</div>
 
 		<div class="col-sm-9 col-md-9 col-lg-9">
-			  <jsp:include page="${form_QLThongKe}"></jsp:include>
+			  <%-- <jsp:include page="${form_QLThongKe}"></jsp:include> --%>
+			  <jsp:include page="layout/admin/${view}.jsp"></jsp:include>
 		</div>
 	</div>
 
