@@ -16,21 +16,19 @@
 							<th>TỔNG TIỀN</th>
 							<th></th>
 						</tr>
-						<form action="/giohang/form" method="post">
-							<c:forEach var="gh" items="${ghs}">
+						<form action="/giohang/form" method="post" enctype="multipart/form-data" >
+							<c:forEach var="item" items="${sanphams}">
 								<tr>
-<%-- 									<td><img alt="" src="/img/${ctgh.sanpham.anhSp}" --%>
-<!-- 										width="100px"> -->
-<%-- 									<td>${gh.sanpham.tenSp} --%>
-<%-- 									<td>${gh.sanpham.giaSp}</td> --%>
-<%-- 									<td><input name="soLuong" value="${ctgh.sanpham.soluong}" --%>
-<!-- 										onblur="this.form.submit()" style="width: 50px;"></td> -->
-<%-- 									<td>${ctgh.sanpham.giaSp * sanpham.soluong}</td> --%>
-<%-- 									<td><a href="${idGH.sanpham}">Xóa</a></td> --%>
-<td>${gh.taiKhoan }</td>
+									<td><img alt="" src="/img/${item.anhSp}"
+										width="100px">
+									<td>$item.tenSp}
+									<td>${item.giaSp}</td>
+									<td><input name="soLuong" value="${item.soluong}"
+										onblur="this.form.submit()" style="width: 50px;"></td>
+									<td>${item.giaSp * item.soluong}</td>
+									<%-- <td><a href="${cart.sanpham}">Xóa</a></td> --%>
 								</tr>
 							</c:forEach>
-
 						</form>
 					</table>
 					<button class="btn btn-outline-light bg-secondary"

@@ -15,31 +15,17 @@ import com.poly.entities.KhachHang;
 import com.poly.repository.KhachhangDAO;
 import com.poly.service.SessionService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/quanLyKhachHang")
 public class quanLyKhachHang {
 	@Autowired
+	HttpServletRequest request;
+	@Autowired
 	KhachhangDAO dao;
 	@Autowired
 	SessionService session;
-
-//	@RequestMapping("/form")
-//	public String searchAndPage(Model model, @RequestParam("keywords") Optional<String> kw,
-//			@RequestParam("p") Optional<Integer> p) {
-//		int pageSize = 2;
-//		String kwords = kw.orElse(session.get("keywords"));
-//		session.set("keywords", kwords);
-//		Page<KhachHang> page;
-//		if (kwords != null && !kwords.equals("")) {
-//			Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
-//			page = dao.findAllByhoTenLike("%" + kwords + "%", pageable);
-//		} else {
-//			Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
-//			page = dao.findAll(pageable);
-//		}
-//		model.addAttribute("page", page);
-//		return "quanLyKhachHang";
-//	}
 
 	@RequestMapping("/form")
 	public String form(Model model, KhachHang khachhang,
@@ -66,6 +52,7 @@ public class quanLyKhachHang {
 		}
 
 		model.addAttribute("page", resultPage);
+		request.setAttribute("form_QLKhachHang", "layout/admin/form_QLKhachHang.jsp");
 		return "quanLyKhachHang";
 	}
 }

@@ -1,10 +1,12 @@
 package com.poly.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,8 +40,8 @@ public class KhachHang implements Serializable {
 	@Column(name = "ma_xac_nhan")
 	private String maXacNhan;
 
-//	@OneToMany(mappedBy = "taiKhoan")
-//	List<GioHang> giohang;
+	@OneToMany(mappedBy = "khachhang")
+	List<GioHang> giohang;
 
 	@Override
 	public String toString() {

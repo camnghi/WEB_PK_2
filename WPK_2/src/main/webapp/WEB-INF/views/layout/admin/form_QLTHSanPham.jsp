@@ -2,6 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<style>
+	.mgs_errors {
+	color: red;
+	font-style: italic;
+}
+</style>
 
 <div class="alert alert-primary" role="alert">
 	<h4 class="card-title">THƯƠNG HIỆU</h4>
@@ -12,21 +18,19 @@
 				<!-- Id thuong hieu -->
 				<div class="row">
 					<form:input path="idTh" placeholder="Id" hidden="hidden" />
-					<!-- Tên thuong hieu -->
 					<div class="col-sm-6 col-md-6 col-lg-6">
 						<span>Tên thương hiệu</span> <br>
 						<form:input path="tenTh" placeholder="Tên thương hiệu" />
+						<br>
+						<div Class="mgs_errors">${message}</div>
 					</div>
-					<!-- Button -->
 					<div class="col-sm-6 col-md-6 col-lg-6">
 						<span>Chức năng</span> <br>
 						<button formaction="/quanLyThuongHieu/create">Thêm</button>
 						<button formaction="/quanLyThuongHieu/update">Cập nhật</button>
 						<button formaction="/quanLyThuongHieu/form">Mới</button>
-
 					</div>
 				</div>
-				<!-- tìm kiếm -->
 				<hr>
 				<div class="timkiem">
 					<input name="keywords" value="${keywords}">
@@ -40,9 +44,9 @@
 					<thead>
 						<tr>
 							<th scope="col"><a href="/quanLyThuongHieu/form?field=idTh">Id
-									Loại</a></th>
+									Thương hiệu</a></th>
 							<th scope="col"><a href="/quanLyThuongHieu/form?field=tenTh">Tên
-									loại</a></th>
+									Thương hiệu</a></th>
 							<th></th>
 							<th></th>
 						</tr>

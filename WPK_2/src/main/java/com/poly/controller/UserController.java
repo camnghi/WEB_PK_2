@@ -150,7 +150,7 @@ public class UserController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "index/QuenMatKhau";
+		return "index_Main";
 	}
 
 }

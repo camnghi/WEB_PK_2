@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-<title>Quản lý chi tiết sản phẩm</title>
+<title>Quản lý thương hiệu</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"

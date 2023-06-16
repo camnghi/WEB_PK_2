@@ -26,14 +26,24 @@ public class GioHang implements Serializable {
 	private Integer idGh;
 	@ManyToOne
 	@JoinColumn(name = "taiKhoan")
-	private KhachHang khachHang;
+	KhachHang khachhang;
 	private Integer soLuong;
 	@OneToMany(mappedBy = "giohang")
-	List<Chitietgiohang> chitietgiohang;
+	List<Chitietgiohang> chitietgiohangs;
 
+	@JoinColumn(name = "sanpham")
 	@Override
 	public String toString() {
-		return "GioHang [idGioHang=" + idGh + ", soLuong=" + soLuong + ", chitietgiohang=" + chitietgiohang + "]";
+		return "GioHang [idGh=" + idGh + ", khachHang=" + khachhang + ", soLuong=" + soLuong + ", chitietgiohang="
+				+ chitietgiohangs + "]";
 	}
 
+	public Chitietgiohang getChitietgiohangByidSp(int idSp) {
+		for (Chitietgiohang chitietgiohang : chitietgiohangs) {
+			if (chitietgiohang.getSanpham().getIdSp() == idSp) {
+				return chitietgiohang;
+			}
+		}
+		return null;
+	}
 }

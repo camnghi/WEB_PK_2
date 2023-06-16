@@ -35,14 +35,14 @@
 							style="padding-right: 50px">
 					</div>
 				</div>
-
 			</div>
 			<div class="col-md-4">
-				<form action="index/form" modelAttribute="item" method="post">
+				<form action="chitiet/add"  method="post">
 					<div class="content-right">
+						<h1 class="text-h1">${item.idSp}</h1>
 						<h1 class="text-h1">${item.tenSp}</h1>
 						<div class="rm-price">
-							<span class="rm-sale">Giá: ${item.giaSp }0đ</span> <span
+							<span class="rm-sale">Giá: ${item.giaSp}đ</span> <span
 								class="rm-icondesktop-price">Còn hàng</span>
 						</div>
 						<div class="form-button">
@@ -50,21 +50,7 @@
 
 								<div class="col-md-6">
 									<label>Số lượng</label>
-									<p>
-										<select id="optSoLuong" class="form-control">
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-											<option value="5">5</option>
-											<option value="6">6</option>
-											<option value="7">7</option>
-											<option value="8">8</option>
-											<option value="9">9</option>
-											<option value="10">10</option>
-										</select>
-									</p>
-
+									<input type="number" value="1" min="1">
 								</div>
 							</div>
 							<div class="row">
@@ -75,12 +61,8 @@
 							<div class="row">
 								<div class="col-md-7">
 									<div id="rm-booking" class="input-group">
-										<a href="/giohang/form">
-											<div type="button"
-												class="big-button button-red left btnMuaNgayDetail">
-												<a href="/giohang/form">Thêm vào giỏ hàng</a>
-											</div>
-										</a>
+											<button formaction="giohang/form?idSp=${idSp}" class="big-button button-red type="submit">Thêm</button>
+										
 									</div>
 									<br>
 								</div>
@@ -98,6 +80,7 @@
 						</div>
 					</div>
 				</form>
+				
 			</div>
 		</div>
 		<div class="container">
@@ -204,7 +187,7 @@
 												style="text-align: center; padding-top: 10px;">
 
 												<li class="list-group-item "><img class="w-100"
-													src="/sanpham/5d4982f269fda3bbed6f5e4e1b6d41f8_tn.jpg"
+													src="/sanphams/${item.anhSp}"
 													alt=" "> <span class="text-new">Mới</span>
 													<div class="rmitem-caption">
 														<h4>
@@ -213,15 +196,14 @@
 														<p>
 															<span class="text-price">${item.giaSp }đ</span>
 														<div>
-															<a href="" class="rm-btn-buynow" title="Mua ngay">Mua
-																ngay</a>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Thêm vào giỏ hàng
+																</a>
 														</div>
 														</p>
 													</div></li>
 
 											</div>
 										</c:forEach>
-
 									</div>
 								</div>
 							</div>

@@ -43,4 +43,7 @@ public class SanPham implements Serializable {
 	@OneToMany(mappedBy = "sanpham")
 	List<Hoadonchitiet> hoadonchitiet;
 
+	@OneToMany(mappedBy = "sanpham")
+	List<Chitietgiohang> chitietgiohang;
+
 }

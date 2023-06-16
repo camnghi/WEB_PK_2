@@ -1,50 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
-<span class="title">BẢNG THÔNG TIN KHÁCH HÀNG</span>
-<hr>
-<form action>
-	<div class="card-body">
-		<!-- tìm kiếm -->
-
-		<div class="timkiem">
-			<input type="text" class="form-control-sm"
-				aria-label=".form-control-sm example"
-				placeholder="Nhập tên tìm kiếm"> <a name="" id=""
-				class="btn btn-secondary btn-sm" href="#" role="button">Tìm kiếm</a>
-		</div>
-
-		<div class="table-responsive">
-
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">Tên tài khoản</th>
-						<th scope="col">Tên khách hàng</th>
-						<th scope="col">Địa chỉ</th>
-						<th scope="col">Số điện thoại</th>
-						<th scope="col">Email</th>
-						<th scope="col">Tài khoản</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="item" items="${items }">
-						<tr class>
-							<td>${item.username}</td>
-							<td>${item.fullname }</td>
-							<td>${item.hoadon.diachi }</td>
-							<td>${item.hoadon.sdt }</td>
-							<td>${item.email }</td>
-							<td>${item.admin }</td>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<div class="alert alert-primary" role="alert">
+	<h4 class="card-title">QUẢN LÝ KHÁCH HÀNG</h4>
+	<div class="card">
+		<form:form action="/quanLyKhachHang/form?keyword=${keywords}"
+			modelAttribute="thuonghieu" method="POST">
+			<div class="card-body">
+				<div class="timkiem">
+					<input name="keywords" value="${keywords}">
+					<button>Tìm</button>
+				</div>
+			</div>
+		</form:form>
+		<div class="card-body">
+			<!-- tìm kiếm -->
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col"><a
+								href="/quanLyKhachHang/form?field=taiKhoan">Tài khoản</a></th>
+							<!-- <th scope="col">password</th> -->
+							<th scope="col"><a href="/quanLyKhachHang/form?field=hoTen">Tên
+									khách hàng</a></th>
+							<th scope="col"><a href="/quanLyKhachHang/form?field=email">Email</a></th>
+							<th scope="col"><a
+								href="/quanLyKhachHang/form?field=trangThai">Trạng thái</a></th>
+							<th scope="col">Admin</th>
+							<th></th>
+						</tr>
+					</thead>
+					<c:forEach var="item" items="${page.content}">
+						<tr>
+							<td>${item.taiKhoan}</td>
+							<td>${item.hoTen}</td>
+							<td>${item.email}</td>
+							<td>${item.trangThai}</td>
+							<td>${item.admin}</td>
+							<td></td>
 						</tr>
 					</c:forEach>
-
-
-
-				</tbody>
-			</table>
+				</table>
+				<c:forEach var="i" begin="0"
+					end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}">
+					<a href="/quanLyKhachHang/form?keyword=${keywords}&p=${i}">${i + 1}</a>
+				</c:forEach>
+			</div>
+			<br>
+			<ul>
+				<li>Số thực thể hiện tại: ${page.numberOfElements}</li>
+				<li>Trang số: ${page.number + 1}</li>
+				<li>Tổng số thực thể: ${page.totalElements}</li>
+				<li>Tổng số trang: ${page.totalPages}</li>
+			</ul>
 		</div>
 	</div>
-</form>
+</div>
+
