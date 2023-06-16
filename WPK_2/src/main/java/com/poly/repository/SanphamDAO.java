@@ -14,4 +14,5 @@ public interface SanphamDAO extends JpaRepository<SanPham, Integer> {
 //	Page<SanPham> findAllByLoaiSp_IdLoai(Integer idLoai, Pageable pageable);
 	Page<SanPham> findAllByTenSpContainingAndLoaisanpham_IdLoai(String tenSp, int idLoai, Pageable pageable);
     Page<SanPham> findAllByLoaisanpham_IdLoai(int idLoai, Pageable pageable);
+
 }

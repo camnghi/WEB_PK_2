@@ -14,12 +14,12 @@ import com.poly.entities.KhachHang;
 import com.poly.interfaces.UserRepository;
 import com.poly.repository.KhachhangDAO;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 
 @Service
 public class UserService {
-	@Autowired
-	private HttpSession httpSession;
+	
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -39,11 +39,11 @@ public class UserService {
 		if (khachhang == null) {
 			throw new RuntimeException("Tên đăng nhập hoặc mật khẩu không đúng");
 		}
-		httpSession.set("khachhang", khachhang); // lưu thông tin đăng nhập vào session
+		session.setAttribute("khachhang", khachhang); // lưu thông tin đăng nhập vào session
 	}
 
 	public void logout() {
-		httpSession.remove("khachhang"); // xóa thông tin đăng nhập khỏi session
+		session.removeAttribute("khachhang"); // xóa thông tin đăng nhập khỏi session
 	}
 
 	public void register(KhachHang khachhang) {

@@ -18,9 +18,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "Loaisanphams")
 public class Loaisanpham implements Serializable {
 	@Id
-	private int idLoai;
-	private String tenLoai;
+	Integer idLoai;
+	String tenLoai;
 	@OneToMany(mappedBy = "loaisanpham")
 	List<SanPham> sanphams;
-
 }

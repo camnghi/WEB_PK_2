@@ -6,6 +6,8 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -24,23 +26,40 @@ import lombok.NoArgsConstructor;
 @Table(name = "Sanphams")
 public class SanPham implements Serializable {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_sp")
 	Integer idSp;
+	 
+	@Column(name = "ten_sp")
 	String tenSp;
+	 
+	@Column(name = "gia_sp")
 	Double giaSp;
+	
+	@Column(name = "anh_sp")
 	String anhSp;
+	
+	@Column(name = "so_luong")
 	Integer soLuong;
+	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "ngayTao")
+	@Column(name = "ngay_tao")
 	Date ngayTao = new Date();
+	
+	@Column(name = "mo_ta")
 	String moTa;
+	
+	@Column(name = "bao_hanh")
 	Boolean baoHanh;
 	
 	@ManyToOne
-	@JoinColumn(name = "idLoai")
+	@JoinColumn(name = "id_loai")
 	Loaisanpham loaisanpham;
+
 	@ManyToOne
-	@JoinColumn(name = "idTh")
+	@JoinColumn(name = "id_th")
 	Thuonghieu thuonghieu;
+
 	@OneToMany(mappedBy = "sanpham")
 	List<Hoadonchitiet> hoadonchitiet;
 
