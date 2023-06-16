@@ -2,8 +2,6 @@ package com.poly.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +17,6 @@ import com.poly.entities.GioHang;
 import com.poly.entities.KhachHang;
 import com.poly.entities.Loaisanpham;
 import com.poly.repository.GiohangDAO;
-import com.poly.repository.KhachhangDAO;
 import com.poly.repository.LoaisanphamDAO;
 import com.poly.service.UserService;
 
