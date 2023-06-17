@@ -41,7 +41,6 @@ public class quanLyThuongHieu {
 		int pageSize = 5;
 		thuonghieu.setTenTh("");
 		String kwords = keywords != null ? keywords : session.get("keywords");
-
 		Pageable pageable;
 		if (field != null) {
 			Sort sort = Sort.by(Direction.DESC, field);
@@ -86,13 +85,15 @@ public class quanLyThuongHieu {
 	}
 
 	@RequestMapping("delete/{idTh}")
-	public String delete(@PathVariable("idTh") Integer idTh) {
+	public String delete(@PathVariable("idTh") Integer idTh, RedirectAttributes redirectAttributes) {
 		thuonghieudao.deleteById(idTh);
+		redirectAttributes.addFlashAttribute("message", "Xóa thành công !");
 		return "redirect:/quanLyThuongHieu/form";
 	}
 
 	@RequestMapping("edit/{idTh}")
-	public String edit(Model model, @PathVariable("idTh") Integer idTh, @RequestParam("p") Optional<Integer> p) {
+	public String edit(Model model, @PathVariable("idTh") Integer idTh, RedirectAttributes redirectAttributes,
+			@RequestParam("p") Optional<Integer> p) {
 		int pageSize = 5;
 		Thuonghieu thuonghieu = thuonghieudao.findById(idTh).get();
 		model.addAttribute("thuonghieu", thuonghieu);
