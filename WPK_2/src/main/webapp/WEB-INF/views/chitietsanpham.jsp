@@ -38,7 +38,6 @@
 			<div class="col-md-4">
 				<form action="chitiet/add"  method="post">
 					<div class="content-right">
-						<h1 class="text-h1">${item.idSp}</h1>
 						<h1 class="text-h1">${item.tenSp}</h1>
 						<div class="rm-price">
 							<span class="rm-sale">Giá: ${item.giaSp}đ</span> <span
