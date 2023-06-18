@@ -3,10 +3,7 @@ package com.poly.controller;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Calendar;
+import java.text.SimpleDateFormat; 
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.poly.entities.SanPham;
 import com.poly.repository.HoaDonRepository;
 import com.poly.repository.SanPhamRepository;
 

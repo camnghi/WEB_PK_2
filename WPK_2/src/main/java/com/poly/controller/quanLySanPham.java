@@ -2,6 +2,7 @@ package com.poly.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,12 +18,14 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.entities.SanPham;
 import com.poly.entities.Loaisanpham;
@@ -60,10 +63,13 @@ public class quanLySanPham {
 	public String form(Model model, SanPham sanpham,
 			@RequestParam(value = "keywords", required = false) String keywords,
 			@RequestParam(value = "field", required = false) String field,
-			@RequestParam(value = "p", required = false) Integer page) {
+			@RequestParam(value = "p", required = false) Integer page,
+			@RequestParam(value = "giaSp", required = false) String giaSp) {
 		sanpham.setTenSp("");
-		sanpham.setGiaSp(0.0);
-		sanpham.setSoLuong(0);
+		sanpham.setGiaSp(null);
+		sanpham.setSoLuong(null);
+		sanpham.setMoTa("");
+
 		int pageSize = 4;
 		String kwords = keywords != null ? keywords : session.get("keywords");
 
@@ -89,7 +95,6 @@ public class quanLySanPham {
 		return "quanLySanPham";
 	}
 
-	
 	@RequestMapping("edit/{idSp}")
 	public String edit(Model model, @PathVariable("idSp") Integer idSp, @RequestParam("p") Optional<Integer> p) {
 		int pageSize = 4;
@@ -115,20 +120,23 @@ public class quanLySanPham {
 	}
 
 	@RequestMapping("create")
-	public String create(@Validated Model model, SanPham sanpham, BindingResult result,
-			@RequestParam("photo_file") MultipartFile img) throws IllegalStateException, IOException {
-		if (sanpham == null) {
-			return "redirect:/quanLySanPham/form";
+	public String create(@Validated @ModelAttribute("sanpham") SanPham sanpham, BindingResult result, @RequestParam("photo_file") MultipartFile img, Model model) throws IllegalStateException, IOException {
+		if (result.hasErrors()) {
+			model.addAttribute("message", "Thêm thất bại!");
+			request.setAttribute("form_QLSanPham", "layout/admin/form_QLSanPham.jsp");
+			return "quanLySanPham";
 		} else if (img.isEmpty()) {
-			return "redirect:/quanLySanPham/form";
+			model.addAttribute("message", "Chua them hinh anh!");
+		}else {
+			String filename = img.getOriginalFilename();
+			File file = new File(app.getRealPath("/images/" + filename));
+			img.transferTo(file);
+			sanpham.setAnhSp(filename);
+			sanpham.setNgayTao(new Date());
+			System.out.println(sanpham.getNgayTao());
+			sanphamdao.save(sanpham);
+			model.addAttribute("message", "Thêm thành công!");
 		}
-		String filename = img.getOriginalFilename();
-		File file = new File(app.getRealPath("/images/" + filename));
-		img.transferTo(file);
-		sanpham.setAnhSp(filename);
-		sanpham.setNgayTao(new Date());
-		System.out.println(sanpham.getNgayTao());
-		sanphamdao.save(sanpham);
 		return "redirect:/quanLySanPham/form";
 	}
 
@@ -140,12 +148,13 @@ public class quanLySanPham {
 			return "redirect:/quanLySanPham/form";
 		} else if (img.isEmpty()) {
 			return "redirect:/quanLySanPham/form";
+		} else {
+			model.addAttribute("sanpham", sanpham);
+			String filename = img.getOriginalFilename();
+			File file = new File(app.getRealPath("/images/" + filename));
+			img.transferTo(file);
+			sanpham.setAnhSp(filename);
 		}
-		model.addAttribute("sanpham", sanpham);
-		String filename = img.getOriginalFilename();
-		File file = new File(app.getRealPath("/images/" + filename));
-		img.transferTo(file);
-		sanpham.setAnhSp(filename);
 		sanphamdao.save(sanpham);
 		return "redirect:/quanLySanPham/edit/" + sanpham.getIdSp();
 	}
