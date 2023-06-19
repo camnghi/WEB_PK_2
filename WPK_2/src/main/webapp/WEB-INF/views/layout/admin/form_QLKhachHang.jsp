@@ -9,16 +9,16 @@
 			modelAttribute="thuonghieu" method="POST">
 			<div class="card-body">
 				<div class="timkiem">
-					<input placeholder="Nhập tên khách hàng" dname="keywords" value="${keywords}">
-					<button>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-							fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path
-								d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-</svg>
-						Tìm
-					</button>
+					<input name="keywords" value="${keywords}">
+					<button>Tìm</button>
 				</div>
+				<br>
+				<button>
+					<a href="/quanLyKhachHang/active">Lọc trạng thái đang kích hoạt</a>
+				</button>
+				<button>
+					<a href="/quanLyKhachHang/unactive">Lọc trạng thái đã khóa</a>
+				</button>
 			</div>
 		</form:form>
 		<div class="card-body">
@@ -46,15 +46,28 @@
 							<td>${item.email}</td>
 							<td><c:if test="${item.trangThai == true}"> 
 			 						Đang sử dụng
-			 					</c:if> 
-			 					<c:if test="${item.trangThai == false}"> 
+			 					</c:if> <c:if test="${item.trangThai == false}"> 
 			 						Đã khóa
-			 					</c:if>
-			 				</td>
+			 					</c:if></td>
 							<td>${item.admin}</td>
 							<td></td>
 						</tr>
 					</c:forEach>
+
+					<c:forEach var="khachhang" items="${khachhangs}">
+						<tr>
+							<td>${khachhang.taiKhoan}</td>
+							<td>${khachhang.hoTen}</td>
+							<td>${khachhang.email}</td>
+							<td><c:if test="${khachhang.trangThai == true}"> 
+			 						Đang sử dụng
+			 					</c:if> <c:if test="${khachhang.trangThai == false}"> 
+			 						Đã khóa
+			 					</c:if></td>
+							<td>${khachhang.admin}</td>
+						</tr>
+					</c:forEach>
+
 				</table>
 				<c:forEach var="i" begin="0"
 					end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}">
@@ -65,4 +78,3 @@
 		</div>
 	</div>
 </div>
-

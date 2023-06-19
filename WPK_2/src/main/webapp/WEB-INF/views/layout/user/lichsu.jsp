@@ -48,8 +48,6 @@
                         <th>150</th>
                     </tr>
                 </table>
-                <a class="btn btn-outline-light bg-warning" style=" float: right;" href="/lichsuchitiet/form">Xem chi tiết
-                </a>
             </div>
             <hr>
             <div class="card-body">

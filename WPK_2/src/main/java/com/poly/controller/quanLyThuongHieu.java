@@ -56,7 +56,7 @@ public class quanLyThuongHieu {
 		} else {
 			resultPage = thuonghieudao.findAll(pageable);
 		}
-
+		model.addAttribute("check", false);
 		model.addAttribute("page", resultPage);
 		request.setAttribute("form_QLTHSanPham", "layout/admin/form_QLTHSanPham.jsp");
 		return "quanLyThuongHieu";
@@ -67,27 +67,14 @@ public class quanLyThuongHieu {
 		if (errors.hasErrors()) {
 			redirectAttributes.addFlashAttribute("message", "Không được để trống tên thương hiệu !");
 		} else {
-			thuonghieudao.save(thuonghieu);
-			redirectAttributes.addFlashAttribute("message", "Thêm thành công !");
+			String tenThuongHieu = thuonghieu.getTenTh();
+			if (thuonghieudao.existsByTenTh(tenThuongHieu)) {
+				redirectAttributes.addFlashAttribute("message", "Tên thương hiệu đã tồn tại trong cơ sở dữ liệu !");
+			} else {
+				thuonghieudao.save(thuonghieu);
+				redirectAttributes.addFlashAttribute("message", "Thêm thành công !");
+			}
 		}
-		return "redirect:/quanLyThuongHieu/form";
-	}
-
-	@RequestMapping("update")
-	public String update(@Validated Thuonghieu thuonghieu, Errors errors, RedirectAttributes redirectAttributes) {
-		if (errors.hasErrors()) {
-			redirectAttributes.addFlashAttribute("message", "Không được để trống tên thương hiệu !");
-		} else {
-			thuonghieudao.save(thuonghieu);
-			redirectAttributes.addFlashAttribute("message", "Cập nhật thành công !");
-		}
-		return "redirect:/quanLyThuongHieu/edit/" + thuonghieu.getIdTh();
-	}
-
-	@RequestMapping("delete/{idTh}")
-	public String delete(@PathVariable("idTh") Integer idTh, RedirectAttributes redirectAttributes) {
-		thuonghieudao.deleteById(idTh);
-		redirectAttributes.addFlashAttribute("message", "Xóa thành công !");
 		return "redirect:/quanLyThuongHieu/form";
 	}
 
@@ -103,6 +90,29 @@ public class quanLyThuongHieu {
 		model.addAttribute("page", page);
 		request.setAttribute("form_QLTHSanPham", "layout/admin/form_QLTHSanPham.jsp");
 		return "quanLyThuongHieu";
+	}
+
+	@RequestMapping("update")
+	public String update(@Validated Thuonghieu thuonghieu, Errors errors, RedirectAttributes redirectAttributes) {
+		if (errors.hasErrors()) {
+			redirectAttributes.addFlashAttribute("message", "Không được để trống tên thương hiệu !");
+		} else {
+			String tenTh = thuonghieu.getTenTh();
+			if (thuonghieudao.existsByTenTh(tenTh)) {
+				redirectAttributes.addFlashAttribute("message", "Tên thương hiệu đã tồn tại trong cơ sở dữ liệu !");
+			} else {
+				thuonghieudao.save(thuonghieu);
+				redirectAttributes.addFlashAttribute("message", "Cập nhật thành công !");
+			}
+		}
+		return "redirect:/quanLyThuongHieu/form";
+	}
+
+	@RequestMapping("delete/{idTh}")
+	public String delete(@PathVariable("idTh") Integer idTh, RedirectAttributes redirectAttributes) {
+		thuonghieudao.deleteById(idTh);
+		redirectAttributes.addFlashAttribute("message", "Xóa thành công !");
+		return "redirect:/quanLyThuongHieu/form";
 	}
 
 }

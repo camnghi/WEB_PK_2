@@ -29,29 +29,29 @@ public class SanPham implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_sp")
 	Integer idSp;
-	 
+
 	@Column(name = "ten_sp")
 	String tenSp;
-	 
+
 	@Column(name = "gia_sp")
 	Double giaSp;
-	
+
 	@Column(name = "anh_sp")
 	String anhSp;
-	
+
 	@Column(name = "so_luong")
 	Integer soLuong;
-	
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "ngay_tao")
 	Date ngayTao = new Date();
-	
+
 	@Column(name = "mo_ta")
 	String moTa;
-	
+
 	@Column(name = "bao_hanh")
 	Boolean baoHanh;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_loai")
 	Loaisanpham loaisanpham;

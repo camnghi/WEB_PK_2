@@ -26,17 +26,26 @@
 					</div>
 					<div class="col-sm-6 col-md-6 col-lg-6">
 						<span>Chức năng</span> <br>
-						<button class="btn btn-primary"
-							formaction="/quanLyThuongHieu/create">Thêm</button>
-						<button class="btn btn-success"
-							formaction="/quanLyThuongHieu/update">Sửa</button>
-						<button class="btn btn-warning"
-							formaction="/quanLyThuongHieu/form">Mới</button>
+						<c:choose>
+							<c:when test="${check == false}">
+								<button class="btn btn-primary"
+									formaction="/quanLyThuongHieu/create">Thêm</button>
+								<button class="btn btn-warning"
+									formaction="/quanLyThuongHieu/form">Mới</button>
+							</c:when>
+							<c:when test="${thuonghieu != null}">
+								<button class="btn btn-success"
+									formaction="/quanLyThuongHieu/update">Sửa</button>
+								<button class="btn btn-warning"
+									formaction="/quanLyThuongHieu/form">Mới</button>
+							</c:when>
+						</c:choose>
 					</div>
 				</div>
 				<hr>
 				<div class="timkiem">
-					<input placeholder="Nhập tên thương hiệu"  name="keywords" value="${keywords}">
+					<input placeholder="Nhập tên thương hiệu" name="keywords"
+						value="${keywords}">
 					<button>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

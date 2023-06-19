@@ -61,7 +61,7 @@
 							<div class="row">
 								<div class="col-md-7">
 									<div id="rm-booking" class="input-group">
-										<a href="/giohang/form">
+										<a href="/chitiet/add/{idSp}">
 											<div type="button" class="big-button button-red left">
 												<strong>THÊM VÀO GIỎ HÀNG</strong>
 											</div>
