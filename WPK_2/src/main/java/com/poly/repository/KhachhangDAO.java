@@ -23,4 +23,7 @@ public interface KhachhangDAO extends JpaRepository<KhachHang, String> {
 	@Query("SELECT k FROM KhachHang k WHERE k.trangThai = false")
 	List<KhachHang> findUnActiveCustomers();
 
+//	@Query("SELECT kh FROM KhachHang kh WHERE kh.taiKhoan = :taiKhoan")
+//	KhachHang findByTaiKhoan(@Param("taiKhoan") String taiKhoan);
+
 }

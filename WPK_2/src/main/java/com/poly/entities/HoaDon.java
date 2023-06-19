@@ -32,14 +32,11 @@ public class HoaDon implements Serializable {
 //	@Temporal(TemporalType.DATE)
 	@Column(name = "ngayTao")
 	private Date NgayTao;
-
 	String diaChi;
-
 	@Column(name = "tong_tien")
 	private double tongTien;
-
 	private String sdt;
-	Boolean trangThai;
+	private String trangThai;
 	private String ghiChu;
 	@OneToMany(mappedBy = "hoadon")
 	List<Hoadonchitiet> hoadonchitiet;

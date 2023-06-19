@@ -1,79 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
-	 <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <a>Lịch sử mua hàng</a>
-            </div>
-            <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <th>SẢN PHẨM</th>
-                        <th>TỔNG TIỀN</th>
-                    </tr>
-                    <tr>
-                        <td>CABALLO x2</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>OXVA x1</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <th>TỔNG TIỀN</th>
-                        <th>150</th>
-                    </tr>
-                </table>
-                <a class="btn btn-outline-light bg-warning" style=" float: right;" href="/lichsuchitiet/form">Xem chi tiết
-                    </a>
-            </div>
-            <hr>
-            <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <th>SẢN PHẨM</th>
-                        <th>TỔNG TIỀN</th>
-                    </tr>
-                    <tr>
-                        <td>CABALLO x2</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>OXVA x1</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <th>TỔNG TIỀN</th>
-                        <th>150</th>
-                    </tr>
-                </table>
-            </div>
-            <hr>
-            <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <th>SẢN PHẨM</th>
-                        <th>TỔNG TIỀN</th>
-                    </tr>
-                    <tr>
-                        <td>CABALLO x2</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>OXVA x1</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <th>TỔNG TIỀN</th>
-                        <th>150</th>
-                    </tr>
-                </table>
-                <a class="btn btn-outline-light bg-warning" style=" float: right;" href="/lichsuchitiet/form">Xem chi tiết
-                </a>
-            </div>
-            
-        </div>
-        <br>
-
-    </div>
+<div class="container">
+	<div class="card">
+		<form action="/lichsu/form  method="POST">
+			<div class="card-header">
+				<ul id="menu"
+					style="display: flex; list-style: none; text-decoration: none;">
+					<li><a href="/">Chờ xác nhận</a></li>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					<li><a href="/">Đã xác nhận</a></li>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					<li><a href="/lichsu/hoadon/${trangThai}">Chờ lấy hàng </a></li>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					<li><a href="/">Đang vận chuyển</a></li>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					<li><a href="/">Đã giao hàng</a></li>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					<li><a href="/">Đã hủy</a></li>
+				</ul>
+			</div>
+		</form>
+		<div class="card-body">
+			<table class="table">
+				<c:forEach var="hoadon" items="${hoadons}">
+					<tr>
+						<th>TÊN KHÁCH HÀNG</th>
+						<th>NGÀY TẠO</th>
+						<th>ĐỊA CHỈ</th>
+						<th>SỐ ĐIỆN THOẠI</th>
+						<th>TỔNG TIỀN</th>
+						<th>TRẠNG THÁI</th>
+					</tr>
+					<tr>
+						<td>${hoadon.khachHang.tenKhachHang}</td>
+						<td>${hoadon.ngayTao}</td>
+						<td>${hoadon.diaChi}</td>
+						<td>${hoadon.sdt}
+						<td>${hoadon.tongTien}</td>
+						<td>${hoadon.trangThai}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+	<br>
+</div>

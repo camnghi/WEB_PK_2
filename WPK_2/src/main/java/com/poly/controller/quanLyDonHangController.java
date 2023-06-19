@@ -5,17 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.entities.HoaDon;
 import com.poly.repository.HoadonDAO;
@@ -70,59 +62,59 @@ public class quanLyDonHangController {
 //		return "quanLyDonHang";
 //	}
 
-	@RequestMapping("form")
-	public String form(Model model, HoaDon hoadon, @RequestParam(value = "keywords", required = false) String keywords,
-			@RequestParam(value = "field", required = false) String field,
-			@RequestParam(value = "p", required = false) Integer page) {
-		int pageSize = 4;
-		String kwords = keywords != null ? keywords : session.get("keywords");
+//	@RequestMapping("form")
+//	public String form(Model model, HoaDon hoadon, @RequestParam(value = "keywords", required = false) String keywords,
+//			@RequestParam(value = "field", required = false) String field,
+//			@RequestParam(value = "p", required = false) Integer page) {
+//		int pageSize = 4;
+//		String kwords = keywords != null ? keywords : session.get("keywords");
+//
+//		Pageable pageable;
+//		if (field != null) {
+//			Sort sort = Sort.by(Direction.ASC, field);
+//			model.addAttribute("field", field.toUpperCase());
+//			pageable = PageRequest.of(page != null ? page : 0, pageSize, sort);
+//		} else {
+//			pageable = PageRequest.of(page != null ? page : 0, pageSize);
+//		}
+//
+//		Page<HoaDon> resultPage;
+//		if (kwords != null && !kwords.equals("")) {
+//			resultPage = hoadondao.findAllBytaiKhoanLike("%" + kwords + "%", pageable);
+//			System.out.println(resultPage);
+//		} else {
+//			resultPage = hoadondao.findAll(pageable);
+//		}
+//
+//		model.addAttribute("page", resultPage);
+//		request.setAttribute("form_QLDonHang", "layout/admin/form_QLDonHang.jsp");
+//		return "quanLyDonHang";
+//	}
 
-		Pageable pageable;
-		if (field != null) {
-			Sort sort = Sort.by(Direction.ASC, field);
-			model.addAttribute("field", field.toUpperCase());
-			pageable = PageRequest.of(page != null ? page : 0, pageSize, sort);
-		} else {
-			pageable = PageRequest.of(page != null ? page : 0, pageSize);
-		}
-
-		Page<HoaDon> resultPage;
-		if (kwords != null && !kwords.equals("")) {
-			resultPage = hoadondao.findAllBytaiKhoanLike("%" + kwords + "%", pageable);
-			System.out.println(resultPage);
-		} else {
-			resultPage = hoadondao.findAll(pageable);
-		}
-
-		model.addAttribute("page", resultPage);
-		request.setAttribute("form_QLDonHang", "layout/admin/form_QLDonHang.jsp");
-		return "quanLyDonHang";
-	}
-
-	@RequestMapping("edit/{idHd}")
-	public String edit(Model model, @PathVariable("idHd") Integer idHd) {
-		HoaDon hoadon = hoadondao.findById(idHd).get();
-//		hoadon.setTrangThai(true);
-		if (hoadon.getTrangThai() == false) {
-			hoadon.setTrangThai(true);
-			model.addAttribute("trangthai", hoadon.getTrangThai());
-//			 duyetButton.style.display = "none";
-//			    huyButton.style.display = "inline-block";
-		} else {
-			hoadon.setTrangThai(false);
-			model.addAttribute("trangthai", hoadon.getTrangThai());
-
-		}
-		hoadondao.save(hoadon);
-		hoadon.setTrangThai(hoadon.getTrangThai());
-		model.addAttribute("hoadon", hoadon);
-		return "redirect:/quanLyDonHang/form";
+//	@RequestMapping("edit/{idHd}")
+//	public String edit(Model model, @PathVariable("idHd") Integer idHd) {
+//		HoaDon hoadon = hoadondao.findById(idHd).get();
+////		hoadon.setTrangThai(true);
+//		if (hoadon.getTrangThai() == false) {
+//			hoadon.setTrangThai(true);
+//			model.addAttribute("trangthai", hoadon.getTrangThai());
+////			 duyetButton.style.display = "none";
+////			    huyButton.style.display = "inline-block";
+//		} else {
+//			hoadon.setTrangThai(false);
+//			model.addAttribute("trangthai", hoadon.getTrangThai());
+//
+//		}
+//		hoadondao.save(hoadon);
+//		hoadon.setTrangThai(hoadon.getTrangThai());
+//		model.addAttribute("hoadon", hoadon);
+//		return "redirect:/quanLyDonHang/form";
 
 //		model.addAttribute("item", item);
 //		List<Hoadonchitiet> items = hoadonchitietdao.findAll();
 //		model.addAttribute("items", items);
 //		request.setAttribute("view", "layout/user/chitietsanpham.jsp");
-	}
+//	}
 
 	@RequestMapping("update")
 	public String update(HoaDon item) throws IllegalStateException, IOException {

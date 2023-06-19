@@ -56,7 +56,7 @@
 				</div>
 			</div>
 			<br> <a class="btn btn-outline-light bg-warning"
-				style="float: right;" href="/lichsu/form">Lịch sử mua hàng</a>
+				style="float: right;" href="/lichsu/form">Đơn hàng</a>
 		</div>
 	</div>
 </div>
