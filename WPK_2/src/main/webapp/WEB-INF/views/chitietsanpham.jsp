@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<form action="chitiet/add"  method="post">
+				<form action=""  method="post">
 					<div class="content-right">
 						<h1 class="text-h1">${item.tenSp}</h1>
 						<div class="rm-price">
@@ -48,11 +48,11 @@
 
 								<div class="col-md-6">
 									<label>Số lượng</label>
-									<input type="number" value="1" min="1">
+									<input type="number" value="1" min="1" name="soluong">
 								</div>
 							</div>
 							<div class="row">
-								<li class="inpr">
+								<li>
 									<span>
 										<a href=""target="_blank" style="text-decoration: none;">Chính sách bảo hành</a>
 									</span>
@@ -61,11 +61,11 @@
 							<div class="row">
 								<div class="col-md-7">
 									<div id="rm-booking" class="input-group">
-										<a href="/giohang/form">
+									
 											<div type="button" class="big-button button-red left">
-												<strong>THÊM VÀO GIỎ HÀNG</strong>
+												<button formaction="/chitiet/edit/${item.idSp}">THÊM VÀO GIỎ HÀNG</button>
 											</div>
-										</a>
+									
 
 									</div>
 									<br>

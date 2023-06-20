@@ -38,12 +38,5 @@ public class GioHang implements Serializable {
 				+ chitietgiohangs + "]";
 	}
 
-	public Chitietgiohang getChitietgiohangByidSp(int idSp) {
-		for (Chitietgiohang chitietgiohang : chitietgiohangs) {
-			if (chitietgiohang.getSanpham().getIdSp() == idSp) {
-				return chitietgiohang;
-			}
-		}
-		return null;
-	}
+	
 }

@@ -2,11 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
+<style>
+	.mgs_errors {
+	color: red;
+	font-style: italic;
+}
+</style>
 <div class="alert alert-primary" role="alert">
 	<h4 class="card-title">PHÂN LOẠI</h4>
 	<div class="card">
-		<form:form action="/phanLoaiSP/create" modelAttribute="loaisanpham" method="POST">
+		<form:form action="/phanLoaiSP/form" modelAttribute="loaisanpham" method="POST">
 			<div class="card-body">
 				<!-- Id loại  -->
 				<div class="row">
@@ -16,17 +21,18 @@
 						<span>Tên loại</span> <br>
 						<form:input path="tenLoai" placeholder="Tên sản phẩm" class="form-control form-control-sm" />
 						<br>
-						 
+						<div Class="mgs_errors">${message}</div>
+						<div Class="mgs_errors">${errorMessage}</div>
 					</div>
 
 					<!-- Button -->
 					<div class="col-sm-6 col-md-6 col-lg-6">
 						<span>Chức năng</span> <br> <button
 							class="btn btn-primary btn-sm" formaction="/phanLoaiSP/form"
-							role="button">Mới</button> <button  class="btn btn-success btn-sm"
-							formaction="/phanLoaiSP/create" role="button">Thêm</button> <button
-							class="btn btn-warning btn-sm" formaction="/phanLoaiSP/update"
-							role="button">Sửa</button>
+							role="button">Mới</button> 
+							<button id="createButton" class="btn btn-success btn-sm" formaction="/phanLoaiSP/create" role="button">Thêm</button>
+							<button id="editButton" class="btn btn-warning btn-sm" formaction="/phanLoaiSP/update" role="button">Sửa</button>
+
 					</div>
 				</div>
 				<!-- tìm kiếm -->
@@ -72,3 +78,53 @@
 	
 	</div>
 </div>
+<script>
+    function disableButton() {
+        var editButton = document.getElementById('editButton');
+        editButton.disabled = true;
+    }
+    
+    // Gọi hàm disableButton khi trang được tải
+    disableButton();
+</script>
+<script>
+    // Lấy giá trị của biến isEditMode từ model
+    var isEditMode = ${isEditMode};
+    
+    // Kiểm tra và mở khóa nút "Sửa" nếu đang ở chế độ sửa
+    if (isEditMode) {
+        var editButton = document.getElementById('editButton');
+        editButton.disabled = false;
+    }
+</script>
+<script>
+    function disableEditButton() {
+        var editButton = document.getElementById('editButton');
+        editButton.disabled = true;
+        
+        var createButton = document.getElementById('createButton');
+        createButton.disabled = false;
+    }
+    
+    function enableEditButton() {
+        var editButton = document.getElementById('editButton');
+        editButton.disabled = false;
+        
+        var createButton = document.getElementById('createButton');
+        createButton.disabled = true;
+    }
+</script>
+<script>
+    // Lấy giá trị của biến isEditMode từ model
+    var isEditMode = ${isEditMode};
+    
+    // Kiểm tra và điều khiển trạng thái của nút "Thêm" và nút "Sửa"
+    if (isEditMode) {
+        enableEditButton();
+    } else {
+        disableEditButton();
+    }
+</script>
+
+
+

@@ -11,13 +11,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model; 
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.entities.Loaisanpham;
+import com.poly.entities.SanPham;
 import com.poly.repository.LoaisanphamDAO;
+import com.poly.repository.SanphamDAO;
 import com.poly.service.SessionService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,6 +37,9 @@ public class quanLyPhanLoaiSP {
 
 	@Autowired
 	LoaisanphamDAO loaisanphamdao;
+
+	@Autowired
+	SanphamDAO sanphamdao;
 
 	@Autowired
 	SessionService session;
@@ -63,9 +73,10 @@ public class quanLyPhanLoaiSP {
 		return "quanLyPhanLoaiSanPham";
 	}
 
-
 	@RequestMapping("edit/{idLoai}")
 	public String edit(Model model, @PathVariable("idLoai") Integer idLoai, @RequestParam("p") Optional<Integer> p) {
+		boolean isEditMode = (idLoai != null); // Kiểm tra nếu có giá trị idLoai tức là đang ở chế độ sửa
+		model.addAttribute("isEditMode", isEditMode);
 		int pageSize = 4;
 		Loaisanpham loaisanpham = loaisanphamdao.findById(idLoai).get();
 		model.addAttribute("loaisanpham", loaisanpham);
@@ -89,29 +100,55 @@ public class quanLyPhanLoaiSP {
 	}
 
 	@RequestMapping("create")
-	public String create(Model model, Loaisanpham loaisanpham, @RequestParam("tenLoai") String tenLoai)
-			throws IllegalStateException, IOException {
-		if (loaisanpham.equals("")) {
-			return "redirect:/phanLoaiSP/form";
+	public String create(@Validated Loaisanpham loaisanpham, Errors errors, RedirectAttributes redirectAttributes,
+			@RequestParam("tenLoai") String tenLoai) throws IllegalStateException, IOException {
+
+		if (errors.hasErrors()) {
+			redirectAttributes.addFlashAttribute("message", "Không được để trống tên loại");
+		} else {
+			boolean isTenLoaiExists = false; // Biến để kiểm tra tên loại đã tồn tại hay chưa
+
+			List<Loaisanpham> loaisanphams = loaisanphamdao.findAll();
+			for (Loaisanpham lsp : loaisanphams) {
+				if (lsp.getTenLoai().equalsIgnoreCase(tenLoai)) {
+					isTenLoaiExists = true; // Đặt giá trị thành true nếu tên loại đã tồn tại
+					break; // Thoát vòng lặp khi tìm thấy tên loại trùng lặp
+				}
+			}
+
+			if (isTenLoaiExists) {
+				redirectAttributes.addFlashAttribute("message", "Tên loại đã tồn tại");
+			} else {
+				loaisanphamdao.save(loaisanpham);
+				redirectAttributes.addFlashAttribute("message", "Thêm thành công");
+			}
 		}
-		System.out.println(loaisanpham);
-		if (tenLoai.equals("")) {
-			return "redirect:/phanLoaiSP/form";
-		}
-		loaisanphamdao.save(loaisanpham);
 		return "redirect:/phanLoaiSP/form";
 	}
 
 	@RequestMapping("update")
-	public String update(Loaisanpham loaisanpham, @RequestParam("tenLoai") String tenLoai) throws IllegalStateException, IOException {
-		if (loaisanpham.equals("")) {
-			return "redirect:/phanLoaiSP/form";
+	public String update(@Validated Loaisanpham loaisanpham, Errors errors, RedirectAttributes redirectAttributes,
+			@RequestParam("tenLoai") String tenLoai) throws IllegalStateException, IOException {
+		if (errors.hasErrors()) {
+			redirectAttributes.addFlashAttribute("message", "Không được để trống tên loại");
+		} else {
+			boolean isTenLoaiExists = false; // Biến để kiểm tra tên loại đã tồn tại hay chưa
+
+			List<Loaisanpham> loaisanphams = loaisanphamdao.findAll();
+			for (Loaisanpham lsp : loaisanphams) {
+				if (lsp.getTenLoai().equalsIgnoreCase(tenLoai)) {
+					isTenLoaiExists = true; // Đặt giá trị thành true nếu tên loại đã tồn tại
+					break; // Thoát vòng lặp khi tìm thấy tên loại trùng lặp
+				}
+			}
+
+			if (isTenLoaiExists) {
+				redirectAttributes.addFlashAttribute("message", "Tên loại đã tồn tại");
+			} else {
+				loaisanphamdao.save(loaisanpham);
+				redirectAttributes.addFlashAttribute("message", "Sửa thành công");
+			}
 		}
-		System.out.println(loaisanpham);
-		if (tenLoai.equals("")) {
-			return "redirect:/phanLoaiSP/form";
-		}
-		loaisanphamdao.save(loaisanpham);
 		return "redirect:/phanLoaiSP/edit/" + loaisanpham.getIdLoai();
 	}
 

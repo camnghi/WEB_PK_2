@@ -68,7 +68,7 @@ public class GioHangController {
 	public String getGioHang(Model model) {
 	    HttpSession session = request.getSession();
 	    KhachHang khachHang = (KhachHang) session.getAttribute("khachHang");
-	    //
+	    
 	    if (khachHang != null) {
 	        List<GioHang> gioHangs = giohangDao.findByKhachhang(khachHang);
 	        model.addAttribute("gioHangs", gioHangs);

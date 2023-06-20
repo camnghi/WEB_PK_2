@@ -11,6 +11,7 @@ public class ResourceConfig {
 	public MessageSource getMessageSource() {
 		ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
 		ms.setBasenames("classpath:message/sanpham");
+		ms.setBasenames("classpath:message/loaisanpham");
 		ms.setDefaultEncoding("utf-8");
 		return ms;
 	}

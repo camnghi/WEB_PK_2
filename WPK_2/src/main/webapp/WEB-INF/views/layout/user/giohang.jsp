@@ -19,7 +19,7 @@
 						<form action="/giohang/form" method="post" enctype="multipart/form-data" >
 							<c:forEach var="item" items="${sanphams}">
 								<tr>
-									<td><img alt="" src="/img/${item.anhSp}"
+									<td><img alt="" src="/sanphams/${item.anhSp}"
 										width="100px">
 									<td>$item.tenSp}
 									<td>${item.giaSp}</td>

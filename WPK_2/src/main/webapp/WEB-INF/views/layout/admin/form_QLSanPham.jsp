@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.style {
+	color: red;
+	font-style: italic;
+	font-size: 13px;
+}
+</style>
 <div class="alert alert-primary" role="alert">
 	<h4 class="card-title">QUẢN LÝ SẢN PHẨM</h4>
 	${message}
@@ -11,18 +17,22 @@
 			<form:form action="/quanLySanPham/form" modelAttribute="sanpham"
 				method="POST" enctype="multipart/form-data">
 				<div class="row">
+				<form:input path="idSp" placeholder="ID" hidden="hidden" />
 					<br>
 					<!-- Hình ảnh -->
 
 					<div class="col-sm-4 col-md-4 col-lg-4">
 						<span>Ảnh sản phẩm</span>
 						<div class="card border-default text-center" id="card-img">
-							<img class="card-img-top" src="/images/${sanpham.anhSp}" alt="">
+							<img class="card-img-top" src="/images/${sanpham.anhSp}" alt=""
+								style="height: 100%;">
 						</div>
-						${anhsp}
+
+						<div class="style">${hinhanh}</div>
 						<input type="file" name="photo_file">
+
 					</div>
-				
+
 					<div class="col-sm-8 col-md-8 col-lg-8">
 						<div class="row">
 							<!-- Tên sản phẩm -->
@@ -30,15 +40,16 @@
 								<span>Tên sản phẩm</span> <br>
 								<form:input path="tenSp" placeholder="Tên sản phẩm"
 									class="form-control form-control-sm" />
-								<form:errors path="tenSp" style="color:black;"></form:errors>
+								<div Class="style">${tenSpTonTai}</div>
+								<form:errors path="tenSp" cssClass="style"></form:errors>
 								<br>
 							</div>
 							<!-- Giá sản phẩm -->
 							<div class="col-sm-6 col-md-6 col-lg-6">
 								<span>Giá</span> <br>
-								<form:input path="giaSp" type="number" placeholder="Giá sản phẩm"
-									class="form-control form-control-sm" />
-								<form:errors path="giaSp" style="color:black;"></form:errors>
+								<form:input path="giaSp" type="number"
+									placeholder="Giá sản phẩm" class="form-control form-control-sm" />
+								<form:errors path="giaSp" cssClass="style"></form:errors>
 								<br>
 
 							</div>
@@ -47,19 +58,19 @@
 								<div class="mb-3">
 									<span>Loại</span>
 									<form:select path="loaisanpham.idLoai"
-										class="form-select form-select-sm">
-										<form:option value="">Chọn loại sản phẩm</form:option>
+										class="form-select form-select-sm" id="loaiSanPham">
+
 										<form:options items="${list_loaisanpham}" />
 									</form:select>
-									<form:errors path="loaisanpham" style="color:black;"></form:errors>
 								</div>
 							</div>
 							<!-- Nhập số lượng -->
 							<div class="col-sm-6 col-md-6 col-lg-6">
 								<span>Số lượng</span> <br>
-								<form:input path="soLuong" type="number" placeholder="Số lượng(>=1)"
+								<form:input path="soLuong" type="number"
+									placeholder="Số lượng(>=1)"
 									class="form-control form-control-sm" />
-									<form:errors path="soLuong" style="color:black;"></form:errors>
+								<form:errors path="soLuong" cssClass="style"></form:errors>
 								<br>
 								<!--  Chọn thương hiệu -->
 							</div>
@@ -67,12 +78,11 @@
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<div class="mb-3">
 										<span>Thương hiệu</span>
-										<form:select path="thuonghieu"
-											class="form-select form-select-sm" name="" id="">
-											<form:option value="">Chọn thương hiệu</form:option>
+										<form:select path="thuonghieu.idTh"
+											class="form-select form-select-sm" name="thuonghieu"
+											id="thuongHieu">
 											<form:options items="${list_thuonghieu}" />
 										</form:select>
-										<form:errors path="thuonghieu.idTh" style="color:black;"></form:errors>
 									</div>
 								</div>
 								<!-- Bảo hành -->
@@ -83,8 +93,9 @@
 									Có bảo hành
 									<form:radiobutton path="baoHanh" value="true" />
 									&nbsp&nbsp Không bảo hành
-									<form:radiobutton path="baoHanh" value="false" /> <br>
-									<form:errors path="baoHanh" style="color:black;"></form:errors>
+									<form:radiobutton path="baoHanh" value="false" />
+									<br>
+									<form:errors path="baoHanh" cssClass="style"></form:errors>
 								</div>
 							</div>
 							<!-- Mô tả sản phẩm -->
@@ -98,11 +109,11 @@
 
 							<!-- Button -->
 							<div class="col-sm-12 col-md-12 col-lg-12 text-center">
-								<button class="btn btn-primary" formaction="/quanLySanPham/form"
-									role="button">Mới</button>
-								<button type="submit" class="btn btn-success"
+								<button class="btn btn-primary btn-sm"
+									formaction="/quanLySanPham/form" role="button">Mới</button>
+								<button id="createButton" class="btn btn-success btn-sm"
 									formaction="/quanLySanPham/create" role="button">Thêm</button>
-								<button type="submit" class="btn btn-warning"
+								<button id="editButton" class="btn btn-warning btn-sm"
 									formaction="/quanLySanPham/update" role="button">Sửa</button>
 							</div>
 
@@ -160,8 +171,7 @@
 										<c:otherwise>
 										      Không bảo hành
 										    </c:otherwise>
-									</c:choose>
-								</td>
+									</c:choose></td>
 								<td>${sanPham.thuonghieu.tenTh}</td>
 								<td>${sanPham.moTa}</td>
 								<td><a href="/quanLySanPham/edit/${sanPham.idSp}"
@@ -181,3 +191,55 @@
 
 	</div>
 </div>
+<script>
+    function disableButton() {
+        var editButton = document.getElementById('editButton');
+        editButton.disabled = true;
+    }
+    
+    // Gọi hàm disableButton khi trang được tải
+    disableButton();
+</script>
+<script>
+    // Lấy giá trị của biến isEditMode từ model
+    var isEditMode = ${isEditMode};
+    
+    // Kiểm tra và mở khóa nút "Sửa" nếu đang ở chế độ sửa
+    if (isEditMode) {
+        var editButton = document.getElementById('editButton');
+        editButton.disabled = false;
+    }
+</script>
+<script>
+    function disableEditButton() {
+        var editButton = document.getElementById('editButton');
+        editButton.disabled = true;
+        
+        var createButton = document.getElementById('createButton');
+        createButton.disabled = false;
+    }
+    
+    function enableEditButton() {
+        var editButton = document.getElementById('editButton');
+        editButton.disabled = false;
+        
+        var createButton = document.getElementById('createButton');
+        createButton.disabled = true;
+    }
+</script>
+<script>
+    // Lấy giá trị của biến isEditMode từ model
+    var isEditMode = ${isEditMode};
+    
+    // Kiểm tra và điều khiển trạng thái của nút "Thêm" và nút "Sửa"
+    if (isEditMode) {
+        enableEditButton();
+    } else {
+        disableEditButton();
+    }
+</script>
+
+
+
+
+

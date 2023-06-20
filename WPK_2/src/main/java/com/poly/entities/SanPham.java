@@ -1,6 +1,7 @@
 package com.poly.entities;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,20 +36,20 @@ public class SanPham implements Serializable {
 	@Column(name = "id_sp")
 	Integer idSp;
 	
-	@NotBlank(message = "{NotBlank.sanpham.tenSp}")
+	@NotBlank(message = "Chưa nhập tên sản phẩm")
 	@Column(name = "ten_sp")
 	String tenSp;
 	 
-	@Min(value = 0, message = "{Min.sanpham.giaSp}")
-	@NotNull(message = "{NotNull.sanpham.giaSp}")
+	@Min(value = 0, message = "Không nhập giá âm hoặc có chữ cái")
+	@NotNull(message = "Không để trống giá")
 	@Column(name = "gia_sp")
-	Double giaSp;
+	Long giaSp;
 	
 	@Column(name = "anh_sp")
 	String anhSp;
 	
-	@Min(value = 0, message = "{Min.sanpham.soLuong}")
-	@NotNull(message = "{NotNull.sanpham.soLuong}")
+	@Min(value = 0, message = "Không nhập số lượng âm hoặc có chữ cái")
+	@NotNull(message = "Không để trống số lượng")
 	@Column(name = "so_luong")
 	Integer soLuong;
 	
@@ -58,17 +60,17 @@ public class SanPham implements Serializable {
 	@Column(name = "mo_ta")
 	String moTa;
 	
-	@NotNull(message = "{NotNull.sanpham.baoHanh}")
+	@NotNull(message = "Vui lòng chọn bảo hành")
 	@Column(name = "bao_hanh")
 	Boolean baoHanh;
 	
 	@ManyToOne
-	@NotNull(message = "{NotEmpty.sanpham.loaisanpham}")
+	@NotNull(message = "Chưa chọn loại")
 	@JoinColumn(name = "id_loai")
 	Loaisanpham loaisanpham;
 
 	@ManyToOne
-	@NotNull(message = "{NotEmpty.sanpham.thuonghieu}")
+	@NotNull(message = "Chưa chọn thương hiệu")
 	@JoinColumn(name = "id_th")
 	Thuonghieu thuonghieu;
 

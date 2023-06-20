@@ -16,6 +16,7 @@ public interface KhachhangDAO extends JpaRepository<KhachHang, String> {
 	
     KhachHang findByTaiKhoanAndMatKhau(String taiKhoan, String matKhau);
     
+    KhachHang findByTaiKhoan(String taiKhoan);
 //    List<KhachHang> findByTaiwKhoanThongThuong(String taiKhoan);
 
 }

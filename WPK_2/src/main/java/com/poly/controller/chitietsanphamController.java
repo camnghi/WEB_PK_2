@@ -1,17 +1,22 @@
 package com.poly.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestParam; 
 
+import com.poly.entities.Chitietgiohang;
+import com.poly.entities.GioHang;
+import com.poly.entities.KhachHang;
 import com.poly.entities.SanPham;
+import com.poly.repository.ChitietgiohangDAO;
 import com.poly.repository.GiohangDAO;
+import com.poly.repository.KhachhangDAO;
 import com.poly.repository.SanphamDAO;
 import com.poly.service.SessionService;
 
@@ -29,10 +34,16 @@ public class chitietsanphamController {
 	@Autowired
 	SanphamDAO sanphamdao;
 	@Autowired
-	GiohangDAO ghdao;
+	GiohangDAO giohangdao;
 	@Autowired
 	SessionService session;
 
+	@Autowired
+	ChitietgiohangDAO chitietgiohangdao;
+	
+	@Autowired
+	KhachhangDAO khachhangdao;
+	
 	@RequestMapping("chitietsanpham")
 	public String form(Model model) {
 		request.setAttribute("title", "Chi tiết sản phẩm");
@@ -45,57 +56,37 @@ public class chitietsanphamController {
 		return "chitietsanpham";
 	}
 
-//	@RequestMapping("/add")
-//	public String addToCart(Model model, Integer idSp, HttpSession session) {
-//		KhachHang khachHang = (KhachHang) session.getAttribute("khachhang");
-//		String taiKhoan = khachHang.getTaiKhoan();
-//		System.out.println(taiKhoan); // Đã lấy được tài khoản khách hàng đang đăng nhập
-//		if (taiKhoan == null) {
-//			return "redirect:/index/DangNhap";
-//		}
-//		// String cartId = khachHang.getGiohang().get();
-////		// lấy idgh của khách hàng
-//		List<GioHang> gioHang = ghdao.findByKhachHang(taiKhoan);
-////		if (gioHang != null) {
-////			int idGioHang = gioHang.getIdGioHang();
-////			GioHang newGioHang = new GioHang();
-////			newGioHang.setIdGioHang(idGioHang);
-////			ghdao.save(newGioHang);
-////		}
-//		return "redirect:/chitiet/chitietsanpham";
-//	}
 
-//	@RequestMapping("add")
-//	public String addToCart(@RequestPart("idSp") Integer idSp, HttpSession session) {
-//		SanPham sanpham = sanphamdao.findById(idSp).orElse(null);
-//		if (sanpham != null) {
-//			GioHang giohang = (GioHang) session.getAttribute("GioHang");
-//			if (giohang == null) {
-//				giohang = new GioHang();
-//				session.setAttribute("GioHang", giohang);
-//			}
-//			Chitietgiohang chitietgiohang = giohang.getChitietgiohangByidSp(idSp);
-//			if (chitietgiohang == null) {
-//				chitietgiohang = new Chitietgiohang();
-//				chitietgiohang.setSanpham(sanpham);
-//				chitietgiohang.setSoLuong(1);
-//				giohang.getChitietgiohangs().add(chitietgiohang);
-//			} else {
-//				chitietgiohang.setSoLuong(chitietgiohang.getSoLuong() + 1);
-//			}
-//
-//		}
-//		return "giohang/form";
-//	}
 
-	@RequestMapping("add")
-	public String addToCart(Model model, @RequestPart("idSp") Integer idSp, HttpSession session,
-			@RequestParam("photo_file") MultipartFile img) {
-		SanPham sanpham = sanphamdao.findById(idSp).get();
-		model.addAttribute("sanpham", sanpham);
-		List<SanPham> sanphams = sanphamdao.findAll();
-		model.addAttribute("sanphams", sanphams);
-		return "giohang/form";
+
+	@RequestMapping("edit/{idSp}")
+	public String addToCart(Model model, @PathVariable("idSp") Integer idSp, HttpSession session, @RequestParam("soluong") Integer soluong) {
+		SanPham sanpham = sanphamdao.findByIdSp(idSp);
+		String taikhoan = (String) session.getAttribute("taikhoan");
+		KhachHang khachhang =  khachhangdao.findByTaiKhoan(taikhoan);
+		System.out.println(khachhang);
+		
+		
+		Chitietgiohang addctgh = new Chitietgiohang();
+		GioHang giohang = khachhang.getGiohang().get(0);
+		addctgh.setGiohang(giohang);
+		addctgh.setSanpham(sanpham);
+		addctgh.setSoLuong(soluong);
+		chitietgiohangdao.save(addctgh);
+		Optional<Chitietgiohang> ctghs = chitietgiohangdao.findById(giohang.getIdGh());
+		Chitietgiohang ctgh = new Chitietgiohang();
+			
+		ctgh.setGiohang(giohang);
+		ctgh.setSanpham(sanpham);
+		ctgh.setSoLuong(soluong);
+		chitietgiohangdao.save(ctgh);
+		
+		model.addAttribute("sanphams", ctghs);
+
+		request.setAttribute("giohang", "layout/user/giohang.jsp");
+		return "giohang";
 	}
+
+	
 
 }
