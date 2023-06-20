@@ -38,7 +38,7 @@
 						<td>${item.idHd }</td>
 						<td>${item.khachhang.taiKhoan}</td>
 						<td>${item.tongTien }</td>
-						<td>${item.trangThai ? 'Đã duyệt' : 'Chưa duyệt' }</td>
+						<td>${item.trangThai}</td>
 
 						<td>
 							<button name="" class="btn btn-success btn-sm"
@@ -46,6 +46,15 @@
 								style="width: 100px;">Xem</button>
 						</td>
 						<td>
+<!-- 						<button name="" class="btn btn-success btn-sm" -->
+<!-- 								formaction="/capnhattrangthai/form" role="button" -->
+<!-- 								style="width: 100px;">Cập nhật hóa đơn	</button> -->
+							<button name="" class="btn btn-success btn-sm"
+								formaction="/capnhattrangthai/edit/${item.idHd}" role="button"
+								style="width: 100px;">Cập nhật hóa đơn	</button>
+						</td>
+
+						<%-- 					<td>
 							<button name="" id="duyetButton" onclick="duyetHoaDon()"
 								class="btn btn-success btn-sm"
 								formaction="/quanLyDonHang/edit/${item.idHd}" role="button"
@@ -76,7 +85,7 @@
 									}
 								</script>
 
-						</td>
+						</td> --%>
 
 					</c:forEach>
 				</tbody>

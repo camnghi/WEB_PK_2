@@ -13,8 +13,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,14 +32,14 @@ public class HoaDon implements Serializable {
 //	@Temporal(TemporalType.DATE)
 	@Column(name = "ngayTao")
 	private Date NgayTao;
-	
+
 	String diaChi;
-	
+
 	@Column(name = "tong_tien")
 	private double tongTien;
-	
+
 	private String sdt;
-	Boolean trangThai;
+	String trangThai;
 	private String ghiChu;
 	@OneToMany(mappedBy = "hoadon")
 	List<Hoadonchitiet> hoadonchitiet;

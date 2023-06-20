@@ -9,7 +9,7 @@
 				<div class="card-body">
 					<table class="table">
 						<tr>
-							<th></th>
+							<th>IDGH</th>
 							<th>SẢN PHẨM</th>
 							<th>GIÁ</th>
 							<th>SỐ LƯỢNG</th>
@@ -17,8 +17,9 @@
 							<th></th>
 						</tr>
 						<form action="/giohang/form" method="post" enctype="multipart/form-data" >
-							<c:forEach var="item" items="${sanphams}">
+							<c:forEach var="item" items="${giohang.chitietgiohang}">
 								<tr>
+								<td>${item.idGh}</td>
 									<td><img alt="" src="/img/${item.anhSp}"
 										width="100px">
 									<td>$item.tenSp}

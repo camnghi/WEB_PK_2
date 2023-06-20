@@ -57,11 +57,14 @@ public class quanLyCTDonHangController {
 //		return "quanLyChiTietDonhang";
 //	}
 	@RequestMapping("editHD/{idHd}")
-	public String editHD(Model model, @PathVariable("idHd") Integer idH) {
-		HoaDon hoadon = hoadondao.findById(idH).get();
+	public String editHD(Model model, @PathVariable("idHd") Integer idHd) {
+		HoaDon hoadon = hoadondao.findById(idHd).get();
 		model.addAttribute("hoadon", hoadon);
 		List<HoaDon> hoadons = hoadondao.findAll();
 		model.addAttribute("hoadons", hoadons);
+		List<Hoadonchitiet> hdcts = hoadonchitietdao.findAllByIdHd(idHd);
+		model.addAttribute("hdcts", hdcts);
+		System.out.println(hdcts);
 		System.out.println(hoadon.getNgayTao());
 		request.setAttribute("form_QLCTDonHang", "layout/admin/form_QLCTDonHang.jsp");
 		return "quanLyChiTietDonhang";

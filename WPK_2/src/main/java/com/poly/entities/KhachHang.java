@@ -43,6 +43,7 @@ public class KhachHang implements Serializable {
 	@OneToMany(mappedBy = "khachhang")
 	List<GioHang> giohang;
 
+
 	@Override
 	public String toString() {
 		return "KhachHang [taiKhoan=" + taiKhoan + ", matKhau=" + matKhau + ", hoTen=" + hoTen + ", email=" + email

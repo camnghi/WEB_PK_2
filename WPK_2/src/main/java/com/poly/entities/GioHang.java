@@ -29,17 +29,17 @@ public class GioHang implements Serializable {
 	KhachHang khachhang;
 	private Integer soLuong;
 	@OneToMany(mappedBy = "giohang")
-	List<Chitietgiohang> chitietgiohangs;
+	List<Chitietgiohang> chitietgiohang;
 
 	@JoinColumn(name = "sanpham")
 	@Override
 	public String toString() {
 		return "GioHang [idGh=" + idGh + ", khachHang=" + khachhang + ", soLuong=" + soLuong + ", chitietgiohang="
-				+ chitietgiohangs + "]";
+				+ chitietgiohang + "]";
 	}
 
 	public Chitietgiohang getChitietgiohangByidSp(int idSp) {
-		for (Chitietgiohang chitietgiohang : chitietgiohangs) {
+		for (Chitietgiohang chitietgiohang : chitietgiohang) {
 			if (chitietgiohang.getSanpham().getIdSp() == idSp) {
 				return chitietgiohang;
 			}

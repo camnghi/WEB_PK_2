@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poly.entities.GioHang;
-import com.poly.entities.KhachHang;
 import com.poly.entities.Loaisanpham;
 import com.poly.repository.GiohangDAO;
 import com.poly.repository.LoaisanphamDAO;
@@ -33,7 +33,7 @@ public class GioHangController {
 	@Autowired
 	HttpSession session;
 	@Autowired
-	GiohangDAO giohangDao;
+	GiohangDAO giohangdao;
 	@GetMapping("form")
 	public String form(Model model, HttpSession session, GioHang ghang) {
 		List<Loaisanpham> loaisanphams = dao.findAll();
@@ -63,18 +63,40 @@ public class GioHangController {
 //		model.addAttribute("ctghs", ctghs);
 		return "index_Main";
 	}
-	
-	@GetMapping("getgiohang")
-	public String getGioHang(Model model) {
-	    HttpSession session = request.getSession();
-	    KhachHang khachHang = (KhachHang) session.getAttribute("khachHang");
-	    //
-	    if (khachHang != null) {
-	        List<GioHang> gioHangs = giohangDao.findByKhachhang(khachHang);
-	        model.addAttribute("gioHangs", gioHangs);
-	    }
-	    return "giohang/form";
+	@RequestMapping("edit/{idGh}")
+	public String edit(Model model,@PathVariable("idGh") Integer idGh) {
+		GioHang giohang = giohangdao.findById(idGh).get();
+		model.addAttribute("giohang", giohang);
+		request.setAttribute("view", "giohang");
+
+		return "index_Main";
 	}
+
+	@RequestMapping("giohang/{taiKhoan}")
+	public String giohang(Model model) {
+		String taikhoan = (String) session.getAttribute("taikhoan");
+		List<GioHang> giohangOptional = giohangdao.findBytaiKhoan(taikhoan);
+		GioHang giohang;
+		if(giohangOptional.isEmpty()) {
+			giohang= (GioHang) giohangOptional;
+		}else {
+			giohang = new GioHang();
+			giohang.setKhachhang(null);
+			giohang.setSoLuong(0);
+		}
+		return "chitietsanpham";
+			}
+//	@GetMapping("getgiohang")
+//	public String getGioHang(Model model) {
+//	    HttpSession session = request.getSession();
+//	    KhachHang khachHang = (KhachHang) session.getAttribute("khachHang");
+//	    //
+//	    if (khachHang != null) {
+//	        List<GioHang> gioHangs = giohangDao.findByKhachhang(khachHang);
+//	        model.addAttribute("gioHangs", gioHangs);
+//	    }
+//	    return "giohang/form";
+//	}
 
 
 }
