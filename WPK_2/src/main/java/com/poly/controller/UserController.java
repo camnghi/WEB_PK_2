@@ -20,6 +20,7 @@ import com.poly.repository.GiohangDAO;
 import com.poly.repository.LoaisanphamDAO;
 import com.poly.service.UserService;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -78,7 +79,7 @@ public class UserController {
 
 // Đăng nhập 
 	@GetMapping("/DangNhap") // Gọi đến trang đăng nhập
-	public String form(Model model) throws UnsupportedEncodingException {
+	public String form(HttpServletRequest request,Model model) throws UnsupportedEncodingException {
 		List<Loaisanpham> loaisanphams = dao.findAll();
 		model.addAttribute("loaisanphams", loaisanphams);
 		request.setAttribute("title", "Đăng nhập");
@@ -93,18 +94,36 @@ public class UserController {
 		List<GioHang> ghs = giohangdao.findAll();
 		model.addAttribute("ghs", ghs);
 
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("taiKhoan")) {
+                    String taiKhoan = cookie.getValue();
+                    taiKhoan = taiKhoan.replaceAll("\\+", "");//thay thế và xóa các kí tự thừa
+                    model.addAttribute("taiKhoan", taiKhoan);
+                    break;
+                }
+            }
+        }
+		
 		return "index_Main";
 	}
 
 	@PostMapping("/DangNhap") // Xử lý click button Đăng nhập
 	public String login(@RequestParam String taiKhoan, @RequestParam String matKhau,
-			RedirectAttributes redirectAttributes) {
+			 Model model,  @RequestParam(value = "ghiNho", required = false) boolean ghiNho, 
+            HttpServletResponse response) {
 		try {
-			userService.login(taiKhoan, matKhau);
-			return "redirect:/index/form";// Nếu đúng user,pass quay về trang chủ
+			 String viewName = userService.login(taiKhoan, matKhau, ghiNho, model, response);
+		      return "redirect:"  + request.getContextPath() + "/" + viewName;
+			
+//			userService.login(taiKhoan, matKhau, ghiNho, model, response);
+//			return "redirect:/index/form";// Nếu đúng user,pass quay về trang chủ
 		} catch (Exception e) {
-			redirectAttributes.addAttribute("error", "true");
-			return "redirect:/index/DangNhap";// Nếu sai ở lại trang đăng nhập
+			model.addAttribute("errorMessage",  e.getMessage());
+			request.setAttribute("view", "DangNhap");
+			response.setCharacterEncoding("UTF-8");
+			return "index_Main";// Nếu sai ở lại trang đăng nhập
 		}
 	}
 
@@ -112,7 +131,7 @@ public class UserController {
 	@GetMapping("/DangXuat") // Đăng xuất tài khoản
 	public String logout() {
 		userService.logout();
-		return "redirect:/index/form";
+		return "redirect:/index/DangNhap";
 	}
 
 //Đăng kí    
@@ -135,6 +154,38 @@ public class UserController {
 		userService.register(khachhang);
 		return "redirect:/index/XacNhan";// Qua trang xác nhận pass
 	}
+	
+//	@PostMapping("/register")
+//	public String registerUser(@ModelAttribute("user") @Valid KhachHang khachHang, BindingResult bindingResult, Model model) {
+//	    if (bindingResult.hasErrors()) {
+//	        // Trả về trang đăng ký với thông báo lỗi
+//	        return "register";
+//	    }
+//
+//	    // Kiểm tra tên tài khoản đã tồn tại trong cơ sở dữ liệu hay chưa
+//	    if (userService.existsByUsername(khachHang.getUsername())) {
+//	        bindingResult.rejectValue("username", "error.user", "Tên tài khoản đã tồn tại. Vui lòng chọn tên tài khoản khác.");
+//	        return "register";
+//	    }
+//
+//	    // Kiểm tra mật khẩu và nhập lại mật khẩu có khớp nhau hay không
+//	    if (!khachHang.getPassword().equals(khachHang.getConfirmPassword())) {
+//	        bindingResult.rejectValue("confirmPassword", "error.user", "Mật khẩu và nhập lại mật khẩu không khớp nhau.");
+//	        return "register";
+//	    }
+//
+//	    // Kiểm tra email đã tồn tại trong cơ sở dữ liệu hay chưa
+//	    if (userService.existsByEmail(khachHang.getEmail())) {
+//	        bindingResult.rejectValue("email", "error.user", "Email đã tồn tại. Vui lòng sử dụng email khác.");
+//	        return "register";
+//	    }
+//
+//	    // Xử lý đăng ký người dùng ở đây
+//	    userService.register(khachHang);
+//
+//	    // Chuyển hướng đến trang chủ nếu đăng ký thành công
+//	    return "redirect:/home";
+//	}
 
 	// Mã xác nhận
 	@GetMapping("/XacNhan") // Qua trang xác nhận
@@ -181,8 +232,12 @@ public class UserController {
 		try {
 			userService.resetPassword(email);
 			model.addAttribute("message", "Mật khẩu mới đã được gửi đến địa chỉ email của bạn.");
+			request.setAttribute("view", "QuenMatKhau");
+			request.setCharacterEncoding("UTF-8");
 		} catch (Exception e) {
-			model.addAttribute("error", e.getMessage());
+			request.setAttribute("view", "QuenMatKhau");
+	        model.addAttribute("error","Email của bạn chưa được đăng kí!");
+
 		}
 		return "index_Main";
 	}

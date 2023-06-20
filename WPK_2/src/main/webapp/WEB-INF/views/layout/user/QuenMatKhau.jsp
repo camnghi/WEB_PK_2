@@ -11,6 +11,16 @@
                 <div class="divider d-flex align-items-center my-4">
                   <p class="text-center fw-bold mx-3 mb-0">Quên Mật Khẩu</p>
                 </div>
+                <c:if test="${not empty error}">
+				    <div class=" alert-danger" role="alert" style="color:red">
+				        ${error}
+				    </div>
+				</c:if>
+                 <c:if test="${not empty message}">
+				    <div class=" alert-danger" role="alert" style="color:green">
+				        ${message}
+				    </div>
+				</c:if>
                 <div class="col-sm-12">
                   <div class="input-group mb-2">
                       <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-envelope fa-2xl"></i></span>
@@ -21,8 +31,7 @@
                 <div class="text-center  mt-2 pt-2">
                   <button type="submit" class="btn btn-primary btn-lg"
                     style="width: 490px;">Lấy Mật Khẩu Mới Qua Mail Của Bạn</button>
-                </div>
-      			<p>${message}
+                </div> 
               </form>
             </div>
           </div>

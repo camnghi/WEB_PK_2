@@ -8,5 +8,8 @@ public interface UserRepository extends JpaRepository<KhachHang, String> {
 	KhachHang findBymaXacNhan(String maXacNhan);
 	KhachHang findByTaiKhoanAndMatKhau(String taiKhoan, String matKhau);
     KhachHang findByEmail(String email);
+    KhachHang findByTaiKhoan(String taiKhoan);
+    
+
     
 }
