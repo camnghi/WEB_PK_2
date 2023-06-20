@@ -48,14 +48,6 @@ public class quanLyCTDonHangController {
 		return "quanLyChiTietDonhang";
 	}
 
-//	@RequestMapping("edit/{id}")
-//	public String edit(Model model, @PathVariable("id") Integer id) {
-//		HoaDon hoadon = hoadondao.findById(id).get();
-//		model.addAttribute("hoadon", hoadon);
-//		List<HoaDon> hoadons = hoadondao.findAll();
-//		model.addAttribute("hoadons", hoadons);
-//		return "quanLyChiTietDonhang";
-//	}
 	@RequestMapping("editHD/{idHd}")
 	public String editHD(Model model, @PathVariable("idHd") Integer idHd) {
 		HoaDon hoadon = hoadondao.findById(idHd).get();

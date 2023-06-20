@@ -69,32 +69,10 @@ public class quanLyDonHangController {
 		} else {
 			resultPage = hoadondao.findAll(pageable);
 		}
-
 		model.addAttribute("page", resultPage);
 		request.setAttribute("form_QLDonHang", "layout/admin/form_QLDonHang.jsp");
 		return "quanLyDonHang";
 	}
-
-//	@RequestMapping("edit/{idHd}")
-//	public String edit(Model model, @PathVariable("idHd") Integer idHd) {
-//		HoaDon hoadon = hoadondao.findById(idHd).get();
-////		hoadon.setTrangThai(true);
-//		if (hoadon.getTrangThai() == false) {
-//			hoadon.setTrangThai(true);
-//			model.addAttribute("trangthai", hoadon.getTrangThai());
-//
-//		} else {
-//			hoadon.setTrangThai(false);
-//			model.addAttribute("trangthai", hoadon.getTrangThai());
-//
-//		}
-//		hoadondao.save(hoadon);
-//		hoadon.setTrangThai(hoadon.getTrangThai());
-//		model.addAttribute("hoadon", hoadon);
-//		return "redirect:/quanLyDonHang/form";
-//
-//	}
-
 
 //	chuyển sang trang cập nhật trạng thái controller
 	@RequestMapping("edit/{idHd}")
@@ -106,20 +84,4 @@ public class quanLyDonHangController {
 		request.setAttribute("form_QLDonHang", "layout/admin/form_QLDonHang.jsp");
 		return "capNhatTrangThai";
 	}
-
-	@RequestMapping("update")
-	public String update(HoaDon item) throws IllegalStateException, IOException {
-		hoadondao.save(item);
-		return "redirect:/product/edit/" + item.getIdHd();
-	}
-
-	@ModelAttribute("list_yesno")
-	public Map<Boolean, String> getYesno() {
-		Map<Boolean, String> map = new HashMap<>();
-		map.put(false, "No");
-		map.put(true, "Yes");
-		return map;
-	}
-
-
 }

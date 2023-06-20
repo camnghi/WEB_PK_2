@@ -45,35 +45,20 @@ public class capNhatTrangThaiConTroller {
 
 //	Đẩy lại trang quản lý đơn hàng
 	@RequestMapping("edit/{idHd}")
-	public String edit(Model model, @PathVariable("idHd") Integer idHd
-//			@RequestParam("NgayTao") @DateTimeFormat(pattern="yyyy-MM-dd") Date ngayTao,
-		) {
+	public String edit(Model model, @PathVariable("idHd") Integer idHd) {
 		HoaDon hoadon = hoadondao.findById(idHd).get();
 		model.addAttribute("hoadon", hoadon);
 		return "capNhatTrangThai";
 	}
-
 	@PostMapping("update/{idHd}")
-	public String updateDonHang(@ModelAttribute("hoadon") HoaDon hoadon, @PathVariable("idHd") Integer idHd,
-//			@RequestParam(required=false,name="views") String view,
-			@RequestParam(required=false,name="trangThai") String trangThai
-////			@RequestParam("NgayTao") @DateTimeFormat(pattern="yyyy-MM-dd") Date ngayTao,
-//			@RequestParam(required=false,name="idHd") Integer idHdon,
-//			@RequestParam(required=false,name="khachhang") KhachHang taiKhoan,
-//			@RequestParam(required=false,name="NgayTao") Date ngayTao,
-//			@RequestParam(required=false,name="diaChi") String diaChi,
-//			@RequestParam(required=false,name="tongTien") String tongTien,
-//			@RequestParam(required=false,name="sdt") String sdt,
-//			@RequestParam(required=false,name="ghiChu") String ghiChu
-) {
+	public String updateDonHang(Model model, @ModelAttribute("hoadon") HoaDon hoadon,
+			@PathVariable("idHd") Integer idHd,
+			@RequestParam(required=false,name="trangThai") String trangThai) {
 		hoadon = hoadondao.findById(idHd).get();
-//		hoadon.setIdHd(idHd);
-//		hoadon.setKhachhang(taiKhoan);
-//		hoadon.setNgayTao(ngayTao);
-//		hoadon.setDiaChi(diaChi);
 		hoadon.setTrangThai(trangThai); // Cập nhật trạng thái mới vào đối tượng HoaDon
 //		hoadon.setGhiChu(ghiChu);
 		hoadondao.save(hoadon); // Lưu thay đổi vào cơ sở dữ liệu
+		
 		System.out.println(hoadon);
 		System.out.println(trangThai);
 

@@ -10,7 +10,7 @@
 			<div class="card-body">
 				<div class="timkiem">
 					<input name="keywords" value="${keywords}">
-					<button>Tìm</button>
+					<button>Tìm kiếm</button>
 				</div>
 			</div>
 		</form:form>
