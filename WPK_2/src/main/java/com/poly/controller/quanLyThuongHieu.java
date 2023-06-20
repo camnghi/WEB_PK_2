@@ -110,9 +110,14 @@ public class quanLyThuongHieu {
 
 	@RequestMapping("delete/{idTh}")
 	public String delete(@PathVariable("idTh") Integer idTh, RedirectAttributes redirectAttributes) {
-		thuonghieudao.deleteById(idTh);
-		redirectAttributes.addFlashAttribute("message", "Xóa thành công !");
+		Thuonghieu th = thuonghieudao.findById(idTh).orElse(null);
+		if (th != null && th.getSanphams().isEmpty()) { // Kiểm tra thương hiệu có sản phẩm không
+			thuonghieudao.deleteById(idTh);
+			redirectAttributes.addFlashAttribute("message", "Xóa thành công !");
+		} else {
+			redirectAttributes.addFlashAttribute("message",
+					"Không thể xóa thương hiệu này do đã có sản phẩm liên kết !");
+		}
 		return "redirect:/quanLyThuongHieu/form";
 	}
-
 }
