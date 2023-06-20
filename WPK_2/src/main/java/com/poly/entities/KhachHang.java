@@ -42,6 +42,9 @@ public class KhachHang implements Serializable {
 
 	@OneToMany(mappedBy = "khachhang")
 	List<GioHang> giohang;
+	
+//	@OneToMany(mappedBy = "khachhang")
+//	List<HoaDon> hoadon;
 
 	@Override
 	public String toString() {

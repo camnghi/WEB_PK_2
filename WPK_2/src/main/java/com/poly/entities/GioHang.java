@@ -1,8 +1,10 @@
 package com.poly.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,12 +40,22 @@ public class GioHang implements Serializable {
 				+ chitietgiohangs + "]";
 	}
 
-	public Chitietgiohang getChitietgiohangByidSp(int idSp) {
-		for (Chitietgiohang chitietgiohang : chitietgiohangs) {
-			if (chitietgiohang.getSanpham().getIdSp() == idSp) {
-				return chitietgiohang;
-			}
-		}
-		return null;
-	}
+//	public Chitietgiohang getChitietgiohangByidSp(int idSp) {
+//		for (Chitietgiohang chitietgiohang : chitietgiohangs) {
+//			if (chitietgiohang.getSanpham().getIdSp() == idSp) {
+//				return chitietgiohang;
+//			}
+//		}
+//		return null;
+//	}
+//	 @OneToMany(mappedBy = "giohang", cascade = CascadeType.ALL)
+//	   private List<Chitietgiohang> chitietgiohangs1 = new ArrayList<>();
+//	public double tongTien() {
+//	    double tongTien = 0;
+//	    for (Chitietgiohang chiTietGioHang : chitietgiohangs) {
+//	        tongTien += chiTietGioHang.getSanpham().getGiaSp() * chiTietGioHang.getSoLuong();
+//	    }
+//	    return tongTien;
+//	}
+
 }

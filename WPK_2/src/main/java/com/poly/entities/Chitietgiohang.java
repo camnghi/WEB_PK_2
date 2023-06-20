@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Chitietgiohang implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idCTGH;
+	private Integer id_ctgh;
 	@ManyToOne
 	@JoinColumn(name = "idSp")
 	SanPham sanpham;
@@ -32,7 +32,7 @@ public class Chitietgiohang implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Chitietgiohang [idGHCT=" + idCTGH + ", sanpham=" + sanpham + ", soluong=" + soLuong + ", giohang="
+		return "Chitietgiohang [id_ctgh=" + id_ctgh + ", sanpham=" + sanpham + ", soluong=" + soLuong + ", giohang="
 				+ giohang + "]";
 	}
 

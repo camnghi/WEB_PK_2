@@ -65,7 +65,7 @@
 								<img src="/sanphams/${item.anhSp}" alt="">
 							</a>
 							<!--Mua ngay-->
-							<a href="/index/chitietsanpham" class="buy-now">Thêm vào giỏ hàng</a>
+							<a href="/giohang/themvaogiohang/${item.idSp}" class="buy-now">Thêm vào giỏ hàng</a>
 						</div>
 						<div class="product-info">
 							<a href="" class="product-cat">${item.tenSp}</a> 

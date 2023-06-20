@@ -15,6 +15,13 @@ h4{
     font-weight: 600;
 }
 
+.dropdown {
+    margin: 0 auto;
+    width: 40px;
+    padding-bottom: 30px;
+    margin-top: -50px;
+}
+
 .headline {
 	text-align: center;
 	margin: 40px 0px;
@@ -30,7 +37,7 @@ ul.products{
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+/*     justify-content: space-between; */
 }
 
 ul.products li {

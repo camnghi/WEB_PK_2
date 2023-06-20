@@ -4,59 +4,76 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-8">
 			<div class="card">
 				<div class="card-body">
 					<table class="table">
-						<tr>
-							<th></th>
-							<th>SẢN PHẨM</th>
-							<th>GIÁ</th>
-							<th>SỐ LƯỢNG</th>
-							<th>TỔNG TIỀN</th>
-							<th></th>
-						</tr>
-						<form action="/giohang/form" method="post" enctype="multipart/form-data" >
-							<c:forEach var="item" items="${sanphams}">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Sản phẩm</th>
+								<th>Đơn giá</th>
+								<th>Số lượng</th>
+								<th>Tổng tiền</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${giohang.chitietgiohangs}"
+								var="chiTietGioHang">
+								
 								<tr>
-									<td><img alt="" src="/img/${item.anhSp}"
-										width="100px">
-									<td>$item.tenSp}
-									<td>${item.giaSp}</td>
-									<td><input name="soLuong" value="${item.soluong}"
-										onblur="this.form.submit()" style="width: 50px;"></td>
-									<td>${item.giaSp * item.soluong}</td>
-									<%-- <td><a href="${cart.sanpham}">Xóa</a></td> --%>
+									<td><img src="/sanphams/${chiTietGioHang.sanpham.anhSp}" alt="${chiTietGioHang.sanpham.tenSp}" width="100px"></td>
+									<td>${chiTietGioHang.sanpham.tenSp}</td>
+									<td>${chiTietGioHang.sanpham.giaSp}VNĐ</td>
+									<td>
+										<form action="/giohang/capnhat/${chiTietGioHang.id_ctgh}"
+											method="post">
+											<input type="number" name="soLuong"
+												value="${chiTietGioHang.soLuong}" min="1"
+												max="${chiTietGioHang.sanpham.soLuong}" style="width: 50px;">
+											<button type="submit"
+												class="btn btn-outline-secondary btn-sm">Cập nhật</button>
+										</form>
+									</td>
+									<td>${chiTietGioHang.sanpham.giaSp * chiTietGioHang.soLuong}
+										VNĐ</td>
+									<td>
+										<form action="/giohang/xoa/${chiTietGioHang.id_ctgh}" method="post">
+											<button type="submit" class="btn btn-outline-danger btn-sm">Xóa</button>
+										</form>
+									</td>
 								</tr>
 							</c:forEach>
-						</form>
+						</tbody>
 					</table>
-					<button class="btn btn-outline-light bg-secondary"
-						style="float: right;">Cập nhật giỏ hàng</button>
-					<button class="btn btn-outline-light bg-secondary"
-						style="float: right;">Tiếp tục xem sản phẩm</button>
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-4">
 			<div class="card">
 				<div class="card-body">
 					<table class="table">
-						<tr>
-							<th>TỔNG SẢN PHẨM</th>
-							<th></th>
-						</tr>
-						<tr>
-							<td>Tổng tiền</td>
-							<th>150</th>
-						</tr>
+						<tbody>
+							<tr>
+								<td>Tổng số sản phẩm</td>
+<%-- 								<td>${giohang.tongSoSanPham()}</td> --%>
+							</tr>
+							<tr>
+								<td>Tổng tiền</td>
+<%-- 								<td>${giohang.tongTien()}VNĐ</td> --%>
+							</tr>
+						</tbody>
 					</table>
-					<a class="btn btn-outline-light bg-warning" style="float: right;"
-						href="/dathang/form">Tiếp tục</a>
+					<div class="text-center">
+						<a href="/dathang/form" class="btn btn-warning btn-block">Tiến
+							hành đặt hàng</a> <a href="/sanpham/list"
+							class="btn btn-secondary btn-block">Tiếp tục mua sắm</a> <a
+							href="/lichsu/form" class="btn btn-outline-secondary btn-block">Xem
+							lịch sử mua hàng</a>
+					</div>
 				</div>
 			</div>
-			<br> <a class="btn btn-outline-light bg-warning"
-				style="float: right;" href="/lichsu/form">Lịch sử mua hàng</a>
 		</div>
 	</div>
 </div>

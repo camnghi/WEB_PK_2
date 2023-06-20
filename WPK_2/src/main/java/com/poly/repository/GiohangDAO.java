@@ -1,17 +1,16 @@
 package com.poly.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.poly.entities.GioHang;
 import com.poly.entities.KhachHang;
 
 public interface GiohangDAO extends JpaRepository<GioHang, Integer> {
 
-	List<GioHang> findByKhachhang(KhachHang khachHang);
+	@Query("SELECT gh FROM GioHang gh WHERE gh.khachhang = :khachhang")
+	GioHang findByKhachhang(@Param("khachhang") KhachHang khachhang);
 
-//	@Query("SELECT o FROM GioHang o.khachhang.Username='vinh01' ")
-//	List<GioHang> findByUsername();
-
+//	List<Chitietgiohang> findByChiTietGioHangs(GioHang gioHang);
 }

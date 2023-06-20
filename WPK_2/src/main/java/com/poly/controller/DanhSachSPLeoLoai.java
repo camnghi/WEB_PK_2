@@ -2,6 +2,7 @@
 package com.poly.controller;
 
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.poly.entities.Loaisanpham;
 import com.poly.entities.SanPham;
 import com.poly.repository.LoaisanphamDAO;
 import com.poly.repository.SanphamDAO;
@@ -41,32 +43,35 @@ public class DanhSachSPLeoLoai {
 	@RequestMapping("SearchPage")
 	public String paginate(Model model, @RequestParam("keywords") Optional<String> kw,
 	        @RequestParam("p") Optional<Integer> p,
-	        @RequestParam("loaiSpId") Optional<Integer> loaiSpId) {
+	        @RequestParam(value = "sort", defaultValue = "default") String sort) {
 
 	    request.setAttribute("title", "Sản Phẩm");
 	    request.setAttribute("view", "DanhSachSPTheoLoai");
+	    List<Loaisanpham> loaisanphams = dao.findAll();
+	    model.addAttribute("loaisanphams", loaisanphams);
 	    int pageSize = 8;
 	    String kwords = kw.orElse(session.get("keywords"));
 	    session.set("kwords", kwords);
 
 	    Page<SanPham> page;
-	    if (loaiSpId.isPresent()) {
-	        Integer idLoai = loaiSpId.get();
-	        Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
-	        if (kwords != null && !kwords.equals("")) {
-	            page = sanphamdao.findAllByTenSpContainingAndLoaisanpham_IdLoai("%" + kwords + "%", idLoai, pageable);
+	    Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
+	    if (kwords != null && !kwords.equals("")) {
+	        if (sort.equals("priceDesc")) {
+	            page = sanphamdao.findAllBytenSpContainingOrderByGiaSpDesc("%" + kwords + "%", pageable);
+	        } else if (sort.equals("priceAsc")) {
+	            page = sanphamdao.findAllBytenSpContainingOrderByGiaSpAsc("%" + kwords + "%", pageable);
 	        } else {
-	            page = sanphamdao.findAllByLoaisanpham_IdLoai(idLoai, pageable);
+	            page = sanphamdao.findAllBytenSpLike("%" + kwords + "%", pageable);
 	        }
 	    } else {
-	        Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
-	        if (kwords != null && !kwords.equals("")) {
-	            page = sanphamdao.findAllBytenSpLike("%" + kwords + "%", pageable);
+	        if (sort.equals("priceDesc")) {
+	            page = sanphamdao.findAllByOrderBygiaSpDesc(pageable);
+	        } else if (sort.equals("priceAsc")) {
+	            page = sanphamdao.findAllByOrderByGiaSpAsc(pageable);
 	        } else {
 	            page = sanphamdao.findAll(pageable);
 	        }
 	    }
-
 	    model.addAttribute("page", page);
 	    DecimalFormat df = new DecimalFormat("#,###");
 	    model.addAttribute("df", df);
