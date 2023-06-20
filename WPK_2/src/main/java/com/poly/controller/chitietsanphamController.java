@@ -64,8 +64,6 @@ public class chitietsanphamController {
 		SanPham sanpham = sanphamdao.findByIdSp(idSp);
 		String taikhoan = (String) session.getAttribute("taikhoan");
 		KhachHang khachhang =  khachhangdao.findByTaiKhoan(taikhoan);
-		System.out.println(khachhang);
-		
 		
 		Chitietgiohang addctgh = new Chitietgiohang();
 		GioHang giohang = khachhang.getGiohang().get(0);
@@ -73,20 +71,10 @@ public class chitietsanphamController {
 		addctgh.setSanpham(sanpham);
 		addctgh.setSoLuong(soluong);
 		chitietgiohangdao.save(addctgh);
-		Optional<Chitietgiohang> ctghs = chitietgiohangdao.findById(giohang.getIdGh());
-		Chitietgiohang ctgh = new Chitietgiohang();
-			
-		ctgh.setGiohang(giohang);
-		ctgh.setSanpham(sanpham);
-		ctgh.setSoLuong(soluong);
-		chitietgiohangdao.save(ctgh);
-		
-		model.addAttribute("sanphams", ctghs);
+//		Optional<Chitietgiohang> ctghs = chitietgiohangdao.findById(giohang.getIdGh());
+		chitietgiohangdao.save(addctgh);
 
 		request.setAttribute("giohang", "layout/user/giohang.jsp");
 		return "giohang";
 	}
-
-	
-
 }

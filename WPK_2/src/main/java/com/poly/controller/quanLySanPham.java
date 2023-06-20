@@ -231,7 +231,6 @@ public class quanLySanPham {
 				sanpham.setAnhSp(filename);
 				sanpham.setNgayTao(new Date());
 				System.out.println(sanpham.getNgayTao());
-				
 				sanphamdao.save(sanpham);
 				model.addAttribute("message", "Cập nhật thành công!");
 			}

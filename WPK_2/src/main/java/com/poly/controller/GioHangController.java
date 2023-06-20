@@ -12,6 +12,7 @@ import com.poly.entities.GioHang;
 import com.poly.entities.KhachHang;
 import com.poly.entities.Loaisanpham;
 import com.poly.repository.GiohangDAO;
+import com.poly.repository.KhachhangDAO;
 import com.poly.repository.LoaisanphamDAO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,7 +34,10 @@ public class GioHangController {
 	@Autowired
 	HttpSession session;
 	@Autowired
-	GiohangDAO giohangDao;
+	GiohangDAO ghdao;
+	@Autowired
+	KhachhangDAO khachhangdao;
+	
 	@GetMapping("form")
 	public String form(Model model, HttpSession session, GioHang ghang) {
 		List<Loaisanpham> loaisanphams = dao.findAll();
@@ -43,7 +47,11 @@ public class GioHangController {
 		request.setAttribute("title", "Giỏ hàng");
 		request.setAttribute("view", "giohang");
 		response.setCharacterEncoding("UTF-8");
-//		List<GioHang> ghs = ghdao.findAll();
+		
+		String taikhoan = (String) session.getAttribute("taikhoan");
+		KhachHang khachhang =  khachhangdao.findByTaiKhoan(taikhoan);
+		
+//		List<GioHang> ghs = ghdao.;
 //		model.addAttribute("ghs", ghs);
 //		List<Chitietgiohang> ctgh = ghctdao.findAll();
 //		model.addAttribute("ctgh", ctgh);
@@ -70,7 +78,7 @@ public class GioHangController {
 	    KhachHang khachHang = (KhachHang) session.getAttribute("khachHang");
 	    
 	    if (khachHang != null) {
-	        List<GioHang> gioHangs = giohangDao.findByKhachhang(khachHang);
+	        List<GioHang> gioHangs = ghdao.findByKhachhang(khachHang);
 	        model.addAttribute("gioHangs", gioHangs);
 	    }
 	    return "giohang/form";
