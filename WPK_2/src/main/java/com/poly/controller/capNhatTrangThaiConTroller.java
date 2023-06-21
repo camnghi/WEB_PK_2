@@ -1,5 +1,6 @@
 package com.poly.controller;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +41,8 @@ public class capNhatTrangThaiConTroller {
 		model.addAttribute("hoadon", hoadon);
 		List<HoaDon> hoadons = hoadondao.findAll();
 		model.addAttribute("hoadons", hoadons);
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		return "capNhatTrangThai";
 	}
 
@@ -48,6 +51,8 @@ public class capNhatTrangThaiConTroller {
 	public String edit(Model model, @PathVariable("idHd") Integer idHd) {
 		HoaDon hoadon = hoadondao.findById(idHd).get();
 		model.addAttribute("hoadon", hoadon);
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		return "capNhatTrangThai";
 	}
 	@PostMapping("update/{idHd}")
@@ -56,9 +61,8 @@ public class capNhatTrangThaiConTroller {
 			@RequestParam(required=false,name="trangThai") String trangThai) {
 		hoadon = hoadondao.findById(idHd).get();
 		hoadon.setTrangThai(trangThai); // Cập nhật trạng thái mới vào đối tượng HoaDon
-//		hoadon.setGhiChu(ghiChu);
 		hoadondao.save(hoadon); // Lưu thay đổi vào cơ sở dữ liệu
-		
+		model.addAttribute("message", "Cập nhật trạng thái đơn hàng thành công.");
 		System.out.println(hoadon);
 		System.out.println(trangThai);
 

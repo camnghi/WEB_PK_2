@@ -29,6 +29,10 @@ public class HoaDon implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "taiKhoan")
 	KhachHang khachhang;
+	
+	@Column(insertable=false, updatable=false)
+	private String taiKhoan;
+	
 //	@Temporal(TemporalType.DATE)
 	@Column(name = "ngayTao")
 	private Date NgayTao;

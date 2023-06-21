@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ page import="java.text.NumberFormat" %>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +14,10 @@
 </head>
 <body>
 	<h1>Thông tin đơn hàng</h1>
-	<form:form action="/capnhattrangthai/update" method="POST" 
+	<c:if test="${not empty message}">
+		<div class="alert alert-success" role="alert">${message}</div>
+	</c:if>
+	<form:form action="/capnhattrangthai/update" method="POST"
 		modelAttribute="hoadon">
 		<div class="alert alert-primary" role="alert">
 			<div class="card">
@@ -18,7 +25,7 @@
 					<div class="row">
 						<!-- Thông tin khách hàng -->
 						<div class="col-sm-6 col-md-6 col-lg-6">
-							<span>Thông tin khách hàng</span>
+							<span>Thông tin khách hàng</span> ${message }
 							<hr>
 							<table class="table">
 								<tr>
@@ -31,10 +38,11 @@
 									<td><form:input disabled="true" path="khachhang.taiKhoan"
 											readonly="true" /></td>
 								</tr>
+								
 								<tr>
 									<td>Tổng tiền</td>
 									<td><form:input disabled="true" path="tongTien"
-											readonly="true" /></td>
+											readonly="true" value="${'&#8363;' + hoadon.tongTien}"/></td>
 								</tr>
 								<tr>
 									<td>Ngày tạo</td>
@@ -52,7 +60,7 @@
 								</tr>
 								<tr>
 									<td>ghi chú</td>
-									<td><form:textarea path="ghiChu" readonly="true" /></td>
+									<td><form:textarea path="ghiChu" /></td>
 								</tr>
 								<tr>
 									<td>Trạng thái:</td>

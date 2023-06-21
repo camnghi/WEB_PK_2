@@ -1,6 +1,7 @@
 package com.poly.controller;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +71,8 @@ public class quanLyDonHangController {
 			resultPage = hoadondao.findAll(pageable);
 		}
 		model.addAttribute("page", resultPage);
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		request.setAttribute("form_QLDonHang", "layout/admin/form_QLDonHang.jsp");
 		return "quanLyDonHang";
 	}

@@ -12,7 +12,7 @@ import com.poly.entities.HoaDon;
 
 public interface HoadonDAO extends JpaRepository<HoaDon, Integer> {
 
-	@Query("SELECT o FROM HoaDon o WHERE  o.khachhang.taiKhoan = ?1")
+	@Query("SELECT o FROM HoaDon o WHERE  o.taiKhoan = ?1")
 
 	Page<HoaDon> findAllBytaiKhoanLike(String keywords, Pageable pageable);
 

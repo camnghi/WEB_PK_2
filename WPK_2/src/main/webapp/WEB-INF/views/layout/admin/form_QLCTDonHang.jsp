@@ -68,7 +68,7 @@
 										<c:set var="totalAmount" value="${totalAmount + productTotal}" />
 									</c:forEach>
 
-									<td>${totalAmount}</td>
+									<td>${df.format(totalAmount)} VNĐ</td>
 									<!-- Hiển thị tổng tổng tiền -->
 
 								</tr>
