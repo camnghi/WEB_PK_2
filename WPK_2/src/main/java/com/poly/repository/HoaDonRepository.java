@@ -11,17 +11,17 @@ import com.poly.entities.HoaDon;
 
 public interface HoaDonRepository extends JpaRepository<HoaDon, Long> {
 //	// theo ngay
-//	@Query("SELECT SUM(h.tongTien) FROM HoaDon h WHERE h.NgayTao = :NgayTao")
-//	Double getTongDoanhThuByNgayMua(@Param("NgayTao") Date ngayMua);
-//
-//	// theo thang
-//	@Query("SELECT SUM(h.tongTien) FROM HoaDon h WHERE MONTH(h.NgayTao) = :thang AND YEAR(h.NgayTao) = :nam")
-//	Double getTongDoanhThuByThangMua(@Param("thang") Integer thang, @Param("nam") Integer nam);
-//
-//	// theo quy
-//	@Query("SELECT SUM(h.tongTien) FROM HoaDon h WHERE h.NgayTao BETWEEN :ngayBatDau AND :ngayKetThuc")
-//	Double getTongDoanhThuByKhoangThoiGian(@Param("ngayBatDau") Date ngayBatDau,
-//			@Param("ngayKetThuc") Date ngayKetThuc);
+	@Query("SELECT SUM(h.tongTien) FROM HoaDon h WHERE h.NgayTao = :NgayTao")
+	Double getTongDoanhThuByNgayMua(@Param("NgayTao") Date ngayMua);
+
+	// theo thang
+	@Query("SELECT SUM(h.tongTien) FROM HoaDon h WHERE MONTH(h.NgayTao) = :thang AND YEAR(h.NgayTao) = :nam")
+	Double getTongDoanhThuByThangMua(@Param("thang") Integer thang, @Param("nam") Integer nam);
+
+	// theo quy
+	@Query("SELECT SUM(h.tongTien) FROM HoaDon h WHERE h.NgayTao BETWEEN :ngayBatDau AND :ngayKetThuc")
+	Double getTongDoanhThuByKhoangThoiGian(@Param("ngayBatDau") Date ngayBatDau,
+			@Param("ngayKetThuc") Date ngayKetThuc);
 
 	// thong ke doanh thu theo loai sp
 	@Query("SELECT lsp.tenLoai, SUM(cthd.soLuong * cthd.gia) " + "FROM Hoadonchitiet cthd "
