@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="container">
+<div class="container" style="padding-bottom: 200px">
 	<div class="card-body">
 		<div class="dropdown" style="float: left; padding: 30px">
 			<button class="btn btn-secondary dropdown-toggle" type="button"
