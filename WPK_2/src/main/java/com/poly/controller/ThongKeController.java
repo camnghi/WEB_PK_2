@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import com.poly.entities.SanPham;
 import com.poly.repository.HoaDonRepository;
 import com.poly.repository.SanPhamRepository;
 
+import jakarta.persistence.NoResultException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -49,86 +51,94 @@ public class ThongKeController {
 		response.setCharacterEncoding("UTF-8");
 		return "quanLyThongKe";
 	}
-//
-	@GetMapping("/doanhthu")
-	public String thongKeDoanhThuTheoThang(Model model) {
-		return "doanhthu";
-	}
-//
-//	@GetMapping("/doanhthu-quy")
-//	public String thongKeDoanhThuTheoQuy(Model model) {
-//		return "doanhthu-quy";
-//	}
 
 	@PostMapping("/doanhthu-ngay")
 	public String thongKeDoanhThuTheoNgay(
-			@RequestParam("ngayThongKe") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngayThongKe, Model model) {
-		// Tính tổng doanh thu của ngày được chọn
-		Double tongDoanhThuNgay = hoaDonRepository.getTongDoanhThuByNgayMua(ngayThongKe);
+			@RequestParam("ngayThongKe") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngayThongKe, Model model) throws MissingServletRequestParameterException {
+		  if (ngayThongKe == null) {
+		        throw new MissingServletRequestParameterException("ngayThongKe", "Date");
+		    }
+		try {
+		        // Tính tổng doanh thu của ngày được chọn
+		        Double tongDoanhThuNgay = hoaDonRepository.getTongDoanhThuByNgayMua(ngayThongKe);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		        DecimalFormat df = new DecimalFormat("#,### VND");
+
+		        // Đưa các giá trị thống kê vào Model để truyền sang View
+		        model.addAttribute("ngayThongKe", sdf.format(ngayThongKe));
+		        model.addAttribute("tongDoanhThuNgay", df.format(tongDoanhThuNgay));
+		        System.out.println(tongDoanhThuNgay);
+		        // Trả về tên của file jsp để hiển thị kết quả thống kê
+		        request.setAttribute("view", "form_QLThongKe2");
+		        response.setCharacterEncoding("UTF-8");
+		        return "quanLyThongKe";
+		    } catch (NoResultException e) {
+		        model.addAttribute("errorMessageNgay", "Không tìm thấy đơn hàng nào trong ngày này");
+		        request.setAttribute("view", "form_QLThongKe2");
+		        response.setCharacterEncoding("UTF-8");
+		        return "quanLyThongKe";
+		    }
+	}
+
+	@PostMapping("/doanhthu-thang")
+	public String thongKeDoanhThuTheoThang(
+			@RequestParam("thangThongKe") @DateTimeFormat(pattern = "yyyy-MM") Date thangThongKe, Model model) {
+
+		// Chuyển đổi ngày và tháng thành int
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(thangThongKe);
+		int thang = calendar.get(Calendar.MONTH) + 1; // Lấy tháng (tháng bắt đầu từ 0)
+		int nam = calendar.get(Calendar.YEAR); // Lấy năm
+
+		// Tính tổng doanh thu của tháng được chọn
+		Double tongDoanhThu = hoaDonRepository.getTongDoanhThuByThangMua(thang, nam);
+
+		// Định dạng tháng và số tiền
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
 		DecimalFormat df = new DecimalFormat("#,### VND");
 
 		// Đưa các giá trị thống kê vào Model để truyền sang View
-		model.addAttribute("ngayThongKe", sdf.format(ngayThongKe));
-		model.addAttribute("tongDoanhThuNgay", df.format(tongDoanhThuNgay));
-		System.out.println(tongDoanhThuNgay);
-		// Trả về tên của file jsp để hiển thị kết quả thống kê
-		return "doanhthu";
-	}
+		model.addAttribute("thangThongKe", sdf.format(thangThongKe));
+		model.addAttribute("tongDoanhThu", df.format(tongDoanhThu));
 
-//	@PostMapping("/doanhthu-thang")
-//	public String thongKeDoanhThuTheoThang(
-//			@RequestParam("thangThongKe") @DateTimeFormat(pattern = "yyyy-MM") Date thangThongKe, Model model) {
+		// Trả về tên của file jsp để hiển thị kết quả thống kê
+		request.setAttribute("view", "form_QLThongKe2");
+		response.setCharacterEncoding("UTF-8");
+		return "quanLyThongKe";
+	}
 //
-//		// Chuyển đổi ngày và tháng thành int
-//		Calendar calendar = Calendar.getInstance();
-//		calendar.setTime(thangThongKe);
-//		int thang = calendar.get(Calendar.MONTH) + 1; // Lấy tháng (tháng bắt đầu từ 0)
-//		int nam = calendar.get(Calendar.YEAR); // Lấy năm
-//
-//		// Tính tổng doanh thu của tháng được chọn
-//		Double tongDoanhThu = hoaDonRepository.getTongDoanhThuByThangMua(thang, nam);
-//
-//		// Định dạng tháng và số tiền
-//		SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
-//		DecimalFormat df = new DecimalFormat("#,### VND");
-//
-//		// Đưa các giá trị thống kê vào Model để truyền sang View
-//		model.addAttribute("thangThongKe", sdf.format(thangThongKe));
-//		model.addAttribute("tongDoanhThu", df.format(tongDoanhThu));
-//
-//		// Trả về tên của file jsp để hiển thị kết quả thống kê
-//		return "quanLyThongKe";
-//	}
-//
-//	@PostMapping("/doanhthu-quy")
-//	public String thongKeDoanhThuTheoQuy(@RequestParam("quyThongKe") Integer quyThongKe,
-//			@RequestParam("namThongKe") Integer namThongKe, Model model) {
-//
-//		// Tính tháng bắt đầu và tháng kết thúc của quý được chọn
-//		int thangBatDau = (quyThongKe - 1) * 3 + 1;
-//		int thangKetThuc = thangBatDau + 2;
-//		LocalDate dateBatDau = LocalDate.of(namThongKe, thangBatDau, 1);
-//		LocalDate dateKetThuc = LocalDate.of(namThongKe, thangKetThuc, 1)
-//				.withDayOfMonth(LocalDate.of(namThongKe, thangKetThuc, 1).lengthOfMonth());
-//		Date ngayBatDau = Date.from(dateBatDau.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//		Date ngayKetThuc = Date.from(dateKetThuc.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//
-//		// Tính tổng doanh thu của quý được chọn
-//		Double tongDoanhThu = hoaDonRepository.getTongDoanhThuByKhoangThoiGian(ngayBatDau, ngayKetThuc);
-//
-//		// Định dạng quý và số tiền
-//		String quy = "Quý " + quyThongKe;
-//		DecimalFormat df = new DecimalFormat("#,### VND");
-//
-//		// Đưa các giá trị thống kê vào Model để truyền sang View
-//		model.addAttribute("quyThongKe", quy);
-//		model.addAttribute("tongDoanhThu", df.format(tongDoanhThu));
-//
-//		// Trả về tên của file jsp để hiển thị kết quả thống kê
-//		return "quanLyThongKe";
-//	}
+	@PostMapping("/doanhthu-quy")
+	public String thongKeDoanhThuTheoQuy(@RequestParam("quyThongKe") Integer quyThongKe,
+			@RequestParam("namThongKe") Integer namThongKe, Model model) {
+
+		// Tính tháng bắt đầu và tháng kết thúc của quý được chọn
+		int thangBatDau = (quyThongKe - 1) * 3 + 1;
+		int thangKetThuc = thangBatDau + 2;
+		LocalDate dateBatDau = LocalDate.of(namThongKe, thangBatDau, 1);
+		LocalDate dateKetThuc = LocalDate.of(namThongKe, thangKetThuc, 1)
+				.withDayOfMonth(LocalDate.of(namThongKe, thangKetThuc, 1).lengthOfMonth());
+		Date ngayBatDau = Date.from(dateBatDau.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		Date ngayKetThuc = Date.from(dateKetThuc.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+		// Tính tổng doanh thu của quý được chọn
+		Double tongDoanhThuQuy = hoaDonRepository.getTongDoanhThuByKhoangThoiGian(ngayBatDau, ngayKetThuc);
+
+		// Định dạng quý và số tiền
+		String quy = "Quý " + quyThongKe;
+		String nam = "Năm " + namThongKe;
+		DecimalFormat df = new DecimalFormat("#,### VND");
+
+		// Đưa các giá trị thống kê vào Model để truyền sang View
+		model.addAttribute("namThongKe",nam);
+		model.addAttribute("quyThongKe", quy);
+		model.addAttribute("tongDoanhThuQuy", df.format(tongDoanhThuQuy));
+
+		// Trả về tên của file jsp để hiển thị kết quả thống kê
+		request.setAttribute("view", "form_QLThongKe2");
+		response.setCharacterEncoding("UTF-8");
+		return "quanLyThongKe";
+	}
 
 
 	@GetMapping("/form")

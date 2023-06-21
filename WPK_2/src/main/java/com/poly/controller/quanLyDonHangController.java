@@ -99,30 +99,7 @@ public class quanLyDonHangController {
 		return "quanLyDonHang";
 	}
 
-	@RequestMapping("edit/{idHd}")
-	public String edit(Model model, @PathVariable("idHd") Integer idHd) {
-		HoaDon hoadon = hoadondao.findById(idHd).get();
-//		hoadon.setTrangThai(true);
-		if (hoadon.getTrangThai() == false) {
-			hoadon.setTrangThai(true);
-			model.addAttribute("trangthai", hoadon.getTrangThai());
-//			 duyetButton.style.display = "none";
-//			    huyButton.style.display = "inline-block";
-		} else {
-			hoadon.setTrangThai(false);
-			model.addAttribute("trangthai", hoadon.getTrangThai());
 
-		}
-		hoadondao.save(hoadon);
-		hoadon.setTrangThai(hoadon.getTrangThai());
-		model.addAttribute("hoadon", hoadon);
-		return "redirect:/quanLyDonHang/form";
-
-//		model.addAttribute("item", item);
-//		List<Hoadonchitiet> items = hoadonchitietdao.findAll();
-//		model.addAttribute("items", items);
-//		request.setAttribute("view", "layout/user/chitietsanpham.jsp");
-	}
 
 	@RequestMapping("update")
 	public String update(HoaDon item) throws IllegalStateException, IOException {

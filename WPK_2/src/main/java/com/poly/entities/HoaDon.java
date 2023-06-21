@@ -41,7 +41,7 @@ public class HoaDon implements Serializable {
 	private double tongTien;
 	
 	private String sdt;
-	Boolean trangThai;
+	private String trangThai;
 	private String ghiChu;
 	@OneToMany(mappedBy = "hoadon")
 	List<Hoadonchitiet> hoadonchitiet;
