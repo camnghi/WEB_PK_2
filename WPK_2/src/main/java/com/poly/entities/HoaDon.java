@@ -31,7 +31,6 @@ public class HoaDon implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "taiKhoan")
 	KhachHang khachhang;
-//	@Temporal(TemporalType.DATE)
 	@Column(name = "ngayTao")
 	private Date NgayTao;
 	

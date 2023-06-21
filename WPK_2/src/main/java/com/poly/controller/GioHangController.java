@@ -19,6 +19,7 @@ import com.poly.entities.Loaisanpham;
 import com.poly.entities.SanPham;
 import com.poly.repository.ChitietgiohangDAO;
 import com.poly.repository.GiohangDAO;
+import com.poly.repository.HoadonDAO;
 import com.poly.repository.KhachhangDAO;
 import com.poly.repository.LoaisanphamDAO;
 import com.poly.repository.SanphamDAO;
@@ -46,6 +47,8 @@ public class GioHangController {
 	ChitietgiohangDAO ctghdao;
 	@Autowired
 	KhachhangDAO khachHangDao;
+	@Autowired
+	HoadonDAO hoaDonDao;
 
 	@RequestMapping("form")
 	public String form(Model model, HttpSession session) {
@@ -123,7 +126,7 @@ public class GioHangController {
 		}
 		
 		double tongTien = gioHang.tongTien();
-		System.out.println(gioHang.getSoLuong());
+//		System.out.println(gioHang.getSoLuong());
 		session.setAttribute("giohang", gioHang);
 		session.setAttribute("tongTien", tongTien);
 		giohangDao.save(gioHang);
@@ -162,5 +165,30 @@ public class GioHangController {
 	        giohangDao.save(gioHang);
 	    }
 	    return "redirect:/giohang/form";
+	}
+	
+	@RequestMapping("datHang")
+	public String datHang(Model model) {
+	    KhachHang khachHang = (KhachHang) session.getAttribute("khachhang");
+	    GioHang gioHang = giohangDao.findByKhachhang(khachHang);
+	    KhachHang khachHangHienTai = (KhachHang) session.getAttribute("khachhang");
+	    model.addAttribute("hoTen", khachHangHienTai.getHoTen());
+	    model.addAttribute("email", khachHangHienTai.getEmail());
+	    double tongTien = gioHang.tongTien();
+	    model.addAttribute("giohang", gioHang);
+	    model.addAttribute("tongTien", tongTien);
+//	    request.setAttribute("dathang", "layout/user/dathang.jsp");
+	    model.addAttribute("view", "dathang");
+	    DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
+	    return "index_Main";
+	}
+	@RequestMapping("thanhToan")
+	public String thanhToan(Model model) {
+		
+		
+		model.addAttribute("title", "Đặt hàng");
+		model.addAttribute("view", "dathang");
+		return "index_Main";
 	}
 }
