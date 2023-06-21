@@ -20,5 +20,12 @@ public interface HoadonDAO extends JpaRepository<HoaDon, Integer> {
 	Page<HoaDon> findAllBytrangThaiLike(String trangThai, Pageable pageable);
 
 	@Query("SELECT h FROM HoaDon h WHERE h.trangThai = :trangThai")
-    List<HoaDon> findByTrangThai(@Param("trangThai") String trangThai);
+	List<HoaDon> findByTrangThai(@Param("trangThai") String trangThai);
+
+	@Query("SELECT h FROM HoaDon h WHERE h.taiKhoan = :taiKhoan")
+	List<HoaDon> findByTaiKhoan(@Param("taiKhoan") String taiKhoan);
+
+	@Query("SELECT h FROM HoaDon h WHERE h.khachhang.taiKhoan = :taiKhoan AND h.trangThai = :trangThai")
+	List<HoaDon> findByTaiKhoanAndTrangThai(@Param("taiKhoan") String taiKhoan, @Param("trangThai") String trangThai);
+
 }

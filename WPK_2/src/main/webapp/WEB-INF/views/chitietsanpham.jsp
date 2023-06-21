@@ -36,34 +36,31 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<form action="chitiet/add"  method="post">
+				<form action="chitiet/add" method="post">
 					<div class="content-right">
 						<h1 class="text-h1">${item.tenSp}</h1>
 						<div class="rm-price">
-							<span class="rm-sale">Giá: ${item.giaSp}đ</span> <span
+							<span class="rm-sale">Giá: ${df.format(item.giaSp)}VNĐ</span> <span
 								class="rm-icondesktop-price">Còn hàng</span>
 						</div>
 						<div class="form-button">
 							<div class="row">
 
 								<div class="col-md-6">
-									<label>Số lượng</label>
-									<input type="number" value="1" min="1">
+									<label>Số lượng</label> <input type="number" value="1" min="1">
 								</div>
 							</div>
 							<div class="row">
-								<li class="inpr">
-									<span>
-										<a href=""target="_blank" style="text-decoration: none;">Chính sách bảo hành</a>
-									</span>
-								</li>
+								<li class="inpr"><span> <a href="" target="_blank"
+										style="text-decoration: none;">Chính sách bảo hành</a>
+								</span></li>
 							</div>
 							<div class="row">
 								<div class="col-md-7">
 									<div id="rm-booking" class="input-group">
 										<a href="/giohang/themvaogiohang/${item.idSp}">
 											<div type="button" class="big-button button-red left">
-												<button formaction="/chitiet/add/${idSp}">Thêm vào giỏ hàng</button>
+												<strong>THÊM VÀO GIỎ HÀNG</strong>
 											</div>
 										</a>
 
@@ -183,20 +180,20 @@
 												style="text-align: center; padding-top: 10px;">
 
 												<li class="list-group-item "><img class="w-100"
-													src="/sanphams/${item.anhSp}"
-													alt=" "> <span class="text-new">Mới</span>
+													src="/sanphams/${item.anhSp}" alt=" "> <span
+													class="text-new">Mới</span>
 													<div class="rmitem-caption">
 														<h4>
 															<a href="#" title="Quạt tản nhiệt DL01">${item.tenSp }</a>
 														</h4>
 														<p>
-															<span class="text-price">${item.giaSp }đ</span>
+															<span class="text-price">${df.format(item.giaSp)}VNĐ</span>
 														<div>
-															<a href="" class="rm-btn-buynow" title="Mua ngay">Thêm vào giỏ hàng</a>
+															<a href="" class="rm-btn-buynow" title="Mua ngay">Thêm
+																vào giỏ hàng</a>
 														</div>
 														</p>
 													</div></li>
-
 											</div>
 										</c:forEach>
 									</div>

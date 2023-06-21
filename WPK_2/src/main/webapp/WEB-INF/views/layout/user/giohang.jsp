@@ -70,7 +70,7 @@
 					<div class="text-center">
 						<a href="/giohang/datHang" class="btn btn-warning btn-block">Tiến hành đặt hàng</a> <a href="/index/form"
 							class="btn btn-secondary btn-block">Tiếp tục mua sắm</a> <br>
-						<br> <a href="/lichsu/form" class="btn btn-outline-secondary btn-block">Xem lịch sử mua hàng</a>
+						<br> <a href="/lichsu/form" class="btn btn-outline-secondary btn-block">Xem đơn hàng</a>
 					</div>
 				</div>
 			</div>
