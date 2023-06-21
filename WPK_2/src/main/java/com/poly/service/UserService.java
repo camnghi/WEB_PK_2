@@ -1,16 +1,22 @@
 package com.poly.service;
 
+import java.io.IOException;
 import java.util.Random;
+import java.net.URLEncoder;
 
+import org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.poly.entities.KhachHang;
 import com.poly.interfaces.UserRepository;
 import com.poly.repository.KhachhangDAO;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 
@@ -25,32 +31,98 @@ public class UserService {
 	HttpSession session;
 	@Autowired
 	private JavaMailSender javaMailSender;
+	
+	 public boolean existsByTaiKhoan(String taiKhoan) {
+	        return userRepository.existsByTaiKhoan(taiKhoan);
+	    }
 
+	 public boolean existsByEmail(String email) {
+	        return userRepository.existsByEmail(email);
+	   }
+	 public void register1(KhachHang khachHang) {
+	        userRepository.save(khachHang);
+	    }
+	
 	public void update(KhachHang khachhang) {
 		KHdao.save(khachhang);
 	}
+	
+	public String login(String taiKhoan, String matKhau, boolean ghiNho, Model model, HttpServletResponse response) throws IOException {
+	    KhachHang khachHang = userRepository.findByTaiKhoanAndMatKhau(taiKhoan, matKhau);
+	    if (khachHang == null) {
+	        throw new RuntimeException("Tên đăng nhập hoặc mật khẩu không đúng");
+	    }
+	    if (!khachHang.isTrangThai()) {
+	        throw new RuntimeException("Tài khoản của bạn đã chưa được xác minh, vui lòng kiểm tra mail hoặc chọn vào quên mật khẩu");
+	    }
 
+	    // Lưu thông tin đăng nhập vào session
+	    session.setAttribute("khachhang", khachHang);
 
-	public void login(String taiKhoan, String matKhau) {
-		KhachHang khachhang = userRepository.findByTaiKhoanAndMatKhau(taiKhoan, matKhau);
-		if (khachhang == null) {
-			throw new RuntimeException("Tên đăng nhập hoặc mật khẩu không đúng");
-		}
-		session.setAttribute("khachhang", khachhang); // lưu thông tin đăng nhập vào session
-		session.setAttribute("taikhoan", khachhang.getTaiKhoan());
+	    // Lưu tài khoản vào cookie nếu người dùng chọn checkbox "Ghi nhớ tôi"
+	 // Mã hóa tài khoản trước khi lưu vào cookie nếu checkbox "Ghi nhớ tôi" được chọn
+	    if (ghiNho) {
+	        String encodedTaiKhoan = URLEncoder.encode(khachHang.getTaiKhoan(), "UTF-8");
+	        Cookie cookie = new Cookie("taiKhoan", encodedTaiKhoan);
+	        System.out.println(encodedTaiKhoan);
+	        cookie.setMaxAge(120);
+	        cookie.setPath("/");
+	        response.addCookie(cookie);
+	    } else {
+	        Cookie cookie = new Cookie("taiKhoan", null);
+	        cookie.setMaxAge(0);
+	        cookie.setPath("/");
+	        response.addCookie(cookie);
+	    }
+	    
+	 // Kiểm tra nếu tài khoản là admin, chuyển hướng đến giao diện admin
+	    if (khachHang.isAdmin()) {
+	        model.addAttribute("khachHang", khachHang);
+	        // Trả về tên của view cho giao diện admin
+	        return "indexAD/form";
+	    }
+
+	    // Trả về tên của view cho giao diện khách hàng
+	    return "index/form";
 	}
 
 	public void logout() {
 		session.removeAttribute("khachhang"); // xóa thông tin đăng nhập khỏi session
 	}
+	
 
-	public void register(KhachHang khachhang) {
-		khachhang.setAdmin(false);
-		khachhang.setTrangThai(false);
-		String maXacNhan = generateVerificationCode();
-		khachhang.setMaXacNhan(maXacNhan); // lưu mã xác nhận vào đối tượng User
-		userRepository.save(khachhang); // lưu đối tượng User vào cơ sở dữ liệu
-		sendVerificationEmail(khachhang, maXacNhan);
+	public void register(KhachHang khachhang) throws InvalidInputException, DuplicateEntryException {
+	    // kiểm tra tính hợp lệ của dữ liệu đầu vào
+	    if (khachhang.getTaiKhoan().isEmpty()) {
+	        throw new InvalidInputException("Tài khoản không được để trống");
+	    }
+	    if (khachhang.getMatKhau().isEmpty()) {
+	        throw new InvalidInputException("Mật khẩu không được để trống");
+	    }
+	    if (!isValidEmail(khachhang.getEmail())) {
+	        throw new InvalidInputException("Email không hợp lệ");
+	    }
+
+	    // kiểm tra tài khoản và email đã tồn tại trong cơ sở dữ liệu hay chưa
+	    if (userRepository.existsByTaiKhoan(khachhang.getTaiKhoan())) {
+	        throw new DuplicateEntryException("Tài khoản đã tồn tại");
+	    }
+	    if (userRepository.existsByEmail(khachhang.getEmail())) {
+	        throw new DuplicateEntryException("Email đã tồn tại");
+	    }
+
+	    // lưu thông tin khách hàng vào cơ sở dữ liệu
+	    khachhang.setAdmin(false);
+	    khachhang.setTrangThai(false);
+	    String maXacNhan = generateVerificationCode();
+	    khachhang.setMaXacNhan(maXacNhan); // lưu mã xác nhận vào đối tượng User
+	    userRepository.save(khachhang); // lưu đối tượng User vào cơ sở dữ liệu
+	    sendVerificationEmail(khachhang, maXacNhan);
+	}
+	
+	public boolean isValidEmail(String email) {
+	    String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+	    return email.matches(regex);
 	}
 
 	@Transactional
@@ -88,10 +160,10 @@ public class UserService {
 	// Quen Mat Khau
 	public void resetPassword(String email) {
 		KhachHang khachHang = userRepository.findByEmail(email);
+		khachHang.setTrangThai(true);
 		if (khachHang == null) {
-			throw new IllegalArgumentException("Không tìm thấy khách hàng với email " + email);
+			throw new RuntimeException("Không tìm thấy khách hàng với email " + email);
 		}
-//		String newPassword = UUID.randomUUID().toString();
 		String newPassword = "";
 		Random random = new Random();
 		for (int i = 0; i < 5; i++) {

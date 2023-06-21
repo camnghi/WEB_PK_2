@@ -17,9 +17,9 @@
                       <input type="text" class="form-control"  name="code" value="${code}"  placeholder="Mã xác nhận" style="height: 45px;"
                            required>                   
                   </div>
-                   <c:if test="${not empty error}">
-       					 <p style="color: red">${error}</p>
-    			   </c:if>          
+                  <div class="alert alert-danger mt-3" role="alert" style="color:red" ${empty errorMessage ? 'hidden' : ''} >
+				   			 ${errorMessage}
+						</div>           
                </div>     
                 <div class="text-center  mt-2 pt-2">
                   <button type="submit" class="btn btn-primary btn-lg" style="width: 432px;">Xác nhận</button>

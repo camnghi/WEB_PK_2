@@ -15,6 +15,6 @@
     </form>
     <c:if test="${not empty tongDoanhThuNgay}">
         <p>Tổng doanh thu của ngày ${ngayThongKe}: ${tongDoanhThuNgay}</p>
-    </c:if>
+    </c:if> 
 </body>
 </html>

@@ -10,6 +10,8 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Trang Admin</title>
         <link rel="stylesheet" href="/css/indexAD.css">
+        <link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <!-- Bootstrap CSS v5.2.1 -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"

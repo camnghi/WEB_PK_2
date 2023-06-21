@@ -18,13 +18,18 @@
                 <div class="divider d-flex align-items-center my-4">
                   <p class="text-center fw-bold mx-3 mb-0">Đăng kí</p>
                 </div>
-      
+      				
+      			
+      				
                 <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-user fa-2xl"></i></span>
                         <input type="text" class="form-control" name="taiKhoan"  placeholder="Tài Khoản" style="height: 45px;"
-                             required>                   
-                    </div>          
+                             required>                  
+                    </div>   
+                    <div class="alert alert-danger mt-3" role="alert" style="color:red" ${empty taiKhoanError ? 'hidden' : ''} >
+				   			 ${taiKhoanError}
+						</div>        
                  </div>
 
                  <div class="col-sm-12">
@@ -38,9 +43,11 @@
                  <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-lock fa-2xl"></i></span>
-                        <input type="password" class="form-control" name=""  placeholder=" Nhập Lại Mật Khẩu" style="height: 45px;"
-                             >                   
-                    </div>          
+                        <input type="password" class="form-control" name="nhapLaiMatKhau"  placeholder=" Nhập Lại Mật Khẩu" style="height: 45px;">                   
+                    </div> 
+                    <div class="alert alert-danger mt-3" role="alert" style="color:red" ${empty matKhauError ? 'hidden' : ''} >
+				   			 ${matKhauError}
+						</div>         
                  </div>
                  
                   <div class="col-sm-12">
@@ -54,9 +61,15 @@
                  <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-envelope fa-2xl"></i></span>
-                        <input type="email" class="form-control" name="email"  placeholder="Email" style="height: 45px;"
-                             required>                   
-                    </div>          
+                        <input type="text" class="form-control" name="email"  placeholder="Email" style="height: 45px;"
+                             >                   
+                    </div>
+                    <div class="alert alert-danger mt-3" role="alert" style="color:red" ${empty emailError ? 'hidden' : ''} >
+				   			 ${emailError}
+						</div> 
+					<div class="alert alert-danger mt-3" role="alert" style="color:red" ${empty errorMessage ? 'hidden' : ''} >
+				   			 ${errorMessage}
+						</div>             
                  </div>
                 <div class="text-center text-lg-start mt-2 pt-2">
                   <button type="submit" class="btn btn-primary btn-lg"

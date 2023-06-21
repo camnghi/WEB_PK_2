@@ -41,4 +41,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Long> {
 	@Query("SELECT COUNT(hd.idHd) FROM HoaDon hd WHERE hd.NgayTao <= :endDate")
 	Integer getSoDonHang(@Param("endDate") Date endDate);
 
+	// Tính số hóa đơn đã xác nhận từ trước đến nay
+	@Query("SELECT COUNT(hd.idHd) FROM HoaDon hd WHERE hd.NgayTao <= :endDate AND hd.trangThai = 'Đã xác nhận'")
+	Integer getSoHoaDonDaXacNhan(@Param("endDate") Date endDate);
 }

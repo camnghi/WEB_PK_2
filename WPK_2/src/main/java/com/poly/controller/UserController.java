@@ -3,6 +3,7 @@ package com.poly.controller;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +20,10 @@ import com.poly.entities.KhachHang;
 import com.poly.entities.Loaisanpham;
 import com.poly.repository.GiohangDAO;
 import com.poly.repository.LoaisanphamDAO;
+import com.poly.service.DuplicateEntryException;
 import com.poly.service.UserService;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -79,7 +82,7 @@ public class UserController {
 
 // Đăng nhập
 	@GetMapping("/DangNhap") // Gọi đến trang đăng nhập
-	public String form(Model model) throws UnsupportedEncodingException {
+	public String form(HttpServletRequest request,Model model) throws UnsupportedEncodingException {
 		List<Loaisanpham> loaisanphams = dao.findAll();
 		model.addAttribute("loaisanphams", loaisanphams);
 		request.setAttribute("title", "Đăng nhập");
@@ -93,19 +96,36 @@ public class UserController {
 
 		List<GioHang> ghs = giohangdao.findAll();
 		model.addAttribute("ghs", ghs);
-
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("taiKhoan")) {
+                    String taiKhoan = cookie.getValue();
+                    taiKhoan = taiKhoan.replaceAll("\\+", "");//thay thế và xóa các kí tự thừa
+                    model.addAttribute("taiKhoan", taiKhoan);
+                    break;
+                }
+            }
+        }
+		
 		return "index_Main";
 	}
 
 	@PostMapping("/DangNhap") // Xử lý click button Đăng nhập
 	public String login(@RequestParam String taiKhoan, @RequestParam String matKhau,
-			RedirectAttributes redirectAttributes) {
+			 Model model,  @RequestParam(value = "ghiNho", required = false) boolean ghiNho, 
+            HttpServletResponse response) {
 		try {
-			userService.login(taiKhoan, matKhau);
-			return "redirect:/index/form";// Nếu đúng user,pass quay về trang chủ
+			 String viewName = userService.login(taiKhoan, matKhau, ghiNho, model, response);
+		      return "redirect:"  + request.getContextPath() + "/" + viewName;
+			
+//			userService.login(taiKhoan, matKhau, ghiNho, model, response);
+//			return "redirect:/index/form";// Nếu đúng user,pass quay về trang chủ
 		} catch (Exception e) {
-			redirectAttributes.addAttribute("error", "true");
-			return "redirect:/index/DangNhap";// Nếu sai ở lại trang đăng nhập
+			model.addAttribute("errorMessage",  e.getMessage());
+			request.setAttribute("view", "DangNhap");
+			response.setCharacterEncoding("UTF-8");
+			return "index_Main";// Nếu sai ở lại trang đăng nhập
 		}
 	}
 
@@ -113,7 +133,7 @@ public class UserController {
 	@GetMapping("/DangXuat") // Đăng xuất tài khoản
 	public String logout() {
 		userService.logout();
-		return "redirect:/index/form";
+		return "redirect:/index/DangNhap";
 	}
 
 //Đăng kí
@@ -127,15 +147,59 @@ public class UserController {
 		response.setCharacterEncoding("UTF-8");
 		return "index_Main";
 	}
+	
+//	@PostMapping("/DangKi") // Ấn button đăng kí
+//	public String register(@ModelAttribute("khachhang") KhachHang khachhang, BindingResult bindingResult, Model model) {
+//		if (bindingResult.hasErrors()) {
+//			return "/index/DangKi";
+//		}
+//		userService.register(khachhang);
+//		return "redirect:/index/XacNhan";// Qua trang xác nhận pass
+//	}
 
 	@PostMapping("/DangKi") // Ấn button đăng kí
-	public String register(@ModelAttribute("khachhang") KhachHang khachhang, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			return "/index/DangKi";
+	public String register(@ModelAttribute("khachhang") KhachHang khachhang, BindingResult bindingResult, Model model, @RequestParam("nhapLaiMatKhau") String nhapLaiMatKhau) {
+	    if (bindingResult.hasErrors()) {
+	        return "/index/DangKi";
+	    }
+
+	    // Kiểm tra tài khoản và email đã tồn tại trong cơ sở dữ liệu hay chưa
+	    if (userService.existsByTaiKhoan(khachhang.getTaiKhoan())) {
+	        model.addAttribute("taiKhoanError", "Tài khoản đã tồn tại");
+	        request.setAttribute("view", "DangKi");
+			response.setCharacterEncoding("UTF-8");
+	        return "index_Main";
+	    }
+	    if (userService.existsByEmail(khachhang.getEmail())) {
+	        model.addAttribute("emailError", "Email đã tồn tại");
+	        request.setAttribute("view", "DangKi");
+			response.setCharacterEncoding("UTF-8");
+	        return "index_Main";
+	    }
+	    
+	    // Kiểm tra mật khẩu và nhập lại mật khẩu có trùng nhau hay không
+	    if (!khachhang.getMatKhau().equals(nhapLaiMatKhau)) {
+	        model.addAttribute("matKhauError", "Mật khẩu và nhập lại mật khẩu không trùng khớp");
+	        request.setAttribute("view", "DangKi");
+			response.setCharacterEncoding("UTF-8");
+	        return "index_Main";
+	    }
+
+	    try {
+			userService.register(khachhang);
+		} catch (InvalidInputException e) {
+			  model.addAttribute("errorMessage", e.getMessage());
+			  request.setAttribute("view", "DangKi");
+			 response.setCharacterEncoding("UTF-8");
+		      return "index_Main";
+		} catch (DuplicateEntryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		userService.register(khachhang);
-		return "redirect:/index/XacNhan";// Qua trang xác nhận pass
+	    return "redirect:/index/XacNhan";// Qua trang xác nhận pass
 	}
+	
+
 
 	// Mã xác nhận
 	@GetMapping("/XacNhan") // Qua trang xác nhận
@@ -153,8 +217,10 @@ public class UserController {
 			userService.verify(code);
 			return "redirect:/index/XacNhanOk";
 		} catch (Exception e) {
-			model.addAttribute("error", e.getMessage());
-			return "redirect:/index/XacNhan";
+			 model.addAttribute("errorMessage", "Sai mã xác nhận");
+			 request.setAttribute("view", "nhapmaXN");
+			response.setCharacterEncoding("UTF-8");
+			return "index_Main";
 		}
 	}
 
@@ -182,8 +248,12 @@ public class UserController {
 		try {
 			userService.resetPassword(email);
 			model.addAttribute("message", "Mật khẩu mới đã được gửi đến địa chỉ email của bạn.");
+			request.setAttribute("view", "QuenMatKhau");
+			request.setCharacterEncoding("UTF-8");
 		} catch (Exception e) {
-			model.addAttribute("error", e.getMessage());
+			request.setAttribute("view", "QuenMatKhau");
+	        model.addAttribute("error","Email của bạn chưa được đăng kí!");
+
 		}
 		return "index_Main";
 	}

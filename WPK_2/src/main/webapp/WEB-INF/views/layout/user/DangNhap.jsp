@@ -16,13 +16,16 @@
                 <div class="divider d-flex align-items-center my-4">
                   <p class="text-center fw-bold mx-3 mb-0">Đăng nhập</p>
                 </div>
-      
+      			
+      			<div class="alert alert-danger mt-3" role="alert" style="color:red" ${empty errorMessage ? 'hidden' : ''} >
+				    ${errorMessage}
+				</div>
                 <!-- Tai khoan input -->
                 
-                <div class="col-sm-12">
-                  <div class="input-group mb-3">
+                <div class="col-sm-12 mb-0">
+                  <div class="input-group">
                       <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-user fa-2xl"></i></span>
-                      <input type="text" class="form-control" name="taiKhoan"  placeholder="Tài Khoản"  style="height: 45px;"
+                      <input type="text" class="form-control" name="taiKhoan"  placeholder="Tài Khoản" value="${taiKhoan}"  style="height: 45px;"
                            required>                   
                   </div>          
                </div>
@@ -35,11 +38,11 @@
                            required>                   
                   </div>          
                </div>
-      
+      		
                 <div class="d-flex justify-content-between align-items-center">
                   <!-- Checkbox -->
                   <div class="form-check mb-0">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                    <input class="form-check-input me-2" name="ghiNho" type="checkbox" value="true" id="form2Example3" />
                     <label class="form-check-label" for="form2Example3">
                       Ghi nhớ tôi
                     </label>
@@ -48,10 +51,10 @@
                 </div>
       
                 <div class="text-center text-lg-start mt-3 pt-2">
-                <a href="/index/form">
+                
                 <button type="submit" class="btn btn-primary btn-lg"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Đăng nhập</button>
-                </a>
+           
                   
                   <p class="small fw-bold mt-2 pt-1 mb-0">Bạn không có tài khoản? <a href="/index/DangKi"
                       class="link-danger">Đăng kí ngay</a></p>
