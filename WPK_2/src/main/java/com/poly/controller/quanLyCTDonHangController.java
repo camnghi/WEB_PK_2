@@ -1,5 +1,6 @@
 package com.poly.controller;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,26 +44,24 @@ public class quanLyCTDonHangController {
 		model.addAttribute("hdct", hdct);
 		List<Hoadonchitiet> hdcts = hoadonchitietdao.findAll();
 		model.addAttribute("hdcts", hdcts);
-
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		request.setAttribute("form_QLCTDonHang", "layout/admin/form_QLCTDonHang.jsp");
 		return "quanLyChiTietDonhang";
 	}
 
-//	@RequestMapping("edit/{id}")
-//	public String edit(Model model, @PathVariable("id") Integer id) {
-//		HoaDon hoadon = hoadondao.findById(id).get();
-//		model.addAttribute("hoadon", hoadon);
-//		List<HoaDon> hoadons = hoadondao.findAll();
-//		model.addAttribute("hoadons", hoadons);
-//		return "quanLyChiTietDonhang";
-//	}
 	@RequestMapping("editHD/{idHd}")
-	public String editHD(Model model, @PathVariable("idHd") Integer idH) {
-		HoaDon hoadon = hoadondao.findById(idH).get();
+	public String editHD(Model model, @PathVariable("idHd") Integer idHd) {
+		HoaDon hoadon = hoadondao.findById(idHd).get();
 		model.addAttribute("hoadon", hoadon);
 		List<HoaDon> hoadons = hoadondao.findAll();
 		model.addAttribute("hoadons", hoadons);
+		List<Hoadonchitiet> hdcts = hoadonchitietdao.findAllByIdHd(idHd);
+		model.addAttribute("hdcts", hdcts);
+		System.out.println(hdcts);
 		System.out.println(hoadon.getNgayTao());
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		request.setAttribute("form_QLCTDonHang", "layout/admin/form_QLCTDonHang.jsp");
 		return "quanLyChiTietDonhang";
 	}

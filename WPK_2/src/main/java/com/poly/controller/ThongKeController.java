@@ -4,9 +4,6 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.poly.entities.SanPham;
 import com.poly.repository.HoaDonRepository;
 import com.poly.repository.SanPhamRepository;
 
@@ -30,13 +26,13 @@ import jakarta.servlet.http.HttpServletResponse;
 @RequestMapping("thongke")
 @Controller
 public class ThongKeController {
-	
+
 	@Autowired
 	HttpServletRequest request;
 
 	@Autowired
 	HttpServletResponse response;
-	
+
 	@Autowired
 	HoaDonRepository hoaDonRepository;
 
@@ -64,15 +60,15 @@ public class ThongKeController {
 	public String thongKeDoanhThuTheoNgay(
 			@RequestParam("ngayThongKe") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngayThongKe, Model model) {
 		// Tính tổng doanh thu của ngày được chọn
-		Double tongDoanhThuNgay = hoaDonRepository.getTongDoanhThuByNgayMua(ngayThongKe);
+//		Double tongDoanhThuNgay = hoaDonRepository.getTongDoanhThuByNgayMua(ngayThongKe);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		DecimalFormat df = new DecimalFormat("#,### VND");
 
 		// Đưa các giá trị thống kê vào Model để truyền sang View
-		model.addAttribute("ngayThongKe", sdf.format(ngayThongKe));
-		model.addAttribute("tongDoanhThuNgay", df.format(tongDoanhThuNgay));
-		System.out.println(tongDoanhThuNgay);
+//		model.addAttribute("ngayThongKe", sdf.format(ngayThongKe));
+//		model.addAttribute("tongDoanhThuNgay", df.format(tongDoanhThuNgay));
+//		System.out.println(tongDoanhThuNgay);
 		// Trả về tên của file jsp để hiển thị kết quả thống kê
 		return "doanhthu";
 	}
@@ -133,28 +129,28 @@ public class ThongKeController {
 
 	@GetMapping("/form")
 	public String getThongKe(Model model) {
-		
+
 		request.setAttribute("view", "form_QLThongKe");
 		response.setCharacterEncoding("UTF-8");
-		
+
 		Date endDate = new Date();
 		Double tongDoanhThu = hoaDonRepository.getTongDoanhThu(endDate);
 		Integer soSanPhamDaBan = hoaDonRepository.getSoSanPhamDaBan(endDate);
 		Integer soDonHang = hoaDonRepository.getSoDonHang(endDate);
-		
+
 		NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 	    numberFormat.setRoundingMode(RoundingMode.HALF_UP);
 	    numberFormat.setMaximumFractionDigits(0);
 	    String tongDoanhThuVND = numberFormat.format(tongDoanhThu);
-		
+
 		model.addAttribute("tongDoanhThu", tongDoanhThuVND);
 		model.addAttribute("soSanPhamDaBan", soSanPhamDaBan);
 		model.addAttribute("soDonHang", soDonHang);
-		
+
 		//ban chay
 		List<Object[]> sanPhamBanChayNhat = sanPhamRepository.getSanPhamBanChayNhat();
 		model.addAttribute("sanPhamBanChayNhat", sanPhamBanChayNhat);
-		
+
 		//doanh thu theo loai
 		List<Object[]> doanhThuTheoLoai = hoaDonRepository.getDoanhThuTheoLoaiSanPham();
 		model.addAttribute("doanhThuTheoLoai", doanhThuTheoLoai);

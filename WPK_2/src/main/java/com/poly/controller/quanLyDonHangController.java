@@ -1,7 +1,9 @@
 package com.poly.controller;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,32 +45,7 @@ public class quanLyDonHangController {
 	@Autowired
 	SessionService session;
 
-//	@RequestMapping("form")
-//	public String form(Model model, @RequestParam("keywords")Optional<String > kw,@RequestParam("p") Optional<Integer> p) {
-//		int pageSize = 2;
-//		String kwords = kw.orElse(session.get("keywords"));
-//		session.set("keywords", kwords);
-//		Page<HoaDon> page; 
-////		if(kwords != null && kwords.equals("")) {
-////			Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
-////			page = hoadondao.findAllBytaiKhoanLike("%"+ kwords + "%", pageable);
-////		}else {
-////			Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
-////			page = hoadondao.findAll(pageable);
-////		}
-////		model.addAttribute("page",page);
-//		
-//		HoaDon hd = new HoaDon();
-//	
-//		Hoadonchitiet hdct = new Hoadonchitiet();
-//		List<Hoadonchitiet> listHDCT = hoadonchitietdao.findAll();
-//		model.addAttribute("item",hd);
-//		List<HoaDon> hds = hoadondao.findAll();
-//		model.addAttribute("items", hds);
-//		
-//		request.setAttribute("form_QLDonHang", "layout/admin/form_QLDonHang.jsp");
-//		return "quanLyDonHang";
-//	}
+
 
 	@RequestMapping("form")
 	public String form(Model model, HoaDon hoadon, @RequestParam(value = "keywords", required = false) String keywords,
@@ -93,61 +70,21 @@ public class quanLyDonHangController {
 		} else {
 			resultPage = hoadondao.findAll(pageable);
 		}
-
 		model.addAttribute("page", resultPage);
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		request.setAttribute("form_QLDonHang", "layout/admin/form_QLDonHang.jsp");
 		return "quanLyDonHang";
 	}
 
+//	chuyển sang trang cập nhật trạng thái controller
 	@RequestMapping("edit/{idHd}")
-	public String edit(Model model, @PathVariable("idHd") Integer idHd) {
+	public String edit(Model model ,@PathVariable("idHd") Integer  idHd) {
 		HoaDon hoadon = hoadondao.findById(idHd).get();
-//		hoadon.setTrangThai(true);
-		if (hoadon.getTrangThai() == false) {
-			hoadon.setTrangThai(true);
-			model.addAttribute("trangthai", hoadon.getTrangThai());
-//			 duyetButton.style.display = "none";
-//			    huyButton.style.display = "inline-block";
-		} else {
-			hoadon.setTrangThai(false);
-			model.addAttribute("trangthai", hoadon.getTrangThai());
-
-		}
-		hoadondao.save(hoadon);
-		hoadon.setTrangThai(hoadon.getTrangThai());
 		model.addAttribute("hoadon", hoadon);
-		return "redirect:/quanLyDonHang/form";
-
-//		model.addAttribute("item", item);
-//		List<Hoadonchitiet> items = hoadonchitietdao.findAll();
-//		model.addAttribute("items", items);
-//		request.setAttribute("view", "layout/user/chitietsanpham.jsp");
+		List<HoaDon> hoadons = hoadondao.findAll();
+		model.addAttribute("hoadons", hoadons);
+		request.setAttribute("form_QLDonHang", "layout/admin/form_QLDonHang.jsp");
+		return "capNhatTrangThai";
 	}
-
-	@RequestMapping("update")
-	public String update(HoaDon item) throws IllegalStateException, IOException {
-		hoadondao.save(item);
-		return "redirect:/product/edit/" + item.getIdHd();
-	}
-
-	@ModelAttribute("list_yesno")
-	public Map<Boolean, String> getYesno() {
-		Map<Boolean, String> map = new HashMap<>();
-		map.put(false, "No");
-		map.put(true, "Yes");
-		return map;
-	}
-
-//	@RequestMapping("search-and-page")
-//	public String searchAndPage(Model model, @RequestParam("keywords") Optional<String> kw,
-//			@RequestParam("p") Optional<Integer> p) {
-//		String kwords = kw.orElse(session.get("keywords"));
-//		session.set("keywords", kwords);
-//		Pageable pageable = PageRequest.of(p.orElse(0), 5);
-//		
-//		Page<HoaDon> page = hoadondao.findAllByNameLike("%" + kwords + "%", pageable);
-//
-//		model.addAttribute("page", page);
-//		return "quanLyDonHang";
-//	}
 }

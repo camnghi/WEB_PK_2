@@ -99,7 +99,7 @@
 						<button class="nav-link" id="thongkekythuat-tab"
 							data-bs-toggle="tab" data-bs-target="#thongkekythuat-tab-pane"
 							type="button" role="tab" aria-controls="thongkekythuat-tab-pane"
-							aria-selected="false">Thông kê kỹ thuật</button>
+							aria-selected="false">Thống kê kỹ thuật</button>
 					</li>
 				</ul>
 				<div class="tab-content" id="myTabContent">

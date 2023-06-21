@@ -68,10 +68,8 @@
 										<c:set var="totalAmount" value="${totalAmount + productTotal}" />
 									</c:forEach>
 
-									<td>${totalAmount}</td>
+									<td>${df.format(totalAmount)} VNĐ</td>
 									<!-- Hiển thị tổng tổng tiền -->
-
-									</td>
 
 								</tr>
 
@@ -102,9 +100,12 @@
 							<c:forEach var="hoadon" items="${hoadon.hoadonchitiet}">
 
 								<tr class="">
-									<td scope="row">0</td>
-									<td>${hoadon.sanpham.anhSp }</td>
-									<td>${hoadon.sanpham.tenSp }</td>
+									<td scope="row">1</td>
+									<td><img
+									src="/images/${hoadon.sanPham.anhSp}"
+									style="width: 40px; height: 40px;" /></td>
+									
+									<td>${hoadon.sanPham.tenSp }</td>
 									<td>${hoadon.soLuong }</td>
 
 									<td>${hoadon.soLuong*hoadon.gia}</td>

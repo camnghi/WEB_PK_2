@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.poly.entities.SanPham;
 import com.poly.entities.Loaisanpham;
+import com.poly.entities.SanPham;
 import com.poly.entities.Thuonghieu;
 import com.poly.repository.LoaisanphamDAO;
 import com.poly.repository.SanphamDAO;
@@ -89,7 +89,7 @@ public class quanLySanPham {
 		return "quanLySanPham";
 	}
 
-	
+
 	@RequestMapping("edit/{idSp}")
 	public String edit(Model model, @PathVariable("idSp") Integer idSp, @RequestParam("p") Optional<Integer> p) {
 		int pageSize = 4;

@@ -39,7 +39,7 @@ public class DanhSachSPLeoLoai {
 	ServletContext app;
 	@Autowired
 	SessionService session;
-	
+
 	@RequestMapping("SearchPage")
 	public String paginate(Model model, @RequestParam("keywords") Optional<String> kw,
 	        @RequestParam("p") Optional<Integer> p,
@@ -77,5 +77,5 @@ public class DanhSachSPLeoLoai {
 	    model.addAttribute("df", df);
 	    return "index_Main";
 	}
-	
+
 }

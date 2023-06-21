@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.entities.Chitietgiohang;
 import com.poly.entities.GioHang;
-import com.poly.entities.KhachHang;
 import com.poly.entities.Loaisanpham;
 import com.poly.entities.SanPham;
 import com.poly.repository.ChitietgiohangDAO;

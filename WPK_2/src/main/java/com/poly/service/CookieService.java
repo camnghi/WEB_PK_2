@@ -3,8 +3,6 @@ package com.poly.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.poly.entities.KhachHang;
-
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,7 +12,7 @@ public class CookieService {
 	HttpServletRequest request;
 	@Autowired
 	HttpServletResponse respone;
-	
+
 	public Cookie get(String name) {
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null) {
@@ -25,7 +23,7 @@ public class CookieService {
 		}
 		return null;
 	}
-	
+
 	public String getValue(String name) {
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null) {
@@ -37,7 +35,7 @@ public class CookieService {
 		}
 		return null;
 	}
-	
+
 	public Cookie add(String name, String value, int hours) {
 		Cookie cookie = new Cookie(name, value);
 		cookie.setMaxAge(hours * 60 * 60);
@@ -45,7 +43,7 @@ public class CookieService {
 		respone.addCookie(cookie);
 		return cookie;
 	}
-	
+
 	public void remove(String name) {
 		Cookie cookie = new Cookie(name, "");
 		cookie.setMaxAge(0);

@@ -2,6 +2,7 @@ package com.poly.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +39,7 @@ public class UserController {
 	@Autowired
 	LoaisanphamDAO dao;
 
-//	
+//
 	@Autowired
 	GiohangDAO giohangdao;
 
@@ -55,9 +56,9 @@ public class UserController {
 		KhachHang khachHangHienTai = (KhachHang) session.getAttribute("khachhang");
 		model.addAttribute("taiKhoan", khachHangHienTai.getTaiKhoan());
 	    model.addAttribute("hoTen", khachHangHienTai.getHoTen());
-	    model.addAttribute("email", khachHangHienTai.getEmail());	
+	    model.addAttribute("email", khachHangHienTai.getEmail());
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");				
+		response.setCharacterEncoding("UTF-8");
 		return "index_Main";
 	}
 
@@ -68,7 +69,7 @@ public class UserController {
 			@RequestParam("hoTen") String hoTen,
 			@RequestParam("email") String email) {
 		KhachHang khachHangHienTai = (KhachHang) session.getAttribute("khachhang");
-//Cập nhật thông tin		
+//Cập nhật thông tin
 		khachHangHienTai.setHoTen(hoTen);
 		khachHangHienTai.setEmail(email);
 	    redirectAttributes.addFlashAttribute("message", "Cập nhật thành công !");
@@ -76,7 +77,7 @@ public class UserController {
 		return "redirect:/index/CapNhat";
 	}
 
-// Đăng nhập 
+// Đăng nhập
 	@GetMapping("/DangNhap") // Gọi đến trang đăng nhập
 	public String form(Model model) throws UnsupportedEncodingException {
 		List<Loaisanpham> loaisanphams = dao.findAll();
@@ -86,7 +87,7 @@ public class UserController {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
-//		
+//
 		GioHang gh = new GioHang();
 		model.addAttribute("gh", gh);
 
@@ -108,14 +109,14 @@ public class UserController {
 		}
 	}
 
-//Đăng Xuất   
+//Đăng Xuất
 	@GetMapping("/DangXuat") // Đăng xuất tài khoản
 	public String logout() {
 		userService.logout();
 		return "redirect:/index/form";
 	}
 
-//Đăng kí    
+//Đăng kí
 	@GetMapping("DangKi") // Gọi form đăng kí
 	public String register(Model model) {
 		List<Loaisanpham> loaisanphams = dao.findAll();

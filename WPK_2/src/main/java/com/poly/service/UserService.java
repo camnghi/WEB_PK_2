@@ -3,9 +3,6 @@ package com.poly.service;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -19,7 +16,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -28,12 +25,12 @@ public class UserService {
 	HttpSession session;
 	@Autowired
 	private JavaMailSender javaMailSender;
-	
+
 	public void update(KhachHang khachhang) {
 		KHdao.save(khachhang);
 	}
-	
-	
+
+
 	public void login(String taiKhoan, String matKhau) {
 		KhachHang khachhang = userRepository.findByTaiKhoanAndMatKhau(taiKhoan, matKhau);
 		if (khachhang == null) {

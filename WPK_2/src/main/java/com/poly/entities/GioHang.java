@@ -35,7 +35,7 @@ public class GioHang implements Serializable {
 	@Override
 	public String toString() {
 		return "GioHang [idGh=" + idGh + ", khachHang=" + khachhang + ", soLuong=" + soLuong + ", chitietgiohang="
-				+ chitietgiohangs + "]";
+				+ chitietgiohang + "]";
 	}
 	
 	// tổng số sản phẩm đang có trong giỏ hàng
