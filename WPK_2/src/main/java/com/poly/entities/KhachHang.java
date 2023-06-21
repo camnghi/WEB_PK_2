@@ -42,7 +42,6 @@ public class KhachHang implements Serializable {
 
 	@OneToMany(mappedBy = "khachhang")
 	List<GioHang> giohang;
-	
 
 	@OneToMany(mappedBy = "khachhang")
 	List<HoaDon> hoadon;
@@ -51,11 +50,6 @@ public class KhachHang implements Serializable {
 	public String toString() {
 		return "KhachHang [taiKhoan=" + taiKhoan + ", matKhau=" + matKhau + ", hoTen=" + hoTen + ", email=" + email
 				+ ", trangThai=" + trangThai + ", admin=" + admin + ", maXacNhan=" + maXacNhan + "]";
-	}
-
-	public String getXacNhanMatKhau() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

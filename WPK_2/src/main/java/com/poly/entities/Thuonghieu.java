@@ -3,7 +3,6 @@ package com.poly.entities;
 import java.io.Serializable;
 import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,9 +23,8 @@ public class Thuonghieu implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_th")
 	Integer idTh;
-	@Column(name = "ten_th")
+	@NotBlank(message = "{NotBlank.thuonghieu.tenTH}")
 	String tenTh;
 	@OneToMany(mappedBy = "thuonghieu")
 	List<SanPham> sanphams;
