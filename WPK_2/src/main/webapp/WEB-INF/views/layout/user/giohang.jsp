@@ -14,32 +14,34 @@
 								<th>Sản phẩm</th>
 								<th>Đơn giá</th>
 								<th>Số lượng</th>
-								<th>Tổng tiền</th>
+								<th>Thành tiền</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${giohang.chitietgiohangs}"
 								var="chiTietGioHang">
-								
+
 								<tr>
-									<td><img src="/sanphams/${chiTietGioHang.sanpham.anhSp}" alt="${chiTietGioHang.sanpham.tenSp}" width="100px"></td>
+									<td><img src="/sanphams/${chiTietGioHang.sanpham.anhSp}"
+										alt="${chiTietGioHang.sanpham.tenSp}" width="60px"></td>
 									<td>${chiTietGioHang.sanpham.tenSp}</td>
-									<td>${chiTietGioHang.sanpham.giaSp}VNĐ</td>
+									<td>${df.format(chiTietGioHang.sanpham.giaSp)}VNĐ</td>
+
 									<td>
 										<form action="/giohang/capnhat/${chiTietGioHang.id_ctgh}"
 											method="post">
 											<input type="number" name="soLuong"
 												value="${chiTietGioHang.soLuong}" min="1"
 												max="${chiTietGioHang.sanpham.soLuong}" style="width: 50px;">
-											<button type="submit"
-												class="btn btn-outline-secondary btn-sm">Cập nhật</button>
+											<button type="submit" class="btn btn-primary btn-sm">Cập nhật</button>
 										</form>
 									</td>
-									<td>${chiTietGioHang.sanpham.giaSp * chiTietGioHang.soLuong}
+									<td>${df.format(chiTietGioHang.sanpham.giaSp * chiTietGioHang.soLuong)}
 										VNĐ</td>
 									<td>
-										<form action="/giohang/xoa/${chiTietGioHang.id_ctgh}" method="post">
+										<form action="/giohang/xoasanpham/${chiTietGioHang.id_ctgh}"
+											method="post">
 											<button type="submit" class="btn btn-outline-danger btn-sm">Xóa</button>
 										</form>
 									</td>
@@ -56,21 +58,22 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>Tổng số sản phẩm</td>
-<%-- 								<td>${giohang.tongSoSanPham()}</td> --%>
+								<td>Tổng số sản phẩm:</td>
+								<td>${giohang.tongSoSanPham()}</td>
 							</tr>
 							<tr>
 								<td>Tổng tiền</td>
-<%-- 								<td>${giohang.tongTien()}VNĐ</td> --%>
+								<td>${df.format(giohang.tongTien())}VNĐ</td>
 							</tr>
 						</tbody>
 					</table>
 					<div class="text-center">
 						<a href="/dathang/form" class="btn btn-warning btn-block">Tiến
-							hành đặt hàng</a> <a href="/sanpham/list"
-							class="btn btn-secondary btn-block">Tiếp tục mua sắm</a> <a
-							href="/lichsu/form" class="btn btn-outline-secondary btn-block">Xem
-							lịch sử mua hàng</a>
+							hành đặt hàng</a> <a href="/index/form"
+							class="btn btn-secondary btn-block">Tiếp tục mua sắm</a> <br>
+						<br> <a href="/lichsu/form"
+							class="btn btn-outline-secondary btn-block">Xem lịch sử mua
+							hàng</a>
 					</div>
 				</div>
 			</div>

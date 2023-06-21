@@ -19,6 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "Chitietgiohangs")
 public class Chitietgiohang implements Serializable {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_ctgh;
