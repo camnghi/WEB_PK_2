@@ -76,7 +76,7 @@
 								<td scope="row">${thuonghieu.idTh}</td>
 								<td>${thuonghieu.tenTh}</td>
 								<td>
-								<td><a href="/quanLyThuongHieu/edit/${thuonghieu.idTh}">Edit</a>
+								<td><a href="/quanLyThuongHieu/edit/${thuonghieu.idTh}">Chọn để sửa</a>
 									<a class="btn btn-danger btn-sm"
 									href="/quanLyThuongHieu/delete/${thuonghieu.idTh}"
 									role="button">Xóa</a></td>

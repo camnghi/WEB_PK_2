@@ -74,4 +74,20 @@ public class quanLyKhachHang {
 		request.setAttribute("form_QLKhachHang", "layout/admin/form_QLKhachHang.jsp");
 		return "quanLyKhachHang";
 	}
+
+	@GetMapping("/adminCustomers")
+	public String getAdminCustomers(Model model) {
+		List<KhachHang> khachhangs = dao.findAdminCustomers();
+		model.addAttribute("khachhangs", khachhangs);
+		request.setAttribute("form_QLKhachHang", "layout/admin/form_QLKhachHang.jsp");
+		return "quanLyKhachHang";
+	}
+
+	@GetMapping("/unadminCustomers")
+	public String getUnAdminCustomers(Model model) {
+		List<KhachHang> khachhangs = dao.findUnAdminCustomers();
+		model.addAttribute("khachhangs", khachhangs);
+		request.setAttribute("form_QLKhachHang", "layout/admin/form_QLKhachHang.jsp");
+		return "quanLyKhachHang";
+	}
 }

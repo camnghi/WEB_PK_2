@@ -16,20 +16,7 @@
 							<th>TỔNG TIỀN</th>
 							<th></th>
 						</tr>
-						<form action="/giohang/form" method="post" enctype="multipart/form-data" >
-							<c:forEach var="item" items="${ctgh}">
-								<tr>
-									<td><img alt="" src="/img/${ctgh.anhSp}"
-										width="100px">
-									<td>${ctgh.tenSp}
-									<td>${ctgh.giaSp}</td>
-									<td><input name="soLuong" value="${ctgh.soluong}"
-										onblur="this.form.submit()" style="width: 50px;"></td>
-									<td>${ctgh.giaSp * ctgh.soluong}</td>
-									<%-- <td><a href="${cart.sanpham}">Xóa</a></td> --%>
-								</tr>
-							</c:forEach>
-						</form>
+
 					</table>
 					<button class="btn btn-outline-light bg-secondary"
 						style="float: right;">Cập nhật giỏ hàng</button>
