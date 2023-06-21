@@ -52,4 +52,9 @@ public class KhachHang implements Serializable {
 				+ ", trangThai=" + trangThai + ", admin=" + admin + ", maXacNhan=" + maXacNhan + "]";
 	}
 
+	public String getXacNhanMatKhau() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
