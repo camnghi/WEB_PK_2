@@ -1,5 +1,7 @@
 package com.poly.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -52,6 +55,38 @@ public class quanLyKhachHang {
 		}
 
 		model.addAttribute("page", resultPage);
+		request.setAttribute("form_QLKhachHang", "layout/admin/form_QLKhachHang.jsp");
+		return "quanLyKhachHang";
+	}
+
+	@GetMapping("/active")
+	public String getTrangThaiTrue(Model model) {
+		List<KhachHang> khachhangs = dao.findActiveCustomers();
+		model.addAttribute("khachhangs", khachhangs);
+		request.setAttribute("form_QLKhachHang", "layout/admin/form_QLKhachHang.jsp");
+		return "quanLyKhachHang";
+	}
+
+	@GetMapping("/unactive")
+	public String getTrangThaiFalse(Model model) {
+		List<KhachHang> khachhangs = dao.findUnActiveCustomers();
+		model.addAttribute("khachhangs", khachhangs);
+		request.setAttribute("form_QLKhachHang", "layout/admin/form_QLKhachHang.jsp");
+		return "quanLyKhachHang";
+	}
+
+	@GetMapping("/adminCustomers")
+	public String getAdminCustomers(Model model) {
+		List<KhachHang> khachhangs = dao.findAdminCustomers();
+		model.addAttribute("khachhangs", khachhangs);
+		request.setAttribute("form_QLKhachHang", "layout/admin/form_QLKhachHang.jsp");
+		return "quanLyKhachHang";
+	}
+
+	@GetMapping("/unadminCustomers")
+	public String getUnAdminCustomers(Model model) {
+		List<KhachHang> khachhangs = dao.findUnAdminCustomers();
+		model.addAttribute("khachhangs", khachhangs);
 		request.setAttribute("form_QLKhachHang", "layout/admin/form_QLKhachHang.jsp");
 		return "quanLyKhachHang";
 	}

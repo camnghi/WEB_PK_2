@@ -63,7 +63,7 @@
 									<div id="rm-booking" class="input-group">
 										<a href="/giohang/themvaogiohang/${item.idSp}">
 											<div type="button" class="big-button button-red left">
-												<strong>THÊM VÀO GIỎ HÀNG</strong>
+												<button formaction="/chitiet/add/${idSp}">Thêm vào giỏ hàng</button>
 											</div>
 										</a>
 

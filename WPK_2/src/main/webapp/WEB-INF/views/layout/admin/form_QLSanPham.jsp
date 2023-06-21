@@ -88,9 +88,7 @@
 								<form:textarea path="moTa" placeholder="Mô tả"
 									class="form-control form-control-sm" />
 								<br>
-
 							</div>
-
 							<!-- Button -->
 							<div class="col-sm-12 col-md-12 col-lg-12 text-center">
 								<button class="btn btn-primary" formaction="/quanLySanPham/form"
@@ -100,12 +98,9 @@
 								<button type="submit" class="btn btn-warning"
 									formaction="/quanLySanPham/update" role="button">Sửa</button>
 							</div>
-
 						</div>
 					</div>
 				</div>
-
-
 				<!-- tìm kiếm -->
 				<div class="timkiem">
 					<input name="keywords" value="">
