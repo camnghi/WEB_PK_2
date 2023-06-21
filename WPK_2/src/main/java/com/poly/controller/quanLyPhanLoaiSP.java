@@ -89,11 +89,18 @@ public class quanLyPhanLoaiSP {
 	}
 
 	@RequestMapping("delete/{idLoai}")
-	public String delete(Model model, @PathVariable("idLoai") Integer idLoai) {
-		loaisanphamdao.deleteById(idLoai);
-
-		List<Loaisanpham> loaisanphams = loaisanphamdao.findAll();
-		model.addAttribute("loaisanphams", loaisanphams);
+	public String delete(Model model, @PathVariable("idLoai") Integer idLoai, RedirectAttributes redirectAttributes) {
+		try {
+			loaisanphamdao.deleteById(idLoai);
+			List<Loaisanpham> loaisanphams = loaisanphamdao.findAll();
+			model.addAttribute("loaisanphams", loaisanphams);
+			request.setAttribute("form_PLSanPham", "layout/admin/form_PLSanPham.jsp");
+			return "redirect:/phanLoaiSP/form";
+		} catch (Exception e) {
+			// TODO: handle exception
+			redirectAttributes.addFlashAttribute("errorDelete", "Loại sản phẩm bạn xóa đã được dùng");
+		}
+		
 
 		request.setAttribute("form_PLSanPham", "layout/admin/form_PLSanPham.jsp");
 		return "redirect:/phanLoaiSP/form";

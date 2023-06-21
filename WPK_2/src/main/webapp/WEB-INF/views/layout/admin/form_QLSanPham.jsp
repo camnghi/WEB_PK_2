@@ -11,7 +11,10 @@
 </style>
 <div class="alert alert-primary" role="alert">
 	<h4 class="card-title">QUẢN LÝ SẢN PHẨM</h4>
-	${message}
+	<div class="style">
+		${message}
+		${errorDelete}
+	</div>
 	<div class="card">
 		<div class="card-body">
 			<form:form action="/quanLySanPham/form" modelAttribute="sanpham"
@@ -157,7 +160,8 @@
 							<tr>
 								<td scope="row">${sanPham.idSp}</td>
 								<td>${sanPham.tenSp}</td>
-								<td>${sanPham.giaSp}</td>
+<%-- 								<td>${sanPham.giaSp}</td> --%>
+								<td>${df.format(sanPham.giaSp)} VNĐ</td>
 								<td style="width: 40px; height: 40px;"><img
 									src="/images/${sanPham.anhSp}"
 									style="width: 40px; height: 40px;" /></td>

@@ -65,6 +65,7 @@ public class quanLySanPham {
 			@RequestParam(value = "keywords", required = false) String keywords,
 			@RequestParam(value = "field", required = false) String field,
 			@RequestParam(value = "p", required = false) Integer page) {
+		
 		sanpham.setTenSp("");
 		sanpham.setGiaSp(null);
 		sanpham.setSoLuong(null);
@@ -90,7 +91,8 @@ public class quanLySanPham {
 		}
 		model.addAttribute("sanpham", sanpham);
 		model.addAttribute("page", resultPage);
-
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		request.setAttribute("form_QLSanPham", "layout/admin/form_QLSanPham.jsp");
 		return "quanLySanPham";
 	}
@@ -106,17 +108,26 @@ public class quanLySanPham {
 		Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
 		page = sanphamdao.findAll(pageable);
 		model.addAttribute("page", page);
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		request.setAttribute("form_QLSanPham", "layout/admin/form_QLSanPham.jsp");
 		return "quanLySanPham";
 	}
 
 	@RequestMapping("delete/{idSp}")
-	public String delete(Model model, @PathVariable("idSp") Integer idSp) {
-		sanphamdao.deleteById(idSp);
+	public String delete(Model model, @PathVariable("idSp") Integer idSp, RedirectAttributes redirectAttributes) {
+		try {
+			sanphamdao.deleteById(idSp);
 
-		List<SanPham> items = sanphamdao.findAll();
-		model.addAttribute("items", items);
-
+			List<SanPham> items = sanphamdao.findAll();
+			model.addAttribute("items", items);
+			request.setAttribute("form_QLSanPham", "layout/admin/form_QLSanPham.jsp");
+			return "redirect:/quanLySanPham/form";
+		} catch (Exception e) {
+			// TODO: handle exception
+			redirectAttributes.addFlashAttribute("errorDelete", "Sản phẩm đang được dùng bên bảng khác, không thể xóa!");
+		}
+		
 		request.setAttribute("form_QLSanPham", "layout/admin/form_QLSanPham.jsp");
 		return "redirect:/quanLySanPham/form";
 	}

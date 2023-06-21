@@ -9,6 +9,10 @@
 }
 </style>
 <div class="alert alert-primary" role="alert">
+	<div class="mgs_errors">
+		${errorDelete}
+		${errorDelete}
+	</div>
 	<h4 class="card-title">PHÂN LOẠI</h4>
 	<div class="card">
 		<form:form action="/phanLoaiSP/form" modelAttribute="loaisanpham" method="POST">
