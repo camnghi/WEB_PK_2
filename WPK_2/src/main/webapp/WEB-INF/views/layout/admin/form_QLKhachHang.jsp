@@ -25,10 +25,10 @@
 				data-bs-toggle="dropdown" aria-expanded="false">Chọn trạng
 				thái lọc</button>
 			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="/quanLyKhachHang/active">Đang
+				<li><a class="dropdown-item" href="/quanLyKhachHang/active">Đã
 						kích hoạt</a></li>
-				<li><a class="dropdown-item" href="/quanLyKhachHang/unactive">Đã
-						khóa</a></li>
+				<li><a class="dropdown-item" href="/quanLyKhachHang/unactive">
+						Chưa kích hoạt</a></li>
 			</ul>
 		</div>
 
@@ -67,9 +67,9 @@
 							<td>${item.hoTen}</td>
 							<td>${item.email}</td>
 							<td><c:if test="${item.trangThai == true}"> 
-			 						Đang sử dụng
+			 						Đã kích hoạt
 			 					</c:if> <c:if test="${item.trangThai == false}"> 
-			 						Đã khóa
+			 						Chưa kích hoạt
 			 					</c:if></td>
 
 							<td><c:if test="${item.admin == true}"> 
@@ -86,9 +86,9 @@
 							<td>${khachhang.hoTen}</td>
 							<td>${khachhang.email}</td>
 							<td><c:if test="${khachhang.trangThai == true}"> 
-			 						Đang sử dụng
+			 						Đã kích hoạt
 			 					</c:if> <c:if test="${khachhang.trangThai == false}"> 
-			 						Đã khóa
+			 						Chưa kích hoạt
 			 					</c:if></td>
 
 							<td><c:if test="${khachhang.admin == true}"> 
