@@ -12,7 +12,7 @@ import com.poly.repository.ChitietgiohangDAO;
 import com.poly.repository.GiohangDAO;
 import com.poly.repository.KhachhangDAO;
 import com.poly.repository.SanphamDAO;
-import com.poly.service.GioHangService;
+//import com.poly.service.GioHangService;
 import com.poly.service.SessionService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,8 +35,8 @@ public class chitietsanphamController {
 	ChitietgiohangDAO ctghdao;
 	@Autowired
 	SessionService session;
-	@Autowired
-	GioHangService ghService;
+//	@Autowired
+//	GioHangService ghService;
 
 	@RequestMapping("chitietsanpham")
 	public String form(Model model) {
