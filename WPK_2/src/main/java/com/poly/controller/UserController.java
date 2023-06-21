@@ -2,6 +2,8 @@ package com.poly.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import com.poly.entities.KhachHang;
 import com.poly.entities.Loaisanpham;
 import com.poly.repository.GiohangDAO;
 import com.poly.repository.LoaisanphamDAO;
+import com.poly.service.DuplicateEntryException;
 import com.poly.service.UserService;
 
 import jakarta.servlet.http.Cookie;
@@ -145,47 +148,59 @@ public class UserController {
 		response.setCharacterEncoding("UTF-8");
 		return "index_Main";
 	}
+	
+//	@PostMapping("/DangKi") // Ấn button đăng kí
+//	public String register(@ModelAttribute("khachhang") KhachHang khachhang, BindingResult bindingResult, Model model) {
+//		if (bindingResult.hasErrors()) {
+//			return "/index/DangKi";
+//		}
+//		userService.register(khachhang);
+//		return "redirect:/index/XacNhan";// Qua trang xác nhận pass
+//	}
 
 	@PostMapping("/DangKi") // Ấn button đăng kí
-	public String register(@ModelAttribute("khachhang") KhachHang khachhang, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			return "/index/DangKi";
+	public String register(@ModelAttribute("khachhang") KhachHang khachhang, BindingResult bindingResult, Model model, @RequestParam("nhapLaiMatKhau") String nhapLaiMatKhau) {
+	    if (bindingResult.hasErrors()) {
+	        return "/index/DangKi";
+	    }
+
+	    // Kiểm tra tài khoản và email đã tồn tại trong cơ sở dữ liệu hay chưa
+	    if (userService.existsByTaiKhoan(khachhang.getTaiKhoan())) {
+	        model.addAttribute("taiKhoanError", "Tài khoản đã tồn tại");
+	        request.setAttribute("view", "DangKi");
+			response.setCharacterEncoding("UTF-8");
+	        return "index_Main";
+	    }
+	    if (userService.existsByEmail(khachhang.getEmail())) {
+	        model.addAttribute("emailError", "Email đã tồn tại");
+	        request.setAttribute("view", "DangKi");
+			response.setCharacterEncoding("UTF-8");
+	        return "index_Main";
+	    }
+	    
+	    // Kiểm tra mật khẩu và nhập lại mật khẩu có trùng nhau hay không
+	    if (!khachhang.getMatKhau().equals(nhapLaiMatKhau)) {
+	        model.addAttribute("matKhauError", "Mật khẩu và nhập lại mật khẩu không trùng khớp");
+	        request.setAttribute("view", "DangKi");
+			response.setCharacterEncoding("UTF-8");
+	        return "index_Main";
+	    }
+
+	    try {
+			userService.register(khachhang);
+		} catch (InvalidInputException e) {
+			  model.addAttribute("errorMessage", e.getMessage());
+			  request.setAttribute("view", "DangKi");
+			 response.setCharacterEncoding("UTF-8");
+		      return "index_Main";
+		} catch (DuplicateEntryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		userService.register(khachhang);
-		return "redirect:/index/XacNhan";// Qua trang xác nhận pass
+	    return "redirect:/index/XacNhan";// Qua trang xác nhận pass
 	}
 	
-//	@PostMapping("/register")
-//	public String registerUser(@ModelAttribute("user") @Valid KhachHang khachHang, BindingResult bindingResult, Model model) {
-//	    if (bindingResult.hasErrors()) {
-//	        // Trả về trang đăng ký với thông báo lỗi
-//	        return "register";
-//	    }
-//
-//	    // Kiểm tra tên tài khoản đã tồn tại trong cơ sở dữ liệu hay chưa
-//	    if (userService.existsByUsername(khachHang.getUsername())) {
-//	        bindingResult.rejectValue("username", "error.user", "Tên tài khoản đã tồn tại. Vui lòng chọn tên tài khoản khác.");
-//	        return "register";
-//	    }
-//
-//	    // Kiểm tra mật khẩu và nhập lại mật khẩu có khớp nhau hay không
-//	    if (!khachHang.getPassword().equals(khachHang.getConfirmPassword())) {
-//	        bindingResult.rejectValue("confirmPassword", "error.user", "Mật khẩu và nhập lại mật khẩu không khớp nhau.");
-//	        return "register";
-//	    }
-//
-//	    // Kiểm tra email đã tồn tại trong cơ sở dữ liệu hay chưa
-//	    if (userService.existsByEmail(khachHang.getEmail())) {
-//	        bindingResult.rejectValue("email", "error.user", "Email đã tồn tại. Vui lòng sử dụng email khác.");
-//	        return "register";
-//	    }
-//
-//	    // Xử lý đăng ký người dùng ở đây
-//	    userService.register(khachHang);
-//
-//	    // Chuyển hướng đến trang chủ nếu đăng ký thành công
-//	    return "redirect:/home";
-//	}
+
 
 	// Mã xác nhận
 	@GetMapping("/XacNhan") // Qua trang xác nhận
@@ -203,8 +218,10 @@ public class UserController {
 			userService.verify(code);
 			return "redirect:/index/XacNhanOk";
 		} catch (Exception e) {
-			model.addAttribute("error", e.getMessage());
-			return "redirect:/index/XacNhan";
+			 model.addAttribute("errorMessage", "Sai mã xác nhận");
+			 request.setAttribute("view", "nhapmaXN");
+			response.setCharacterEncoding("UTF-8");
+			return "index_Main";
 		}
 	}
 

@@ -19,15 +19,7 @@
 
 				<li><a href="/giohang/form"><i
 						class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
-				<%--  <li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
-					<ul class="sub-menu">						
-						<li><a href="/index/DangNhap">Đăng nhập: ${khachhang.taiKhoan}</a></li>
-						<li><a href="/index/DangKi">Đăng ký </a></li>
-						<li><a href="/index/doimatkhau">Đổi mật khẩu </a></li>
-						<li><a href="/index/CapNhat">Cập nhật tài khoản</a></li>
-						<li><a href="/index/DangXuat">Đăng xuất </a></li>
-					</ul></li>   --%>
-
+<!--Vinh sua  -->
 				<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
 			    <ul class="sub-menu">
 			        <%

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Random;
 import java.net.URLEncoder;
 
+import org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -30,6 +31,17 @@ public class UserService {
 	HttpSession session;
 	@Autowired
 	private JavaMailSender javaMailSender;
+	
+	 public boolean existsByTaiKhoan(String taiKhoan) {
+	        return userRepository.existsByTaiKhoan(taiKhoan);
+	    }
+
+	 public boolean existsByEmail(String email) {
+	        return userRepository.existsByEmail(email);
+	   }
+	 public void register1(KhachHang khachHang) {
+	        userRepository.save(khachHang);
+	    }
 	
 	public void update(KhachHang khachhang) {
 		KHdao.save(khachhang);
@@ -73,64 +85,45 @@ public class UserService {
 	    // Trả về tên của view cho giao diện khách hàng
 	    return "index/form";
 	}
-//login cũ ko có cookie
-//	public void login(String taiKhoan, String matKhau,Model model)  throws IOException { 
-//		KhachHang khachhang = userRepository.findByTaiKhoanAndMatKhau(taiKhoan, matKhau);
-//		   if (khachhang == null) {
-//			   throw new RuntimeException("Tên đăng nhập hoặc mật khẩu không đúng");
-//		    }
-//		    if (!khachhang.isTrangThai()) {
-//		    	 throw new RuntimeException("Tài khoản của bạn đã chưa được xác minh,vui lòng kiểm tra mail hoặc chọn vào quên mật khẩu");
-//		    }
-//		session.setAttribute("khachhang", khachhang); // lưu thông tin đăng nhập vào session
-//	}
 
 	public void logout() {
 		session.removeAttribute("khachhang"); // xóa thông tin đăng nhập khỏi session
 	}
 	
 
-//	public void register(KhachHang khachhang) {
-//		khachhang.setAdmin(false);
-//		khachhang.setTrangThai(false);
-//		String maXacNhan = generateVerificationCode();
-//		khachhang.setMaXacNhan(maXacNhan); // lưu mã xác nhận vào đối tượng User
-//		userRepository.save(khachhang); // lưu đối tượng User vào cơ sở dữ liệu
-//		sendVerificationEmail(khachhang, maXacNhan);
-//	}
-	
-	public void register(KhachHang khachhang) {
-	    // Kiểm tra tên tài khoản đã tồn tại trong cơ sở dữ liệu chưa
-	    if (userRepository.findByTaiKhoan(khachhang.getTaiKhoan()) != null) {
-	        throw new RuntimeException("Tên tài khoản đã tồn tại.");
+	public void register(KhachHang khachhang) throws InvalidInputException, DuplicateEntryException {
+	    // kiểm tra tính hợp lệ của dữ liệu đầu vào
+	    if (khachhang.getTaiKhoan().isEmpty()) {
+	        throw new InvalidInputException("Tài khoản không được để trống");
 	    }
-	    
-	    // Kiểm tra email đã tồn tại trong cơ sở dữ liệu chưa
-	    if (userRepository.findByEmail(khachhang.getEmail()) != null) {
-	        throw new RuntimeException("Email đã tồn tại.");
+	    if (khachhang.getMatKhau().isEmpty()) {
+	        throw new InvalidInputException("Mật khẩu không được để trống");
 	    }
-	    
-	    // Kiểm tra trường mật khẩu và xác nhận mật khẩu có khớp nhau không
-	    String matKhau = khachhang.getMatKhau();
-	    String xacNhanMatKhau = khachhang.getXacNhanMatKhau();
-	    if (!matKhau.equals(xacNhanMatKhau)) {
-	        throw new RuntimeException("Mật khẩu và xác nhận mật khẩu không khớp.");
+	    if (!isValidEmail(khachhang.getEmail())) {
+	        throw new InvalidInputException("Email không hợp lệ");
 	    }
-	    
-	    // Set giá trị mặc định cho khách hàng
+
+	    // kiểm tra tài khoản và email đã tồn tại trong cơ sở dữ liệu hay chưa
+	    if (userRepository.existsByTaiKhoan(khachhang.getTaiKhoan())) {
+	        throw new DuplicateEntryException("Tài khoản đã tồn tại");
+	    }
+	    if (userRepository.existsByEmail(khachhang.getEmail())) {
+	        throw new DuplicateEntryException("Email đã tồn tại");
+	    }
+
+	    // lưu thông tin khách hàng vào cơ sở dữ liệu
 	    khachhang.setAdmin(false);
 	    khachhang.setTrangThai(false);
 	    String maXacNhan = generateVerificationCode();
-	    khachhang.setMaXacNhan(maXacNhan);
-	    
-	    // Lưu khách hàng vào cơ sở dữ liệu
-	    userRepository.save(khachhang);
-	    
-	    // Gửi email xác nhận đến khách hàng
+	    khachhang.setMaXacNhan(maXacNhan); // lưu mã xác nhận vào đối tượng User
+	    userRepository.save(khachhang); // lưu đối tượng User vào cơ sở dữ liệu
 	    sendVerificationEmail(khachhang, maXacNhan);
 	}
 	
-
+	public boolean isValidEmail(String email) {
+	    String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+	    return email.matches(regex);
+	}
 
 	@Transactional
 	public void verify(String code) {
