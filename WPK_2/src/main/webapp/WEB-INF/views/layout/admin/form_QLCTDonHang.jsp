@@ -108,7 +108,7 @@
 									<td>${hoadon.sanPham.tenSp }</td>
 									<td>${hoadon.soLuong }</td>
 
-									<td>${hoadon.soLuong*hoadon.gia}</td>
+									<td>${df.format(hoadon.soLuong*hoadon.gia)} VNĐ</td>
 								</tr>
 
 							</c:forEach>

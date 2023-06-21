@@ -1,7 +1,5 @@
 package com.poly.repository;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,6 +30,8 @@ public interface SanphamDAO extends JpaRepository<SanPham, Integer> {
 	Page<SanPham> findAllByOrderByGiaSpAsc(Pageable pageable);
 	Page<SanPham> findAllBytenSpContainingOrderByGiaSpAsc(String tenSp, Pageable pageable);
 	Page<SanPham> findAllBytenSpContainingOrderByGiaSpDesc(String string, Pageable pageable);
+
+//	SanPham findByIdSp(Integer idSp);
 	
 
 	

@@ -182,6 +182,8 @@ public class GioHangController {
 	    model.addAttribute("view", "dathang");
 	    DecimalFormat df = new DecimalFormat("#,###");
 	    model.addAttribute("df", df);
+	    List<Loaisanpham> loaisanphams = dao.findAll();
+		model.addAttribute("loaisanphams", loaisanphams);
 	    return "index_Main";
 	}
 	@RequestMapping("thanhToan")

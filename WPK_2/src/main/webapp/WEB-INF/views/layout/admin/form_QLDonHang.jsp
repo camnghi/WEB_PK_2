@@ -40,7 +40,7 @@
 					<tr class></tr>
 					<td>${item.idHd }</td>
 					<td>${item.khachhang.taiKhoan}</td>
-					<td>${df.format(item.tongTien)}VNĐ</td>
+					<td>${df.format(item.tongTien)}VNĐ</td>					
 					<td>${item.trangThai}</td>
 
 					<td>

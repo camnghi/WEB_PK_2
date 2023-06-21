@@ -67,6 +67,8 @@ public class MainController {
 		model.addAttribute("item", item);
 		List<SanPham> items = sanphamdao.findAll();
 		model.addAttribute("items", items);
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		return "chitietsanpham";
 	}
 }

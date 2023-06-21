@@ -43,7 +43,7 @@ public class SanPham implements Serializable {
 	@Min(value = 0, message = "Không nhập giá âm hoặc có chữ cái")
 	@NotNull(message = "Không để trống giá")
 	@Column(name = "gia_sp")
-	Long giaSp;
+	Double giaSp;
 	
 	@Column(name = "anh_sp")
 	String anhSp;

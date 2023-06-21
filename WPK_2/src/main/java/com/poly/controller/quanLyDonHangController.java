@@ -70,6 +70,7 @@ public class quanLyDonHangController {
 		model.addAttribute("page", resultPage);
 		DecimalFormat df = new DecimalFormat("#,###");
 	    model.addAttribute("df", df);
+	    
 		request.setAttribute("form_QLDonHang", "layout/admin/form_QLDonHang.jsp");
 		return "quanLyDonHang";
 	}
