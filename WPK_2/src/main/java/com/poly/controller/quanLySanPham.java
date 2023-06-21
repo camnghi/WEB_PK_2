@@ -186,7 +186,7 @@ public class quanLySanPham {
 				System.out.println(sanpham.getNgayTao());
 
 				sanphamdao.save(sanpham);
-				model.addAttribute("message", "Thêm thành công!");
+				redirectAttributes.addFlashAttribute("message", "Thêm thành công");
 			}
 		}
 		return "redirect:/quanLySanPham/form";
@@ -233,9 +233,7 @@ public class quanLySanPham {
 					break;
 				}
 			}
-			if (isSanPhamExists) {
-				redirectAttributes.addFlashAttribute("tenSpTonTai", "Vui lòng cập nhật tên mới");
-			} else {
+			
 				String filename = img.getOriginalFilename();
 				File file = new File(app.getRealPath("/images/" + filename));
 				img.transferTo(file);
@@ -243,8 +241,8 @@ public class quanLySanPham {
 				sanpham.setNgayTao(new Date());
 				System.out.println(sanpham.getNgayTao());
 				sanphamdao.save(sanpham);
-				model.addAttribute("message", "Cập nhật thành công!");
-			}
+				redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
+			
 		}
 		return "redirect:/quanLySanPham/edit/" + sanpham.getIdSp();
 	}

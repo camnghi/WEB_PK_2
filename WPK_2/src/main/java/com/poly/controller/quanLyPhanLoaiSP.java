@@ -148,15 +148,9 @@ public class quanLyPhanLoaiSP {
 					break; // Thoát vòng lặp khi tìm thấy tên loại trùng lặp
 				}
 			}
-
-			if (isTenLoaiExists) {
-				redirectAttributes.addFlashAttribute("message", "Tên loại đã tồn tại");
-			} else {
 				loaisanphamdao.save(loaisanpham);
 				redirectAttributes.addFlashAttribute("message", "Sửa thành công");
-			}
 		}
 		return "redirect:/phanLoaiSP/edit/" + loaisanpham.getIdLoai();
 	}
-
 }
