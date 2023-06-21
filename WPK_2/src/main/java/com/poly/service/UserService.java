@@ -37,6 +37,7 @@ public class UserService {
 			throw new RuntimeException("Tên đăng nhập hoặc mật khẩu không đúng");
 		}
 		session.setAttribute("khachhang", khachhang); // lưu thông tin đăng nhập vào session
+		session.setAttribute("taikhoan", khachhang.getTaiKhoan());
 	}
 
 	public void logout() {

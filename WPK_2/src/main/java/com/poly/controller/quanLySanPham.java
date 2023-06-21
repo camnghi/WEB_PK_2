@@ -2,6 +2,8 @@ package com.poly.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.http.HttpResponse;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,12 +19,14 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.entities.Loaisanpham;
 import com.poly.entities.SanPham;
@@ -61,10 +65,13 @@ public class quanLySanPham {
 			@RequestParam(value = "keywords", required = false) String keywords,
 			@RequestParam(value = "field", required = false) String field,
 			@RequestParam(value = "p", required = false) Integer page) {
+		
 		sanpham.setTenSp("");
-		sanpham.setGiaSp(0.0);
-		sanpham.setSoLuong(0);
-		int pageSize = 4;
+		sanpham.setGiaSp(null);
+		sanpham.setSoLuong(null);
+		sanpham.setMoTa("");
+
+		int pageSize = 6;
 		String kwords = keywords != null ? keywords : session.get("keywords");
 
 		Pageable pageable;
@@ -84,7 +91,8 @@ public class quanLySanPham {
 		}
 		model.addAttribute("sanpham", sanpham);
 		model.addAttribute("page", resultPage);
-
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		request.setAttribute("form_QLSanPham", "layout/admin/form_QLSanPham.jsp");
 		return "quanLySanPham";
 	}
@@ -92,61 +100,151 @@ public class quanLySanPham {
 
 	@RequestMapping("edit/{idSp}")
 	public String edit(Model model, @PathVariable("idSp") Integer idSp, @RequestParam("p") Optional<Integer> p) {
-		int pageSize = 4;
+		boolean isEditMode = (idSp != null); // Kiểm tra nếu có giá trị idLoai tức là đang ở chế độ sửa
+		model.addAttribute("isEditMode", isEditMode);
+		int pageSize = 6;
 		SanPham sanpham = sanphamdao.findById(idSp).get();
 		model.addAttribute("sanpham", sanpham);
 		Page<SanPham> page;
 		Pageable pageable = PageRequest.of(p.orElse(0), pageSize);
 		page = sanphamdao.findAll(pageable);
 		model.addAttribute("page", page);
+		DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
 		request.setAttribute("form_QLSanPham", "layout/admin/form_QLSanPham.jsp");
 		return "quanLySanPham";
 	}
 
 	@RequestMapping("delete/{idSp}")
-	public String delete(Model model, @PathVariable("idSp") Integer idSp) {
-		sanphamdao.deleteById(idSp);
+	public String delete(Model model, @PathVariable("idSp") Integer idSp, RedirectAttributes redirectAttributes) {
+		try {
+			sanphamdao.deleteById(idSp);
 
-		List<SanPham> items = sanphamdao.findAll();
-		model.addAttribute("items", items);
-
+			List<SanPham> items = sanphamdao.findAll();
+			model.addAttribute("items", items);
+			request.setAttribute("form_QLSanPham", "layout/admin/form_QLSanPham.jsp");
+			return "redirect:/quanLySanPham/form";
+		} catch (Exception e) {
+			// TODO: handle exception
+			redirectAttributes.addFlashAttribute("errorDelete", "Sản phẩm đang được dùng bên bảng khác, không thể xóa!");
+		}
+		
 		request.setAttribute("form_QLSanPham", "layout/admin/form_QLSanPham.jsp");
 		return "redirect:/quanLySanPham/form";
 	}
 
 	@RequestMapping("create")
-	public String create(@Validated Model model, SanPham sanpham, BindingResult result,
-			@RequestParam("photo_file") MultipartFile img) throws IllegalStateException, IOException {
-		if (sanpham == null) {
-			return "redirect:/quanLySanPham/form";
+	public String create(@Validated @ModelAttribute("sanpham") SanPham sanpham, BindingResult result,
+			@RequestParam("photo_file") MultipartFile img, Model model, RedirectAttributes redirectAttributes,
+			@RequestParam(value = "keywords", required = false) String keywords,
+			@RequestParam(value = "field", required = false) String field,
+			@RequestParam(value = "p", required = false) Integer page, @RequestParam("tenSp") String tenSp)
+			throws IllegalStateException, IOException {
+		if (result.hasErrors()) {
+			int pageSize = 6;
+			String kwords = keywords != null ? keywords : session.get("keywords");
+
+			Pageable pageable;
+			if (field != null) {
+				Sort sort = Sort.by(Direction.ASC, field);
+				model.addAttribute("field", field.toUpperCase());
+				pageable = PageRequest.of(page != null ? page : 0, pageSize, sort);
+			} else {
+				pageable = PageRequest.of(page != null ? page : 0, pageSize);
+			}
+
+			Page<SanPham> resultPage;
+			if (kwords != null && !kwords.equals("")) {
+				resultPage = sanphamdao.findAllBytenSpLike("%" + kwords + "%", pageable);
+			} else {
+				resultPage = sanphamdao.findAll(pageable);
+			}
+			model.addAttribute("message", "Vui lòng nhập đầy đủ thông tin");
+			model.addAttribute("sanpham", sanpham);
+			model.addAttribute("page", resultPage);
+			request.setAttribute("form_QLSanPham", "layout/admin/form_QLSanPham.jsp");
+			return "quanLySanPham";
+
 		} else if (img.isEmpty()) {
-			return "redirect:/quanLySanPham/form";
+			redirectAttributes.addFlashAttribute("hinhanh", "Chưa thêm hình ảnh");
+		} else {
+			boolean isSanPhamExists = false;
+			List<SanPham> sanphams = sanphamdao.findAll();
+			for (SanPham sp : sanphams) {
+				if (sp.getTenSp().equalsIgnoreCase(tenSp)) {
+					isSanPhamExists = true;
+					break;
+				}
+			}
+			if (isSanPhamExists) {
+				redirectAttributes.addFlashAttribute("tenSpTonTai", "Tên sản phẩm đã tồn tại");
+			} else {
+				String filename = img.getOriginalFilename();
+				File file = new File(app.getRealPath("/images/" + filename));
+				img.transferTo(file);
+				sanpham.setAnhSp(filename);
+				sanpham.setNgayTao(new Date());
+				System.out.println(sanpham.getNgayTao());
+
+				sanphamdao.save(sanpham);
+				redirectAttributes.addFlashAttribute("message", "Thêm thành công");
+			}
 		}
-		String filename = img.getOriginalFilename();
-		File file = new File(app.getRealPath("/images/" + filename));
-		img.transferTo(file);
-		sanpham.setAnhSp(filename);
-		sanpham.setNgayTao(new Date());
-		System.out.println(sanpham.getNgayTao());
-		sanphamdao.save(sanpham);
 		return "redirect:/quanLySanPham/form";
 	}
 
 	@RequestMapping("update")
-	public String update(Model model, SanPham sanpham, @RequestParam("photo_file") MultipartFile img,
-			@RequestParam("keywords") Optional<String> kw, @RequestParam("p") Optional<Integer> p)
+	public String update(@Validated @ModelAttribute("sanpham") SanPham sanpham, BindingResult result,
+			@RequestParam("photo_file") MultipartFile img, Model model, RedirectAttributes redirectAttributes,
+			@RequestParam(value = "keywords", required = false) String keywords,
+			@RequestParam(value = "field", required = false) String field,
+			@RequestParam(value = "p", required = false) Integer page, @RequestParam("tenSp") String tenSp)
 			throws IllegalStateException, IOException {
-		if (sanpham == null) {
-			return "redirect:/quanLySanPham/form";
+		if (result.hasErrors()) {
+			int pageSize = 6;
+			String kwords = keywords != null ? keywords : session.get("keywords");
+
+			Pageable pageable;
+			if (field != null) {
+				Sort sort = Sort.by(Direction.ASC, field);
+				model.addAttribute("field", field.toUpperCase());
+				pageable = PageRequest.of(page != null ? page : 0, pageSize, sort);
+			} else {
+				pageable = PageRequest.of(page != null ? page : 0, pageSize);
+			}
+
+			Page<SanPham> resultPage;
+			if (kwords != null && !kwords.equals("")) {
+				resultPage = sanphamdao.findAllBytenSpLike("%" + kwords + "%", pageable);
+			} else {
+				resultPage = sanphamdao.findAll(pageable);
+			}
+			redirectAttributes.addFlashAttribute("message", "Vui lòng nhập đầy đủ thông tin");
+			model.addAttribute("sanpham", sanpham);
+			model.addAttribute("page", resultPage);
+			return "redirect:/quanLySanPham/edit/" + sanpham.getIdSp();
 		} else if (img.isEmpty()) {
-			return "redirect:/quanLySanPham/form";
+			redirectAttributes.addFlashAttribute("hinhanh", "Chưa thêm hình ảnh");
+		} else {
+			boolean isSanPhamExists = false;
+			List<SanPham> sanphams = sanphamdao.findAll();
+			for (SanPham sp : sanphams) {
+				if (sp.getTenSp().equalsIgnoreCase(tenSp)) {
+					isSanPhamExists = true;
+					break;
+				}
+			}
+			
+				String filename = img.getOriginalFilename();
+				File file = new File(app.getRealPath("/images/" + filename));
+				img.transferTo(file);
+				sanpham.setAnhSp(filename);
+				sanpham.setNgayTao(new Date());
+				System.out.println(sanpham.getNgayTao());
+				sanphamdao.save(sanpham);
+				redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
+			
 		}
-		model.addAttribute("sanpham", sanpham);
-		String filename = img.getOriginalFilename();
-		File file = new File(app.getRealPath("/images/" + filename));
-		img.transferTo(file);
-		sanpham.setAnhSp(filename);
-		sanphamdao.save(sanpham);
 		return "redirect:/quanLySanPham/edit/" + sanpham.getIdSp();
 	}
 
@@ -159,10 +257,11 @@ public class quanLySanPham {
 	}
 
 	@ModelAttribute("list_loaisanpham")
-	public Map<Integer, String> getLoaisanpham() {
+	public Map<Integer, String> getLoaisanpham(Model model) {
 		Map<Integer, String> map = new HashMap<>();
 
 		List<Loaisanpham> loaisanphamitems = Loaisanphamdao.findAll();
+
 		for (Loaisanpham loaisanpham : loaisanphamitems) {
 			map.put(loaisanpham.getIdLoai(), loaisanpham.getTenLoai());
 		}
