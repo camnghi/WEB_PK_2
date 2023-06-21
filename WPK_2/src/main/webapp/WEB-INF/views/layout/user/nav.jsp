@@ -16,7 +16,7 @@
 					</ul>
 				</li>
 
-				<li><a href="/giohang/edit/${taiKhoan}"><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
+				<li><a href="/giohang/form"><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
 				<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
 					<ul class="sub-menu">						
 						<li><a href="/index/DangNhap">Đăng nhập: ${khachhang.taiKhoan}</a></li>
