@@ -32,8 +32,7 @@ public class DatHangController {
 		request.setAttribute("title", "Đặt hàng");
 		request.setAttribute("view", "dathang");
 //		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-			
+		response.setCharacterEncoding("UTF-8");			
 		List<Loaisanpham> loaisanphams = dao.findAll();
 		model.addAttribute("loaisanphams", loaisanphams);
 		return "index_Main";
